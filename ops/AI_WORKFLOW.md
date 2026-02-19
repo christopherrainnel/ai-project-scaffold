@@ -20,7 +20,8 @@ On opening this workspace (or first task):
 2) Make small, reviewable edits. Avoid unrelated reformatting.
 3) Run quality gates (lint/test/build) if available.
 4) Summarize: what changed, why, how verified, risks, and next check.
-5) Log the work in `CHANGELOG_AI.md`.
+5) Store and add “lesson learned” snippets in 'ops/LESSONS_LEARNED.md' when the issue is likely to repeat.
+6) Log the work in `CHANGELOG_AI.md`.
 
 ## Safety Rules (Non-Negotiable)
 - Secrets: never request, paste, store, or echo secrets (keys, tokens, passwords).
