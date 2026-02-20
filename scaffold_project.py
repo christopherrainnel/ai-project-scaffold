@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+#
+# This script creates or updates a governed AI project scaffold.
+# Default behavior is safe (no overwrites).
+# Use --force only when intentionally resetting governance files.
+#
 """
 Project Governance Scaffold Generator
 ======================================
@@ -56,11 +61,20 @@ Enterprise-ready project scaffold with AI governance, security policies, anti-dr
 """,
 
 "AGENTS.md": """\
-# Agent Rules (Source of Truth)
-Read and follow `ops/AI_WORKFLOW.md` before doing any work.
-If governance scaffold is missing, ask before creating it.
-Never overwrite existing governance files without showing a diff and getting approval.
-I am a Data Scientist learning Web Dev. When you see this file, prioritize using Python-style logic for your JS explanations.\
+# Agent Rules (Read First)
+
+If you are an AI agent or IDE assistant:
+
+1. Read `PROJECT_GOVERNANCE.md`
+2. Then read `ops/AI_WORKFLOW.md`
+3. Then follow `.github/copilot-instructions.md` (if applicable)
+
+Do not:
+- Overwrite governance files without showing a diff and receiving approval
+- Modify `.env`
+- Introduce dependencies without justification
+
+Governance files are authoritative.
 """,
 
 "CHANGELOG_AI.md": f"""\

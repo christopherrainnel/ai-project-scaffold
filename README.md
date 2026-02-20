@@ -1,6 +1,16 @@
-# Project Governance Template
+# Project Template
 
-Enterprise-ready project scaffold with AI governance, security policies, anti-drift controls, and audit logging.
+This project uses a standardized AI Governance Scaffold.
+
+All contributors and AI agents must follow:
+1) `ops/AI_WORKFLOW.md`
+2) `.github/copilot-instructions.md` (if using VS Code Copilot)
+
+This scaffold enforces:
+- Security discipline
+- Anti-drift architecture controls
+- Structured AI collaboration
+- Repeatable project initialization
 
 ## What this repo provides
 - Canonical AI policy: `ops/AI_WORKFLOW.md`
