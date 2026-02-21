@@ -25,7 +25,7 @@ Every new project starts with:
 # Scaffold a new project
 python tools/scaffold_project.py --name my-project
 
-# Scaffold in the current directory
+# Scaffold into ./project_template/ (default folder)
 python tools/scaffold_project.py
 
 # Preview without writing files
