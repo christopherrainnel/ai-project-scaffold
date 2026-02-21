@@ -51,3 +51,4 @@ Before implementing changes:
 - Explain technical concepts in plain English.
 - When introducing unfamiliar patterns, briefly state why the approach was chosen.
 - If the user is learning, connect new concepts to ones they already know.
+- For legal/security/policy guidance, prefer current official sources and include concrete dates.

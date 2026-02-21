@@ -17,6 +17,7 @@
 - **Destructive commands**: Never run without explicit user approval.
 - **Dependencies**: Never add without justification and version pinning.
 - **Governance files**: Never overwrite without showing a diff and receiving approval.
+- **Policy guidance**: For legal/security/compliance topics, use current official sources and include concrete dates.
 
 ## Operating Mode
 

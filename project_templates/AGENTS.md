@@ -15,6 +15,7 @@
 - Never read or modify `.env`. Only update `.env.example`.
 - Never add dependencies without justification, version pinning, and lockfile updates.
 - Never run destructive commands without explicit user approval.
+- For legal/security/policy recommendations, use current official sources and state the effective date.
 
 ## After Every Task
 

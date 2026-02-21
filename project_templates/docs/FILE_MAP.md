@@ -43,11 +43,17 @@
 | `refactor_request.md` | Structured template for refactoring tasks |
 | `code_review.md` | Structured template for AI-assisted code reviews |
 
-## `.github/` — IDE-Specific Config
+## `.github/` — Repository Automation and Contribution UX
 
 | File | Purpose |
 |------|---------|
 | `copilot-instructions.md` | VS Code Copilot policy loader — references `ops/AI_WORKFLOW.md` |
+| `ISSUE_TEMPLATE/01-bug-report.yml` | Structured bug intake form for consistent, reproducible reports |
+| `ISSUE_TEMPLATE/02-feature-request.yml` | Structured feature request form with acceptance criteria |
+| `ISSUE_TEMPLATE/config.yml` | Issue template config (disables blank issues by default) |
+| `PULL_REQUEST_TEMPLATE.md` | Standard pull request checklist and verification prompt |
+| `CODEOWNERS` | Default code ownership and required reviewer routing |
+| `BRANCH_PROTECTION.md` | Checklist for configuring branch protection in GitHub settings |
 
 ## `scripts/` — Automation
 

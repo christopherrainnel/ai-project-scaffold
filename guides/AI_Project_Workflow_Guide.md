@@ -1,6 +1,6 @@
 # AI Project Workflow Guide
 
-Version: 2.0
+Version: 2.2
 Last Updated: 2026-02-21
 Owner: Project Lead
 
@@ -12,7 +12,7 @@ This is the complete reference for the AI Project Scaffold system — how it wor
 
 ---
 
-## What Changed in v2.0
+## What Changed in v2.2
 
 Major update to the scaffold and generator:
 
@@ -23,8 +23,17 @@ Major update to the scaffold and generator:
 - Fixed **`AGENTS.md`** — no longer references non-existent `PROJECT_GOVERNANCE.md`
 - Professionalized all template content — better structure, tables, guided placeholders
 - Removed JS-specific learning preferences from copilot-instructions (now stack-agnostic)
-- Updated **`scaffold_project.py`** — generates all 22 files, color output, `{{PROJECT_NAME}}` placeholder support
-- Scaffold checklist in `ops/AI_WORKFLOW.md` now lists all 20+ required files explicitly
+- Added GitHub contribution UX files:
+  - `.github/ISSUE_TEMPLATE/01-bug-report.yml`
+  - `.github/ISSUE_TEMPLATE/02-feature-request.yml`
+  - `.github/ISSUE_TEMPLATE/config.yml`
+  - `.github/PULL_REQUEST_TEMPLATE.md`
+- Added governance ownership and protection setup files:
+  - `.github/CODEOWNERS`
+  - `.github/BRANCH_PROTECTION.md`
+- Updated **`ops/AI_WORKFLOW.md`** with source-quality rules for legal/security/policy topics
+- Updated **`scaffold_project.py`** — generates all 28 files, color output, `{{PROJECT_NAME}}` placeholder support
+- Scaffold checklist in `ops/AI_WORKFLOW.md` now lists all required files explicitly
 
 ---
 
@@ -36,7 +45,7 @@ Major update to the scaffold and generator:
 
 ---
 
-## Standard Project Scaffold (22 files)
+## Standard Project Scaffold (28 files)
 
 Created by `scaffold_project.py`:
 
@@ -49,6 +58,13 @@ CHANGELOG_AI.md                     # AI change log
 .gitignore                          # Git exclusions
 .github/
   copilot-instructions.md           # VS Code Copilot policy loader
+  PULL_REQUEST_TEMPLATE.md          # Pull request checklist
+  CODEOWNERS                        # Default code owners
+  BRANCH_PROTECTION.md              # Branch protection setup checklist
+  ISSUE_TEMPLATE/
+    01-bug-report.yml               # Bug intake form
+    02-feature-request.yml          # Feature intake form
+    config.yml                      # Issue template config
 docs/
   ARCHITECTURE.md                   # System design (fill in per project)
   DECISIONS.md                      # Decision log (fill in as you go)
@@ -188,7 +204,7 @@ Everything else has sensible defaults and can be customized later.
 
 ## Appendix: Script Internals
 
-- All 22 file templates are embedded in `FILES = { ... }` inside `scaffold_project.py`.
+- All 28 file templates are embedded in `FILES = { ... }` inside `scaffold_project.py`.
 - `{{DATE}}` placeholders are replaced with today’s date at generation time.
 - `{{PROJECT_NAME}}` is replaced with the `--name` argument (or the target directory name).
 - The script uses no external dependencies — standard library only.
