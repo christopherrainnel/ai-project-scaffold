@@ -156,7 +156,8 @@ Contributions are governed by `LICENSE` (MIT). By submitting a contribution, con
 Thank you for using this project and helping improve it through feedback, issues, and contributions.
 
 - This template is currently shared under MIT and is provided on an "as is" basis. Use it at your own risk.
+- Core template is MIT and remains free.
 - Optional donations/support channels are coming soon.
-- Future support offerings, add-ons, and advanced improvements may be released as paid tiers.
+- Paid tiers (coming soon) are optional extras for support offerings, add-ons, and advanced improvements.
 - For updates, please stay tuned and check the maintainer profile: `https://github.com/christopherrainnel`
 - If this project helps you, please follow/connect and share constructive feedback with the community.
