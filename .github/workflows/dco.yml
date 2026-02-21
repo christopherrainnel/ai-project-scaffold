@@ -1,0 +1,39 @@
+name: DCO
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  signoff:
+    name: DCO sign-off check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify Signed-off-by on all PR commits
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+
+          MISSING=0
+          while IFS= read -r commit; do
+            [ -z "$commit" ] && continue
+            if ! git show -s --format=%B "$commit" | grep -Eiq '^Signed-off-by:\s+.+<.+>$'; then
+              echo "Missing Signed-off-by in commit: $commit"
+              MISSING=1
+            fi
+          done < <(git rev-list "${BASE_SHA}..${HEAD_SHA}")
+
+          if [ "$MISSING" -ne 0 ]; then
+            echo ""
+            echo "DCO check failed. Re-sign commits with:"
+            echo "git rebase --signoff origin/main"
+            exit 1
+          fi

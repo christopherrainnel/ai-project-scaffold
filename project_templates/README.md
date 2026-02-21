@@ -29,3 +29,21 @@ Start with `AGENTS.md` (or `CLAUDE.md` for Claude Code). These files point to th
 - Never commit `.env` — only `.env.example` is tracked.
 - All AI changes are logged in `CHANGELOG_AI.md`.
 - Decisions and their rationale go in `docs/DECISIONS.md`.
+
+## Maturity and Improvement
+
+This scaffold provides strong governance defaults, but it may not yet match the ecosystem maturity of older, large frameworks or tooling ecosystems.
+
+Improvement is continuous and is led by maintainers together with approved contributors through reviewed pull requests.
+
+## Feedback and Community
+
+If this template helps your project, please use it and share constructive feedback.
+
+- Use issues for bugs and feature requests.
+- Use pull requests for improvements.
+- Keep feedback specific, respectful, and actionable so the author and community can improve quickly.
+
+## Contribution Terms
+
+By submitting contributions, contributors agree the work is provided under the repository `LICENSE`, with no expectation of payment unless separately agreed in writing by maintainers.

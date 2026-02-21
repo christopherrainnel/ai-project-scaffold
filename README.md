@@ -2,6 +2,12 @@
 
 A project template and Python tool for Vibe Coders who build products with AI agents. Creates a governed, professional project structure in seconds.
 
+## Scope and Disclaimer
+
+- This repository is an AI-assisted starter template for engineering workflow and repository hygiene.
+- It is **not** legal, regulatory, or compliance advice.
+- You are responsible for adapting policies to your organization, jurisdiction, and risk profile.
+
 ## What This Gives You
 
 Every new project starts with:
@@ -42,7 +48,14 @@ my-project/
 ├── .env.example                    # Environment variable template
 ├── .gitignore                      # Git exclusions
 ├── .github/
-│   └── copilot-instructions.md     # VS Code Copilot policy loader
+│   ├── copilot-instructions.md     # VS Code Copilot policy loader
+│   ├── PULL_REQUEST_TEMPLATE.md    # Pull request checklist
+│   ├── CODEOWNERS                  # Default code owners
+│   ├── BRANCH_PROTECTION.md        # Branch protection setup checklist
+│   └── ISSUE_TEMPLATE/
+│       ├── 01-bug-report.yml       # Bug intake form
+│       ├── 02-feature-request.yml  # Feature intake form
+│       └── config.yml              # Issue template config
 ├── docs/
 │   ├── ARCHITECTURE.md             # System design (fill in per project)
 │   ├── DECISIONS.md                # Decision log (fill in as you go)
@@ -107,3 +120,33 @@ See `guides/AI_Project_Workflow_Guide.md` for the complete documentation on:
 - The agent read order and policy hierarchy
 - Daily development flow with AI
 - Security rules and anti-drift controls
+
+## Maturity
+
+This project is useful in practice, but it is still early compared with long-established ecosystems and does not yet match their maturity/adoption level.
+
+We improve this repo continuously through maintainer review and contributions from approved contributors (see `CONTRIBUTING.md`).
+
+## Feedback
+
+Use this template, share what works, and report what does not.
+
+- Please keep feedback constructive, specific, and respectful.
+- Open issues for bugs/feature requests.
+- Open pull requests for concrete improvements.
+
+## Project Governance (This Repo)
+
+- Security reporting: see `SECURITY.md`
+- Contribution guidelines: see `CONTRIBUTING.md`
+- Community standards: see `CODE_OF_CONDUCT.md`
+- Issue forms and PR checklist: see `.github/ISSUE_TEMPLATE/` and `.github/PULL_REQUEST_TEMPLATE.md`
+- Code owners: see `.github/CODEOWNERS`
+- Branch protection setup: see `.github/BRANCH_PROTECTION.md`
+- DCO sign-off policy: see `DCO.md`
+- Dependabot updates: see `.github/dependabot.yml`
+- License: MIT (`LICENSE`)
+
+## Contribution Terms
+
+Contributions are governed by `LICENSE` (MIT). By submitting a contribution, contributors agree it is provided under that license and is unpaid unless separately agreed in writing.

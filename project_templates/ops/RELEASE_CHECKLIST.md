@@ -6,7 +6,7 @@ Last Updated: {{DATE}}
 ## Pre-Release
 
 - [ ] All quality gates pass (lint, test, build)
-- [ ] No secrets or credentials in the codebase (`git log --all -p | grep -i "password\|secret\|api_key"`)
+- [ ] No secrets or credentials in the codebase (Unix: `git log --all -p --pretty=format: | grep -Ei "password|secret|api[_-]?key"` / PowerShell: `git log --all -p --pretty=format: | Select-String -Pattern "(?i)password|secret|api[_-]?key"`)
 - [ ] Dependency changes reviewed and vulnerability-scanned
 - [ ] `CHANGELOG_AI.md` is up to date
 - [ ] `docs/ARCHITECTURE.md` and `docs/DECISIONS.md` reflect current state

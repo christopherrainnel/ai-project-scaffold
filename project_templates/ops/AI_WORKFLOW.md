@@ -1,6 +1,6 @@
 # AI Workflow (Canonical Policy)
 
-Version: 1.1
+Version: 1.3
 Last Updated: {{DATE}}
 Owner: Project Lead
 
@@ -18,7 +18,7 @@ Applies to: Claude Code, Cursor, VS Code Copilot, Windsurf, and any other AI-ass
 
 On opening this workspace or starting the first task:
 
-1. Verify the governance scaffold exists (see Section 7).
+1. Verify the governance scaffold exists (see Section 8).
 2. If files are missing, ask: *"This workspace is missing governance files. Should I create the missing pieces (recommended) or skip?"*
 3. If approved, create only what is missing. Never overwrite existing files unless the user approves a diff.
 4. At least once per major milestone, audit the scaffold for completeness.
@@ -82,7 +82,18 @@ A task is complete only when:
 
 ---
 
-## 7. Scaffold Checklist
+## 7. Standards and Source Quality
+
+When work touches legal, policy, compliance, privacy, security, or licensing topics:
+
+1. Prefer current primary sources (official docs, standards body docs, upstream project policy pages).
+2. Include concrete dates when summarizing time-sensitive guidance.
+3. Never claim legal compliance/certification unless explicitly provided by the user.
+4. Mark guidance as non-legal advice unless a qualified professional approved it.
+
+---
+
+## 8. Scaffold Checklist
 
 Required governance files:
 
@@ -93,6 +104,12 @@ CHANGELOG_AI.md                 # AI change log
 .env.example                    # Environment variable template
 .gitignore                      # Version control exclusions
 .github/copilot-instructions.md # VS Code Copilot policy loader
+.github/ISSUE_TEMPLATE/01-bug-report.yml
+.github/ISSUE_TEMPLATE/02-feature-request.yml
+.github/ISSUE_TEMPLATE/config.yml
+.github/PULL_REQUEST_TEMPLATE.md
+.github/CODEOWNERS
+.github/BRANCH_PROTECTION.md
 docs/ARCHITECTURE.md            # System design
 docs/DECISIONS.md               # Decision log
 docs/FILE_MAP.md                # Plain-English file index
