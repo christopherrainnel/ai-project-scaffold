@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(Get-ChildItem -Recurse -Force \"C:\\\\Users\\\\CHRISTOPH\\\\OneDrive\\\\PROJECT TEMPLATES\")",
+      "Bash(Select-Object FullName, PSIsContainer)",
+      "Bash(Format-Table -AutoSize)",
+      "Bash(python scaffold_project.py:*)",
+      "Bash(python:*)"
+    ]
+  }
+}

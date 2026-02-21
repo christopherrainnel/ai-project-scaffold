@@ -1,5 +1,3 @@
-# wrapper ignore: e.g., /generated/, __pycache__/, .venv/
-
 # Secrets
 .env
 .env.*
