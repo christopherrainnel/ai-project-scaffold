@@ -150,3 +150,13 @@ Use this template, share what works, and report what does not.
 ## Contribution Terms
 
 Contributions are governed by `LICENSE` (MIT). By submitting a contribution, contributors agree it is provided under that license and is unpaid unless separately agreed in writing.
+
+## Support, Donations, and Future Paid Tiers
+
+Thank you for using this project and helping improve it through feedback, issues, and contributions.
+
+- This template is currently shared under MIT and is provided on an "as is" basis. Use it at your own risk.
+- Optional donations/support channels are coming soon.
+- Future support offerings, add-ons, and advanced improvements may be released as paid tiers.
+- For updates, please stay tuned and check the maintainer profile: `https://github.com/christopherrainnel`
+- If this project helps you, please follow/connect and share constructive feedback with the community.
