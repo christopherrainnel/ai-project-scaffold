@@ -160,17 +160,21 @@ Before implementing major changes:
 python tools/scaffold_project.py --name my-project
 ```
 
-### Scaffold in the current directory
+### Scaffold with default folder name
 
 ```bash
 python tools/scaffold_project.py
 ```
 
+Creates `./project_template/` and scaffolds files inside it.
+
 ### Scaffold in a specific directory
 
 ```bash
-python tools/scaffold_project.py /path/to/project
+python tools/scaffold_project.py /path/to/workspace
 ```
+
+Creates `/path/to/workspace/project_template/` and scaffolds files inside it.
 
 ### Preview without writing files
 
@@ -186,7 +190,7 @@ python tools/scaffold_project.py --force
 
 **Default behavior is safe**: existing files are skipped unless `--force` is used.
 
-The `--name` flag also sets the `{{PROJECT_NAME}}` placeholder in `README.md`.
+The `--name` flag sets both the scaffold folder name and the `{{PROJECT_NAME}}` placeholder in `README.md`.
 
 ---
 

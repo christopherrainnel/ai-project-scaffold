@@ -6,8 +6,8 @@ Creates the standard governed project structure with all governance files,
 documentation, prompt templates, and configuration for AI-assisted development.
 
 Usage:
-    python scaffold_project.py                     # scaffold in current directory
-    python scaffold_project.py /path/to/project    # scaffold in specified directory
+    python scaffold_project.py                      # create ./project_template/ and scaffold
+    python scaffold_project.py /path/to/workspace  # create /path/to/workspace/project_template/
     python scaffold_project.py --name my-project   # create ./my-project/ and scaffold
     python scaffold_project.py --dry-run            # preview without writing
     python scaffold_project.py --force              # overwrite existing files
@@ -21,6 +21,7 @@ from pathlib import Path
 from datetime import date
 
 TODAY = date.today().strftime("%Y-%m-%d")
+DEFAULT_PROJECT_FOLDER = "project_template"
 
 # ---------------------------------------------------------------------------
 # Template placeholders:
@@ -1294,9 +1295,9 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""\
 examples:
-  python scaffold_project.py                     # scaffold in current directory
-  python scaffold_project.py /path/to/project    # scaffold in specified directory
-  python scaffold_project.py --name my-project   # create ./my-project/ and scaffold
+  python scaffold_project.py                      # create ./project_template/ and scaffold
+  python scaffold_project.py /path/to/workspace   # create /path/to/workspace/project_template/
+  python scaffold_project.py --name my-project    # create ./my-project/ and scaffold
   python scaffold_project.py --dry-run            # preview without writing files
   python scaffold_project.py --force              # overwrite existing files
 """,
@@ -1305,11 +1306,11 @@ examples:
         "target",
         nargs="?",
         default=".",
-        help="Target directory (default: current directory)",
+        help="Workspace directory where the scaffold folder is created (default: current directory)",
     )
     parser.add_argument(
         "--name",
-        help="Create a sub-folder with this name and scaffold inside it",
+        help=f"Scaffold folder name (default: {DEFAULT_PROJECT_FOLDER})",
     )
     parser.add_argument(
         "--dry-run",
@@ -1323,12 +1324,9 @@ examples:
     )
 
     args = parser.parse_args()
-    target = Path(args.target)
-
-    if args.name:
-        target = target / args.name
-
-    project_name = args.name if args.name else target.resolve().name
+    workspace = Path(args.target)
+    project_name = args.name if args.name else DEFAULT_PROJECT_FOLDER
+    target = workspace / project_name
 
     # Header
     if args.dry_run:
