@@ -1,5 +1,7 @@
 # AI Project Scaffold Generator
 
+> **Free & open source.** An improved AI-guided tier (hands-on prompts, workflows, and support) is available for [sponsors](https://github.com/sponsors/christopherrainnel). The template below is fully usable at no cost.
+
 A project template and Python tool for Vibe Coders who build products with AI agents. Creates a governed, professional project structure in seconds.
 
 ## Scope and Disclaimer
@@ -151,13 +153,9 @@ Use this template, share what works, and report what does not.
 
 Contributions are governed by `LICENSE` (MIT). By submitting a contribution, contributors agree it is provided under that license and is unpaid unless separately agreed in writing.
 
-## Support, Donations, and Future Paid Tiers
+## Support and AI-Guided Tier
 
-Thank you for using this project and helping improve it through feedback, issues, and contributions.
-
-- This template is currently shared under MIT and is provided on an "as is" basis. Use it at your own risk.
-- Core template is MIT and remains free.
-- Optional donations/support channels are coming soon.
-- Paid tiers (coming soon) are optional extras for support offerings, add-ons, and advanced improvements.
-- For updates, please stay tuned and check the maintainer profile: `https://github.com/christopherrainnel`
-- If this project helps you, please follow/connect and share constructive feedback with the community.
+- **Free tier**: This repo is MIT and fully usable at no cost.
+- **AI-guided tier**: An improved version with hands-on prompts, workflows, and support is available for [sponsors](https://github.com/sponsors/christopherrainnel).
+- This template is provided on an "as is" basis. You are responsible for adapting it to your context.
+- If this project helps you, please star, share feedback, and consider sponsoring to support development.
