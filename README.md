@@ -1,5 +1,7 @@
 # AI Project Scaffold Generator
 
+> **Free & open source.** Fully usable as-is. For an AI-guided version that eliminates blank-page paralysis and scopes a 7-day deliverable before you write a line of code, see the [AI-guided tier](https://github.com/christopherrainnel/ai-project-scaffold-tier1).
+
 A project template and Python tool for Vibe Coders who build products with AI agents. Creates a governed, professional project structure in seconds.
 
 ## Scope and Disclaimer
@@ -151,13 +153,9 @@ Use this template, share what works, and report what does not.
 
 Contributions are governed by `LICENSE` (MIT). By submitting a contribution, contributors agree it is provided under that license and is unpaid unless separately agreed in writing.
 
-## Support, Donations, and Future Paid Tiers
+## Level Up: AI-Guided Tier
 
-Thank you for using this project and helping improve it through feedback, issues, and contributions.
+This free scaffold gives you governance and structure. If you want **an agent that guides you from day one** — asks the right questions, derives your stack from constraints, defines a 7-day vertical slice before coding, and keeps you from overbuilding — the [AI-guided tier](https://github.com/christopherrainnel/ai-project-scaffold-tier1) adds that. Access via sponsorship or other payment methods.
 
-- This template is currently shared under MIT and is provided on an "as is" basis. Use it at your own risk.
-- Core template is MIT and remains free.
-- Optional donations/support channels are coming soon.
-- Paid tiers (coming soon) are optional extras for support offerings, add-ons, and advanced improvements.
-- For updates, please stay tuned and check the maintainer profile: `https://github.com/christopherrainnel`
-- If this project helps you, please follow/connect and share constructive feedback with the community.
+- **This tier**: MIT, fully usable, no strings attached.
+- **That tier**: [redacted-tiering-item], deterministic incomplete detection, Run Order conventions, and trigger-based architecture escalation.
