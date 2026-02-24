@@ -54,7 +54,7 @@ python -m unittest discover -s tests -v
 - [ ] Change is scoped to one purpose.
 - [ ] Documentation updated if behavior changed.
 - [ ] Tests added or updated where relevant.
-- [ ] `project_templates/` and `tools/scaffold_project.py` remain in sync.
+- [ ] `project_templates/` and `tools/scaffold_project.py` remain in sync (`project_templates/` is source of truth; update scaffold script to match).
 - [ ] No secrets or credentials introduced.
 - [ ] This contribution follows current official platform/documentation guidance where applicable.
 

@@ -12,7 +12,7 @@
 | `AGENTS.md` | Universal entry point for all AI agents |
 | `CHANGELOG_AI.md` | Running log of every AI-made change |
 | `.env.example` | Template for environment variables (never commit `.env`) |
-| `.gitignore` | Keeps secrets, build artifacts, and OS files out of version control |
+| `.gitignore` | Keeps secrets, build artifacts (`__pycache__`, `node_modules`, etc.), and OS files out of version control |
 
 ## `docs/` — Project Knowledge
 
