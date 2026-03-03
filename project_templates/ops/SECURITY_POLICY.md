@@ -1,45 +1,65 @@
 # Security Policy
 
-Version: 1.0
+Version: 2.0
 Last Updated: {{DATE}}
 
 ## Goal
 
-Prevent secret leakage, unsafe command execution, and accidental exposure of sensitive data throughout the development lifecycle.
+Maintain a secure-by-default baseline for MVP delivery without custom security complexity.
+
+## Core Rules
+
+1. **No secrets in repository or client code.**
+2. **Least privilege by default.** Explicit permissions and deny-by-default access.
+3. **Data minimization.** Collect and retain only what is needed for the feature.
+4. **Managed services over custom crypto/auth.** Prefer proven providers.
 
 ## Secret Management
 
 | Rule | Detail |
 |------|--------|
-| Storage | Secrets go in `.env` (local) or a platform secret manager (production). |
-| Git | `.env` is never committed. `.gitignore` enforces this. |
-| Template | `.env.example` contains placeholder keys only — no real values. |
-| Rotation | If a secret is accidentally committed, rotate it immediately and scrub git history. |
+| Storage | Secrets in `.env` (local) and managed secret store (non-local). |
+| Git | `.env` is never committed. Only `.env.example` is tracked. |
+| Rotation | Rotate immediately after any suspected exposure. |
+| Environment split | Separate keys per dev/stage/prod. |
 
-## Prohibited Content (Never Share in Chat, Logs, or Commits)
+## Access Control
 
-- API keys, tokens, passwords, or signing secrets
-- Private URLs containing tokens or session IDs
-- Production database exports or connection strings
-- Customer PII (names, phone numbers, email addresses, payment info)
-- Internal infrastructure details (IP addresses, internal hostnames)
+- Use explicit roles/permissions.
+- Deny-by-default endpoint behavior.
+- Prefer managed auth (OIDC/OAuth) when accounts are needed.
+- Use short-lived tokens/sessions with secure cookie settings when applicable.
 
-## Terminal Safety
+## App & API Controls
 
-- Explain what a command does before running it.
-- Require explicit user approval before execution.
-- Never run destructive operations without confirmation (`rm -rf`, destructive migrations, `DROP TABLE`, credential changes).
-- Prefer `--dry-run` flags when available for risky operations.
+- Input validation and output encoding at all trust boundaries.
+- CSRF protection when cookie auth is used.
+- Secure headers: CSP, HSTS, frame protections, and MIME protections (when applicable).
+- Rate limiting and abuse controls for public interfaces.
+- Upload controls: MIME/type checks, size limits, private storage, malware scanning strategy.
 
-## Code Safety
+## Data Protection
 
-- Never hardcode secrets — always use environment variables.
-- Validate and sanitize all external input (user input, API responses).
-- Use parameterized queries — never concatenate user input into SQL.
-- Keep dependencies updated and run vulnerability scans regularly.
+- Encrypt in transit (TLS).
+- Use provider-managed encryption at rest.
+- Do not log secrets or full sensitive payloads.
+- Define retention/deletion in `docs/PRIVACY.md`.
 
-## Privacy
+## Payments Baseline
 
-- Prefer privacy/telemetry-off modes where supported.
-- Avoid sending proprietary code to third-party AI services unless explicitly approved.
-- Minimize data collection — only request what the feature needs.
+- Never process raw card number/CVV in app code.
+- Use hosted checkout/tokenization with a PCI-compliant payment provider.
+
+## AI Safety Controls (If AI Features Exist)
+
+- Treat user prompts and uploads as hostile input.
+- Isolate system/tool prompts from user content.
+- Require explicit user confirmation for sensitive actions.
+- Apply tool/action allowlists and safe-fail behavior.
+
+## Prohibited Content in Chat/Logs/Commits
+
+- API keys, tokens, passwords, private URLs with auth material
+- Production database exports/connection strings
+- Customer PII and regulated data unless explicitly approved and redacted
+- Internal infrastructure-sensitive data (hostnames/IP topology)

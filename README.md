@@ -54,6 +54,7 @@ my-project/
 │   ├── PULL_REQUEST_TEMPLATE.md    # Pull request checklist
 │   ├── CODEOWNERS                  # Default code owners
 │   ├── BRANCH_PROTECTION.md        # Branch protection setup checklist
+│   ├── dependabot.yml              # Automated dependency/action update PRs
 │   └── ISSUE_TEMPLATE/
 │       ├── 01-bug-report.yml       # Bug intake form
 │       ├── 02-feature-request.yml  # Feature intake form
@@ -61,13 +62,18 @@ my-project/
 ├── docs/
 │   ├── ARCHITECTURE.md             # System design (fill in per project)
 │   ├── DECISIONS.md                # Decision log (fill in as you go)
-│   └── FILE_MAP.md                 # Plain-English file index
+│   ├── FILE_MAP.md                 # Plain-English file index
+│   ├── PRIVACY.md                  # Data inventory, retention, deletion, subprocessors
+│   └── THREAT_MODEL.md             # Assets, threats, mitigations
 ├── ops/
 │   ├── AI_WORKFLOW.md              # Canonical AI policy (source of truth)
 │   ├── SECURITY_POLICY.md          # Secret and data handling rules
 │   ├── DATA_CLASSIFICATION.md      # Data sensitivity levels
 │   ├── DEPENDENCY_POLICY.md        # Dependency management rules
 │   ├── QUALITY_GATES.md            # Definition of done + commands
+│   ├── DEFINITION_OF_DONE.md       # Reusable security/privacy/testing checklist
+│   ├── RUNBOOK.md                  # Ops, logging, and incident basics
+│   ├── STANDARDS_BASELINE.md       # Official-source standards cross-check baseline
 │   ├── RELEASE_CHECKLIST.md        # Release verification steps
 │   ├── LESSONS_LEARNED.md          # Recurring issues and fixes
 │   └── prompts/
@@ -75,6 +81,8 @@ my-project/
 │       ├── bug_report.md           # Bug report template
 │       ├── refactor_request.md     # Refactor request template
 │       └── code_review.md          # Code review template
+├── .github/workflows/
+│   └── ci.yml                      # Merge-blocking quality + security gates
 └── scripts/
     └── .gitkeep                    # Placeholder for utility scripts
 ```
@@ -93,7 +101,7 @@ PROJECT CREATION/
 ```
 
 - **`project_templates/`** — The gold-standard reference. Edit these files to update what gets generated.
-- **`tools/scaffold_project.py`** — The generator. Embeds all template content and creates projects from scratch.
+- **`tools/scaffold_project.py`** — The generator. Uses `project_templates/` as source of truth (with embedded fallback).
 - **`guides/`** — Documentation on the philosophy, workflow, and usage of this system.
 
 ## After Scaffolding a New Project
@@ -112,6 +120,8 @@ The scaffold gives you the governance skeleton. As you build, your project will 
 - **Add docs only when they earn their keep** — you may add `.md` files to `docs/` (e.g., `docs/API_REFERENCE.md`, `docs/DEPLOYMENT.md`) but only when a document will be actively used and maintained. Avoid creating docs "just in case."
 - **Keep `docs/FILE_MAP.md` updated** — whenever you add a significant folder or file, add a one-line entry so anyone (human or AI) can orient quickly.
 - **Log new architectural decisions** — every time you choose a framework, database, hosting provider, or major pattern, record it in `docs/DECISIONS.md` so your AI agent does not reverse it later.
+- **Agents may create product folders freely** — e.g., `apps/`, `services/`, `packages/`, `infra/`, `tests/`, `assets/` — when required by product scope.
+- **Treat governance files as protected** — avoid editing `ops/`, `.github/`, and core `docs/` governance files unless the change is necessary, reviewed, and logged.
 
 > **Rule of thumb**: the `ops/` and `docs/` folders are governance — keep them lean. Everything else is your product — let it grow naturally.
 

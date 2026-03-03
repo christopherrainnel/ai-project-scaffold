@@ -1248,8 +1248,26 @@ def resolve_placeholders(content: str, project_name: str) -> str:
     return content
 
 
+def load_templates() -> dict:
+  """Load templates from project_templates/ when available, else fallback to embedded FILES."""
+  script_dir = Path(__file__).resolve().parent
+  template_root = script_dir.parent / "project_templates"
+
+  if not template_root.exists():
+    return FILES
+
+  loaded = {}
+  for file_path in sorted(template_root.rglob("*")):
+    if file_path.is_file():
+      rel_path = file_path.relative_to(template_root).as_posix()
+      loaded[rel_path] = file_path.read_text(encoding="utf-8")
+
+  return loaded if loaded else FILES
+
+
 def create_scaffold(
     target_dir: Path,
+  templates: dict,
     project_name: str,
     dry_run: bool = False,
     force: bool = False,
@@ -1260,7 +1278,7 @@ def create_scaffold(
     created_files = []
     skipped_files = []
 
-    for rel_path, content in FILES.items():
+    for rel_path, content in templates.items():
         full_path = target_dir / rel_path
         parent = full_path.parent
 
@@ -1338,6 +1356,7 @@ examples:
 
     created, skipped = create_scaffold(
         target,
+      templates=load_templates(),
         project_name=project_name,
         dry_run=args.dry_run,
         force=args.force,

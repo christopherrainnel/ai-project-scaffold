@@ -1,6 +1,6 @@
 # AI Workflow (Canonical Policy)
 
-Version: 1.3
+Version: 2.0
 Last Updated: {{DATE}}
 Owner: Project Lead
 
@@ -8,120 +8,146 @@ Owner: Project Lead
 
 ## Purpose
 
-This file is the **single source of truth** for how AI agents and IDE assistants operate in this repository. All other agent config files (`CLAUDE.md`, `AGENTS.md`, `.github/copilot-instructions.md`) defer to this document.
+This file is the **single source of truth** for how AI agents and IDE assistants operate in this repository.
 
 Applies to: Claude Code, Cursor, VS Code Copilot, Windsurf, and any other AI-assisted tool.
 
----
-
-## 1. Session Start — Audit Rule
-
-On opening this workspace or starting the first task:
-
-1. Verify the governance scaffold exists (see Section 8).
-2. If files are missing, ask: *"This workspace is missing governance files. Should I create the missing pieces (recommended) or skip?"*
-3. If approved, create only what is missing. Never overwrite existing files unless the user approves a diff.
-4. At least once per major milestone, audit the scaffold for completeness.
+This workflow is **security-first, privacy-first, and production-minded**. It is not legal advice.
 
 ---
 
-## 2. Operating Mode
+## 1) Session Start (Hard Gate)
 
-Every task must follow this cycle:
+Before first code changes in a new feature/session:
 
-1. **Plan** — Describe what you will do, which files you will touch.
-2. **Execute** — Make small, reviewable edits. No unrelated reformatting.
-3. **Verify** — Run quality gates (lint / test / build) when available.
-4. **Summarize** — State what changed, why, how it was verified, and any risks.
-5. **Learn** — If the issue is likely to recur, add it to `ops/LESSONS_LEARNED.md`.
-6. **Log** — Record the work in `CHANGELOG_AI.md`.
+1. Confirm governance scaffold completeness (Section 10).
+2. Ask the minimum discovery questions needed to avoid building the wrong thing (see `ops/STANDARDS_BASELINE.md`).
+3. Produce a short implementation plan plus a risk register.
+4. If governance files are missing, ask to create missing files only; do not overwrite without approval.
 
 ---
 
-## 3. Safety Rules (Non-Negotiable)
+## 2) Mandatory Operating Loop
 
-| Rule | Detail |
-|------|--------|
-| Secrets | Never request, paste, store, or echo secrets (keys, tokens, passwords). |
-| `.env` | Never read or modify `.env`. Only update `.env.example`. |
-| Terminal | Never run destructive commands without explicit user approval. |
-| Data | Never request customer PII or sensitive data. Use redacted/synthetic samples. |
+Every task follows this loop:
 
----
-
-## 4. Dependency Discipline
-
-- Do not add dependencies without justification (problem it solves, why built-in code is insufficient).
-- Pin exact versions in the manifest.
-- Update lockfiles in the same commit.
-- Run vulnerability checks (`npm audit`, `pip-audit`, etc.) when dependencies change.
+1. **Plan** — scope, files, tests, risks.
+2. **Execute** — small diffs only, no unrelated reformatting.
+3. **Verify** — run applicable quality gates.
+4. **Document** — update docs impacted by the change.
+5. **Summarize** — include verification evidence and residual risks.
+6. **Log** — update `CHANGELOG_AI.md`.
 
 ---
 
-## 5. Anti-Drift Control
+## 3) Non-Negotiable Rules
 
-Before implementing any change:
+1. **Plan before code**: no feature implementation without a short plan + risk register.
+2. **Security gates before shipping**: CI must fail on lint/format/typecheck, tests, vulnerability scan, secret scan, and basic SAST.
+3. **No secrets in code**: never commit secrets, tokens, API keys, private URLs.
+4. **Least privilege by default**: explicit roles/permissions and deny-by-default.
+5. **Minimize and protect data**: collect minimum data; use encryption in transit and managed encryption at rest.
+6. **Payments**: never handle raw card data; use hosted checkout/tokenization only.
+7. **AI safety controls**: treat user input as hostile; guard against prompt injection; use tool allowlists and confirmation for sensitive actions.
+8. **Legal baseline required**: align with official sources and record effective dates; never claim certification/compliance.
+
+---
+
+## 4) Security & Privacy Baseline
+
+- Never read/modify `.env`; update `.env.example` only.
+- Use input validation at every boundary.
+- Apply secure headers where applicable (CSP, HSTS, frame protections, MIME protections).
+- Implement rate limiting and abuse controls for public endpoints.
+- Do not log PII/secrets.
+- Define retention and deletion process in `docs/PRIVACY.md`.
+
+---
+
+## 5) AI Feature Baseline (When AI Is Used)
+
+- Keep system/tool instructions isolated from user content.
+- Require explicit confirmation for destructive or external actions.
+- Restrict tool execution by allowlist.
+- Redact sensitive data before sending to model providers.
+- Store metadata or hashes where possible instead of full prompt/response logs.
+
+---
+
+## 6) Dependency & Supply Chain Discipline
+
+- Add dependencies only with rationale.
+- Pin versions and maintain lockfiles.
+- Enable dependency vulnerability scanning.
+- Enable secret scanning in pre-commit and CI.
+- Generate SBOM when feasible.
+
+---
+
+## 7) Anti-Drift Control
+
+Before implementation:
 
 1. Read `docs/ARCHITECTURE.md` and `docs/DECISIONS.md`.
-2. If the proposed work conflicts with documented decisions, **stop and ask**.
-3. If a new architectural decision is made, log it in `docs/DECISIONS.md`.
+2. If change conflicts with documented decisions, stop and ask.
+3. Log new architecture decisions in `docs/DECISIONS.md`.
 
 ---
 
-## 6. Definition of Done
+## 8) High-Risk Fail-Safe
 
-A task is complete only when:
+If the feature involves children, health data, regulated industry requirements, or direct payment handling:
 
-- [ ] Code compiles and builds (if applicable).
-- [ ] Linting passes.
-- [ ] Tests pass (if applicable).
-- [ ] `CHANGELOG_AI.md` is updated.
-- [ ] No secrets or hardcoded credentials were introduced.
-- [ ] No dependency drift (lockfiles match manifests).
-- [ ] `docs/DECISIONS.md` updated if an architectural choice was made.
+1. Pause implementation.
+2. Propose a safer reduced MVP scope.
+3. Require legal/compliance review and DPIA/PIA-style assessment.
+4. Resume only after minimization controls are documented.
 
 ---
 
-## 7. Standards and Source Quality
+## 9) Definition of Done
 
-When work touches legal, policy, compliance, privacy, security, or licensing topics:
+Use `ops/DEFINITION_OF_DONE.md` and `ops/QUALITY_GATES.md`.
 
-1. Prefer current primary sources (official docs, standards body docs, upstream project policy pages).
-2. Include concrete dates when summarizing time-sensitive guidance.
-3. Never claim legal compliance/certification unless explicitly provided by the user.
-4. Mark guidance as non-legal advice unless a qualified professional approved it.
+A task is complete only when applicable checks pass and required docs are updated.
 
 ---
 
-## 8. Scaffold Checklist
+## 10) Scaffold Checklist
 
 Required governance files:
 
 ```
-CLAUDE.md                       # Claude Code auto-read rules
-AGENTS.md                       # Universal agent entry point
-CHANGELOG_AI.md                 # AI change log
-.env.example                    # Environment variable template
-.gitignore                      # Version control exclusions
-.github/copilot-instructions.md # VS Code Copilot policy loader
+CLAUDE.md
+AGENTS.md
+CHANGELOG_AI.md
+.env.example
+.gitignore
+.github/copilot-instructions.md
+.github/workflows/ci.yml
 .github/ISSUE_TEMPLATE/01-bug-report.yml
 .github/ISSUE_TEMPLATE/02-feature-request.yml
 .github/ISSUE_TEMPLATE/config.yml
 .github/PULL_REQUEST_TEMPLATE.md
 .github/CODEOWNERS
 .github/BRANCH_PROTECTION.md
-docs/ARCHITECTURE.md            # System design
-docs/DECISIONS.md               # Decision log
-docs/FILE_MAP.md                # Plain-English file index
-ops/AI_WORKFLOW.md              # This file (canonical policy)
-ops/SECURITY_POLICY.md          # Secret and data handling rules
-ops/DATA_CLASSIFICATION.md      # Data sensitivity levels
-ops/DEPENDENCY_POLICY.md        # Dependency management rules
-ops/QUALITY_GATES.md            # Definition of done + commands
-ops/RELEASE_CHECKLIST.md        # Release verification steps
-ops/LESSONS_LEARNED.md          # Recurring issues and fixes
-ops/prompts/feature_request.md  # Feature request template
-ops/prompts/bug_report.md       # Bug report template
-ops/prompts/refactor_request.md # Refactor request template
-ops/prompts/code_review.md      # Code review template
+docs/ARCHITECTURE.md
+docs/DECISIONS.md
+docs/FILE_MAP.md
+docs/PRIVACY.md
+docs/THREAT_MODEL.md
+ops/AI_WORKFLOW.md
+ops/SECURITY_POLICY.md
+ops/DATA_CLASSIFICATION.md
+ops/DEPENDENCY_POLICY.md
+ops/QUALITY_GATES.md
+ops/DEFINITION_OF_DONE.md
+ops/RUNBOOK.md
+ops/STANDARDS_BASELINE.md
+ops/RELEASE_CHECKLIST.md
+ops/LESSONS_LEARNED.md
+ops/prompts/feature_request.md
+ops/prompts/bug_report.md
+ops/prompts/refactor_request.md
+ops/prompts/code_review.md
 ```

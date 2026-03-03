@@ -1,36 +1,54 @@
 # Data Classification
 
-Version: 1.0
+Version: 2.0
 Last Updated: {{DATE}}
 
-> Use this guide to determine what data can be shared with AI agents, committed to git, or discussed in chat.
+> Use this guide to decide what can be shared with AI tools, logs, and repositories.
 
-## Public (Safe to Share)
+## Public
 
-- Open-source code and documentation
-- Synthetic / sample / mock data
-- Sanitized logs (no secrets, no PII)
-- Published API documentation
-- Error messages with redacted context
+- Open-source code and docs
+- Synthetic/mock datasets
+- Redacted error logs
+- Public API documentation
 
-## Internal (Redaction Required Before Sharing)
+## Internal
 
-- Internal strategy documents, pricing models, unpublished roadmaps
-- Contracts and vendor terms (redact names, amounts, dates)
-- Architecture diagrams with internal hostnames or IPs (redact infra details)
-- Analytics data with user segments (aggregate only, no individual records)
+- Non-public roadmap and pricing material
+- Internal architecture and runbooks
+- Aggregated analytics without direct identifiers
 
-## Prohibited (Never Share)
+## Confidential
 
-- Secrets: API keys, tokens, passwords, signing keys, certificates
-- Customer PII: names, emails, phone numbers, addresses, payment info
-- Production database dumps or connection strings
-- Session tokens, JWTs, or auth cookies
-- Internal IP addresses, hostnames, or infrastructure topology
-- Source code of proprietary third-party systems
+- Customer account metadata
+- Non-public business contracts
+- Deployment and infrastructure internals
 
-## What to Do If Data Is Misclassified
+## Regulated / Restricted (Highest)
 
-1. If prohibited data was shared in chat: note it immediately, do not copy or repeat it.
-2. If prohibited data was committed to git: remove it, rotate any exposed secrets, and scrub git history.
-3. When in doubt, treat data as **Internal** and ask the user for clarification.
+- Secrets and credentials
+- Personal data (name, email, phone, address, location, identifiers)
+- Payment data (never store raw card data)
+- Health, children, or other sensitive-category data
+- Session tokens, auth cookies, private keys
+
+## Handling Rules by Class
+
+| Class | AI Sharing | Logging | Git Commit |
+|------|------------|---------|------------|
+| Public | Allowed | Allowed | Allowed |
+| Internal | Redacted only | Minimal | Allowed with care |
+| Confidential | Prefer no; redact if required | Metadata-only | Avoid unless necessary |
+| Regulated/Restricted | Do not share by default | Avoid payload logging | Never commit raw values |
+
+## Retention & Deletion
+
+- Every collected data class must have an owner, retention period, and deletion path in `docs/PRIVACY.md`.
+- If uncertain, default to shorter retention.
+
+## Incident Response for Misclassification
+
+1. Stop sharing immediately.
+2. Revoke/rotate impacted secrets.
+3. Remove exposed data from git history and logs where possible.
+4. Document incident in `ops/RUNBOOK.md` and add follow-up controls.

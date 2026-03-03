@@ -1,6 +1,6 @@
 # Copilot Instructions (VS Code Policy Loader)
 
-**Version:** 1.1
+**Version:** 2.0
 **Last Updated:** {{DATE}}
 **Owner:** Project Lead
 
@@ -19,6 +19,7 @@ On session start or first task:
 ## 1. Operating Rules
 
 - **Plan first**: Describe what will change before making edits.
+- **Risk register**: Add a short risk list for feature work.
 - **Small diffs**: Make reviewable, atomic changes. No unrelated reformatting.
 - **Verify**: Run lint/test/build after changes when available.
 - **Log**: Update `CHANGELOG_AI.md` after every task.
@@ -30,6 +31,7 @@ On session start or first task:
 - Never read or modify `.env`. Only update `.env.example`.
 - Never run destructive commands without explicit user approval.
 - Never add dependencies without justification and version pinning.
+- Never claim certification/compliance without independent proof; use "aligned with" or "informed by".
 
 ## 3. Anti-Drift
 
@@ -39,14 +41,20 @@ Before implementing changes:
 
 ## 4. Definition of Done
 
-- [ ] Code compiles and builds.
-- [ ] Linting passes.
-- [ ] Tests pass (if applicable).
+- [ ] Code compiles/builds (if applicable).
+- [ ] Lint/format/typecheck pass.
+- [ ] Tests pass.
 - [ ] `CHANGELOG_AI.md` updated.
 - [ ] No secrets or hardcoded credentials introduced.
 - [ ] No dependency drift (lockfiles match manifests).
+- [ ] Dependency scan, secret scan, and basic SAST pass in CI.
 
-## 5. Communication
+## 5. Growth & Governance
+
+- Create product folders as needed (`apps/`, `services/`, `packages/`, `infra/`, `tests/`, etc.).
+- Treat governance files as protected; edit only when needed and with rationale logged.
+
+## 6. Communication
 
 - Explain technical concepts in plain English.
 - When introducing unfamiliar patterns, briefly state why the approach was chosen.

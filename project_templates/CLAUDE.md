@@ -12,12 +12,20 @@
 
 ## Non-Negotiable Rules
 
+- **Plan before code**: Create a short plan and risk register for feature work.
+- **Security gates before shipping**: Lint/format/typecheck/tests + dependency scan + secret scan + basic SAST must pass in CI.
 - **Secrets**: Never request, paste, store, or echo secrets (keys, tokens, passwords).
 - **`.env`**: Never read or modify `.env`. Only update `.env.example`.
 - **Destructive commands**: Never run without explicit user approval.
 - **Dependencies**: Never add without justification and version pinning.
 - **Governance files**: Never overwrite without showing a diff and receiving approval.
 - **Policy guidance**: For legal/security/compliance topics, use current official sources and include concrete dates.
+- **Compliance wording**: Never claim certification/compliance without independent proof; use "aligned with" / "informed by".
+
+## Product Growth Rules
+
+- It is acceptable to create new product folders (`apps/`, `services/`, `packages/`, `infra/`, `tests/`, etc.) as needed.
+- Keep governance stable by default: edit `ops/`, `.github/`, and governance docs only when required and log the rationale in `CHANGELOG_AI.md`.
 
 ## Operating Mode
 

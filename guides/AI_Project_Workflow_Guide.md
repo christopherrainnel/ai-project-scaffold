@@ -1,7 +1,7 @@
 # AI Project Workflow Guide
 
-Version: 2.2
-Last Updated: 2026-02-21
+Version: 2.4
+Last Updated: 2026-03-03
 Owner: Project Lead
 
 ---
@@ -11,6 +11,18 @@ Owner: Project Lead
 This is the complete reference for the AI Project Scaffold system — how it works, why each piece exists, and how to use it day-to-day. This guide documents the **meta-repo** (the scaffold generator itself), not individual projects.
 
 ---
+
+## What Changed in v2.4
+
+- Added compliance-ready baseline files:
+  - `docs/PRIVACY.md`
+  - `docs/THREAT_MODEL.md`
+  - `ops/RUNBOOK.md`
+  - `ops/DEFINITION_OF_DONE.md`
+  - `ops/STANDARDS_BASELINE.md`
+  - `.github/workflows/ci.yml`
+- Updated security and quality hard gates in `ops/AI_WORKFLOW.md`, `ops/SECURITY_POLICY.md`, and `ops/QUALITY_GATES.md`
+- Updated generator behavior: `tools/scaffold_project.py` now loads from `project_templates/` as source of truth, with embedded fallback templates
 
 ## What Changed in v2.2
 
@@ -45,7 +57,7 @@ Major update to the scaffold and generator:
 
 ---
 
-## Standard Project Scaffold (28 files)
+## Standard Project Scaffold (34 files)
 
 Created by `scaffold_project.py`:
 
@@ -69,19 +81,26 @@ docs/
   ARCHITECTURE.md                   # System design (fill in per project)
   DECISIONS.md                      # Decision log (fill in as you go)
   FILE_MAP.md                       # Plain-English file index
+  PRIVACY.md                        # Data inventory, retention, deletion, subprocessors
+  THREAT_MODEL.md                   # Assets, threats, mitigations
 ops/
   AI_WORKFLOW.md                    # Canonical AI policy (source of truth)
   SECURITY_POLICY.md                # Secret and data handling rules
   DATA_CLASSIFICATION.md            # Data sensitivity levels
   DEPENDENCY_POLICY.md              # Dependency management rules
   QUALITY_GATES.md                  # Definition of done + commands
+  DEFINITION_OF_DONE.md             # Reusable security/privacy/testing checklist
   RELEASE_CHECKLIST.md              # Release verification steps
+  RUNBOOK.md                        # Ops, logging, and incident basics
+  STANDARDS_BASELINE.md             # Official-source standards baseline
   LESSONS_LEARNED.md                # Recurring issues and fixes
   prompts/
     feature_request.md              # Feature request template
     bug_report.md                   # Bug report template
     refactor_request.md             # Refactor request template
     code_review.md                  # Code review template
+  workflows/
+    ci.yml                          # Merge-blocking quality + security gates
 scripts/
   .gitkeep                          # Placeholder for utility scripts
 ```
@@ -148,6 +167,11 @@ Before implementing major changes:
 2. If the requested change conflicts with documented decisions, stop and ask.
 3. If a new architectural decision is made, log it in `docs/DECISIONS.md`.
 
+## Product Growth Rules
+
+- Agents and users may add product folders as needed (`apps/`, `services/`, `packages/`, `infra/`, `tests/`, etc.).
+- Governance files (`ops/`, `.github/`, and core governance docs) are protected: edit only when necessary, with reviewed diffs and changelog entries.
+
 ---
 
 ## How to Use the Scaffold Generator
@@ -208,7 +232,8 @@ Everything else has sensible defaults and can be customized later.
 
 ## Appendix: Script Internals
 
-- All 28 file templates are embedded in `FILES = { ... }` inside `scaffold_project.py`.
+- Primary source of truth is `project_templates/`.
+- The generator loads templates from `project_templates/` at runtime; embedded `FILES = { ... }` acts as fallback.
 - `{{DATE}}` placeholders are replaced with today’s date at generation time.
 - `{{PROJECT_NAME}}` is replaced with the `--name` argument (or the target directory name).
 - The script uses no external dependencies — standard library only.

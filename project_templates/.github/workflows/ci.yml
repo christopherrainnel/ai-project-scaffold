@@ -1,0 +1,99 @@
+name: CI Gates
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  quality-and-security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node (if package.json exists)
+        if: hashFiles('**/package.json') != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Setup Python (if requirements exist)
+        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install Semgrep
+        run: pipx install semgrep
+
+      - name: Install Gitleaks
+        run: |
+          curl -sSL https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks_$(uname -s)_$(uname -m).tar.gz -o gitleaks.tar.gz
+          tar -xzf gitleaks.tar.gz gitleaks
+          sudo mv gitleaks /usr/local/bin/gitleaks
+
+      - name: Node install
+        if: hashFiles('**/package.json') != ''
+        run: npm ci
+
+      - name: Node lint
+        if: hashFiles('**/package.json') != ''
+        run: npm run lint --if-present
+
+      - name: Node format check
+        if: hashFiles('**/package.json') != ''
+        run: npm run format:check --if-present
+
+      - name: Node typecheck
+        if: hashFiles('**/package.json') != ''
+        run: npm run typecheck --if-present
+
+      - name: Node test
+        if: hashFiles('**/package.json') != ''
+        run: npm test --if-present
+
+      - name: Node build
+        if: hashFiles('**/package.json') != ''
+        run: npm run build --if-present
+
+      - name: Node dependency audit
+        if: hashFiles('**/package.json') != ''
+        run: npm audit --audit-level=high
+
+      - name: Python install deps
+        if: hashFiles('**/requirements*.txt') != ''
+        run: pip install -r requirements.txt
+
+      - name: Python lint (ruff)
+        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
+        run: ruff check .
+        continue-on-error: true
+
+      - name: Python format check (ruff)
+        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
+        run: ruff format --check .
+        continue-on-error: true
+
+      - name: Python tests
+        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
+        run: pytest
+        continue-on-error: true
+
+      - name: Python dependency audit
+        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
+        run: |
+          pip install pip-audit
+          pip-audit
+        continue-on-error: true
+
+      - name: Secret scan
+        run: gitleaks detect --source . --no-git --redact
+
+      - name: Basic SAST scan
+        run: semgrep --config auto --error
