@@ -6,9 +6,12 @@
 ## Read Order
 
 1. **This file** — essential rules and constraints.
-2. `ops/AI_WORKFLOW.md` — canonical workflow policy (source of truth).
-3. `docs/ARCHITECTURE.md` + `docs/DECISIONS.md` — anti-drift anchors.
-4. `CHANGELOG_AI.md` — recent change history.
+2. `docs/FILE_MAP.md` — primary project index; use this before opening source files.
+3. `ops/AI_WORKFLOW.md` — canonical workflow policy (source of truth).
+4. `docs/ARCHITECTURE.md` + `docs/DECISIONS.md` — anti-drift anchors.
+5. `CHANGELOG_AI.md` — recent change history.
+
+Do not load the full codebase into context. Fetch only the files required for the current task.
 
 ## Non-Negotiable Rules
 

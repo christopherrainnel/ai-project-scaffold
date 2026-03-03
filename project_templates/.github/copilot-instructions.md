@@ -13,8 +13,14 @@
 
 On session start or first task:
 1. Check if the `ops/` folder exists.
-2. If missing, ask: *"This workspace is missing the governance scaffold. Should I install it?"*
-3. If approved, create only missing files. Never overwrite existing ones without a diff and approval.
+2. Read `docs/FILE_MAP.md` first to orient quickly before loading source files.
+3. If missing, ask: *"This workspace is missing the governance scaffold. Should I install it?"*
+4. If approved, create only missing files. Never overwrite existing ones without a diff and approval.
+
+Context efficiency rule:
+- Do not preload the full codebase.
+- Load only task-relevant files.
+- Never load more than 3 source files per task unless explicitly required.
 
 ## 1. Operating Rules
 

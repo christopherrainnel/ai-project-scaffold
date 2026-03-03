@@ -25,6 +25,7 @@ You can add product folders as needed (`apps/`, `services/`, `packages/`, `infra
 ## For AI Agents
 
 Start with `AGENTS.md` (or `CLAUDE.md` for Claude Code). These files point to the canonical policy in `ops/AI_WORKFLOW.md`.
+Use `docs/FILE_MAP.md` first for orientation, then fetch only task-relevant files.
 
 ## Key Rules
 
@@ -34,6 +35,7 @@ Start with `AGENTS.md` (or `CLAUDE.md` for Claude Code). These files point to th
 - Use `ops/QUALITY_GATES.md` + `.github/workflows/ci.yml` as merge-blocking quality/security gates.
 - Keep `docs/PRIVACY.md` and `docs/THREAT_MODEL.md` updated as features evolve.
 - Treat governance files (`ops/`, `.github/`, and core governance docs) as protected; only edit them when necessary and log why in `CHANGELOG_AI.md`.
+- Use `ops/prompts/SESSION_RESUME.md` when resuming context or switching AI agents.
 
 ## Maturity and Improvement
 

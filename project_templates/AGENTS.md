@@ -5,9 +5,12 @@
 
 ## Mandatory Read Order
 
-1. `ops/AI_WORKFLOW.md` — **canonical policy** (source of truth for all agents).
-2. `docs/ARCHITECTURE.md` — system design and component map.
-3. `docs/DECISIONS.md` — why things were built this way.
+1. `docs/FILE_MAP.md` — primary project index; use this first for fast orientation.
+2. `ops/AI_WORKFLOW.md` — **canonical policy** (source of truth for all agents).
+3. `docs/ARCHITECTURE.md` — system design and component map.
+4. `docs/DECISIONS.md` — why things were built this way.
+
+Do not preload the full codebase. Fetch only files needed for the current task.
 
 ## Hard Constraints
 

@@ -25,6 +25,19 @@ Before first code changes in a new feature/session:
 3. Produce a short implementation plan plus a risk register.
 4. If governance files are missing, ask to create missing files only; do not overwrite without approval.
 
+### Context-Efficient Read Order (All Agents)
+
+At the start of each task/session:
+
+1. Read `docs/FILE_MAP.md` first for project orientation.
+2. Read governance/policy files only as needed for the task.
+3. Fetch only task-relevant source files; do not preload the full codebase.
+
+Token budget rule:
+
+- Never load more than 3 source files per task unless explicitly required by the user or task complexity.
+- If more files are needed, expand in small batches and justify why.
+
 ---
 
 ## 2) Mandatory Operating Loop
@@ -147,6 +160,7 @@ ops/STANDARDS_BASELINE.md
 ops/RELEASE_CHECKLIST.md
 ops/LESSONS_LEARNED.md
 ops/prompts/feature_request.md
+ops/prompts/SESSION_RESUME.md
 ops/prompts/bug_report.md
 ops/prompts/refactor_request.md
 ops/prompts/code_review.md
