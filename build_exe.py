@@ -39,6 +39,7 @@ def main():
         "--distpath", str(DIST_DIR),
         "--workpath", str(BUILD_DIR),
         "--specpath", str(BUILD_DIR),
+        "--add-data", f"{ROOT / 'project_templates'};project_templates",
         "--clean",
         str(SCRIPT),
     ])

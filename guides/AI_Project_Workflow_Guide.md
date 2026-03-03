@@ -1,6 +1,6 @@
 # AI Project Workflow Guide
 
-Version: 2.4
+Version: 2.5
 Last Updated: 2026-03-03
 Owner: Project Lead
 
@@ -24,6 +24,15 @@ This is the complete reference for the AI Project Scaffold system — how it wor
 - Updated security and quality hard gates in `ops/AI_WORKFLOW.md`, `ops/SECURITY_POLICY.md`, and `ops/QUALITY_GATES.md`
 - Updated generator behavior: `tools/scaffold_project.py` now loads from `project_templates/` as source of truth, with embedded fallback templates
 
+## What Changed in v2.5
+
+- Added cross-agent context-efficiency standards:
+  - Read `docs/FILE_MAP.md` first for orientation
+  - Avoid full-codebase preload by default
+  - Token budget rule: load no more than 3 source files per task unless explicitly required
+- Added `ops/prompts/SESSION_RESUME.md` for standardized context restore and agent handoff
+- Updated policy loaders (`AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`) to align on FILE_MAP-first behavior
+
 ## What Changed in v2.2
 
 Major update to the scaffold and generator:
@@ -44,7 +53,7 @@ Major update to the scaffold and generator:
   - `.github/CODEOWNERS`
   - `.github/BRANCH_PROTECTION.md`
 - Updated **`ops/AI_WORKFLOW.md`** with source-quality rules for legal/security/policy topics
-- Updated **`scaffold_project.py`** — generates all 28 files, color output, `{{PROJECT_NAME}}` placeholder support
+- Updated **`scaffold_project.py`** — generates the full scaffold template set, color output, `{{PROJECT_NAME}}` placeholder support
 - Scaffold checklist in `ops/AI_WORKFLOW.md` now lists all required files explicitly
 
 ---
@@ -57,11 +66,11 @@ Major update to the scaffold and generator:
 
 ---
 
-## Standard Project Scaffold (34 files)
+## Standard Project Scaffold
 
 Created by `scaffold_project.py`:
 
-```
+```text
 README.md                           # Project overview
 CLAUDE.md                           # Claude Code auto-read rules
 AGENTS.md                           # Universal AI agent entry point
@@ -95,12 +104,13 @@ ops/
   STANDARDS_BASELINE.md             # Official-source standards baseline
   LESSONS_LEARNED.md                # Recurring issues and fixes
   prompts/
+    SESSION_RESUME.md              # Session resume template (governance + FILE_MAP + current task)
     feature_request.md              # Feature request template
     bug_report.md                   # Bug report template
     refactor_request.md             # Refactor request template
     code_review.md                  # Code review template
-  workflows/
-    ci.yml                          # Merge-blocking quality + security gates
+.github/workflows/
+  ci.yml                            # Merge-blocking quality + security gates
 scripts/
   .gitkeep                          # Placeholder for utility scripts
 ```
@@ -111,18 +121,18 @@ scripts/
 
 Multiple files exist to support different AI tools, but they all defer to one source of truth:
 
-```
+```text
 CLAUDE.md ─────────────┐
-AGENTS.md ─────────────┤──> ops/AI_WORKFLOW.md  (canonical policy)
-.github/copilot-       │
-  instructions.md ─────┘
-                              │
-                              ├──> docs/ARCHITECTURE.md  (anti-drift)
-                              └──> docs/DECISIONS.md     (anti-drift)
+AGENTS.md ─────────────┤──> docs/FILE_MAP.md       (orientation-first)
+.github/copilot-       │            │
+  instructions.md ─────┘            └──> ops/AI_WORKFLOW.md  (canonical policy)
+                                         │
+                                         ├──> docs/ARCHITECTURE.md  (anti-drift)
+                                         └──> docs/DECISIONS.md     (anti-drift)
 ```
 
 | File | Who reads it | Purpose |
-|------|-------------|---------|
+| ---- | ------------- | ------- |
 | `CLAUDE.md` | Claude Code (auto-loaded) | Quick-start rules, points to canonical policy |
 | `AGENTS.md` | GitHub Copilot Workspace, Codex, generic agents | Universal entry point |
 | `.github/copilot-instructions.md` | VS Code Copilot | IDE-specific policy loader |
@@ -137,7 +147,7 @@ If any conflict arises between these files, `ops/AI_WORKFLOW.md` wins.
 For every task:
 
 1. **You** describe the objective to the AI agent.
-2. **Agent** produces a short plan (files it will touch, approach).
+2. **Agent** uses default Build -> Review for simple tasks; adds a short plan for complex/high-risk work.
 3. **Agent** makes small, reviewable edits. No unrelated reformatting.
 4. **Agent** runs quality gates (lint/test/build) if available.
 5. **You** review the change.
@@ -145,6 +155,32 @@ For every task:
    - `CHANGELOG_AI.md` — what changed, how verified, any risks
    - `ops/LESSONS_LEARNED.md` — only if the issue is likely to recur
    - `docs/DECISIONS.md` — only if an architectural choice was made
+
+---
+
+## Multi-Agent Support (Free Tier)
+
+The free tier defaults to **single-agent operation**. This is the fastest path for most tasks.
+
+**Optional Build -> Review flow**: For tasks where a second-pass review adds value (refactors, security-sensitive changes, multi-file edits), you can ask the agent to add a Review step after building. No mandatory planner is required — use a short plan only when complexity or risk justifies it.
+
+Multi-agent orchestration (Plan -> Build -> Review with automatic activation/deactivation) is available in the [AI-guided tier (Tier1)](https://github.com/christopherrainnel/ai-project-scaffold-tier1).
+
+---
+
+## When to Escalate to Tier1
+
+The free scaffold covers single-developer, single-agent projects well. Consider upgrading to Tier1 when:
+
+| Signal | Why Tier1 helps |
+| ------ | --------------- |
+| You regularly need multi-agent workflows (Plan -> Build -> Review) | Tier1 auto-recommends and auto-deactivates multi-agent mode based on task complexity |
+| New projects stall at the "blank page" phase | Bootstrap Protocol asks the right questions and derives scope + stack before coding |
+| You want deterministic incomplete-detection for project scope | `PROJECT_BRIEF.md` + `STACK_SUMMARY.md` gate prevents building without defined outcomes |
+| Architecture decisions keep getting revisited | `TRIGGERS.md` defines explicit escalation thresholds |
+| You work across multiple stacks and need consistent Run Order conventions | `STACK_SUMMARY.md` records canonical run commands per project |
+
+Tier1 is additive — everything in the free tier still works. The upgrade adds guided intake, structured scope, and multi-agent orchestration.
 
 ---
 
@@ -163,6 +199,7 @@ For every task:
 ## Anti-Drift Rules
 
 Before implementing major changes:
+
 1. Read `docs/ARCHITECTURE.md` and `docs/DECISIONS.md`.
 2. If the requested change conflicts with documented decisions, stop and ask.
 3. If a new architectural decision is made, log it in `docs/DECISIONS.md`.
