@@ -20,6 +20,8 @@ scripts/        Utility and automation scripts
 
 See `docs/FILE_MAP.md` for a plain-English guide to every file.
 
+You can add product folders as needed (`apps/`, `services/`, `packages/`, `infra/`, `tests/`, etc.).
+
 ## For AI Agents
 
 Start with `AGENTS.md` (or `CLAUDE.md` for Claude Code). These files point to the canonical policy in `ops/AI_WORKFLOW.md`.
@@ -29,6 +31,9 @@ Start with `AGENTS.md` (or `CLAUDE.md` for Claude Code). These files point to th
 - Never commit `.env` — only `.env.example` is tracked.
 - All AI changes are logged in `CHANGELOG_AI.md`.
 - Decisions and their rationale go in `docs/DECISIONS.md`.
+- Use `ops/QUALITY_GATES.md` + `.github/workflows/ci.yml` as merge-blocking quality/security gates.
+- Keep `docs/PRIVACY.md` and `docs/THREAT_MODEL.md` updated as features evolve.
+- Treat governance files (`ops/`, `.github/`, and core governance docs) as protected; only edit them when necessary and log why in `CHANGELOG_AI.md`.
 
 ## Maturity and Improvement
 

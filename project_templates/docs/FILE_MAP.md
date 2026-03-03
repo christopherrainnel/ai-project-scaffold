@@ -21,6 +21,8 @@
 | `ARCHITECTURE.md` | High-level system design, components, data flow |
 | `DECISIONS.md` | Decision log — what was chosen, why, and what was rejected |
 | `FILE_MAP.md` | This file — plain-English index of the entire project |
+| `PRIVACY.md` | Data inventory, subprocessors, retention, and deletion process |
+| `THREAT_MODEL.md` | Lightweight threat model (assets, threats, mitigations) |
 
 ## `ops/` — Governance and Workflow
 
@@ -31,6 +33,9 @@
 | `DATA_CLASSIFICATION.md` | What data can be shared, what must be redacted, what is prohibited |
 | `DEPENDENCY_POLICY.md` | Rules for adding, pinning, and auditing dependencies |
 | `QUALITY_GATES.md` | Definition of done + stack-specific commands (lint, test, build) |
+| `DEFINITION_OF_DONE.md` | Reusable checklist for future features |
+| `RUNBOOK.md` | Operations guide, monitoring, and incident basics |
+| `STANDARDS_BASELINE.md` | Current standards and official-source references to consult |
 | `RELEASE_CHECKLIST.md` | Pre-release and post-release verification steps |
 | `LESSONS_LEARNED.md` | Recurring mistakes and their fixes — grows over time |
 
@@ -48,6 +53,8 @@
 | File | Purpose |
 |------|---------|
 | `copilot-instructions.md` | VS Code Copilot policy loader — references `ops/AI_WORKFLOW.md` |
+| `dependabot.yml` | Automated update PRs for GitHub Actions and dependencies |
+| `workflows/ci.yml` | Baseline CI gate workflow (lint/test/scan/sast/secret scan) |
 | `ISSUE_TEMPLATE/01-bug-report.yml` | Structured bug intake form for consistent, reproducible reports |
 | `ISSUE_TEMPLATE/02-feature-request.yml` | Structured feature request form with acceptance criteria |
 | `ISSUE_TEMPLATE/config.yml` | Issue template config (disables blank issues by default) |
