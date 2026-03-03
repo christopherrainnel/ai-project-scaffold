@@ -22,27 +22,46 @@ Before first code changes in a new feature/session:
 
 1. Confirm governance scaffold completeness (Section 10).
 2. Ask the minimum discovery questions needed to avoid building the wrong thing (see `ops/STANDARDS_BASELINE.md`).
-3. Produce a short implementation plan plus a risk register.
+3. Choose execution mode: direct Build -> Review for simple work, or add a short plan + risk register for complex/high-risk work.
 4. If governance files are missing, ask to create missing files only; do not overwrite without approval.
+
+### Context-Efficient Read Order (All Agents)
+
+At the start of each task/session:
+
+1. Read `docs/FILE_MAP.md` first for project orientation.
+2. Read governance/policy files only as needed for the task.
+3. Fetch only task-relevant source files; do not preload the full codebase.
+
+Token budget rule:
+
+- Never load more than 3 source files per task unless explicitly required by the user or task complexity.
+- If more files are needed, expand in small batches and justify why.
 
 ---
 
-## 2) Mandatory Operating Loop
+## 2) Standard Operating Loop
 
-Every task follows this loop:
+Every task follows one of these modes:
 
-1. **Plan** — scope, files, tests, risks.
-2. **Execute** — small diffs only, no unrelated reformatting.
-3. **Verify** — run applicable quality gates.
-4. **Document** — update docs impacted by the change.
-5. **Summarize** — include verification evidence and residual risks.
-6. **Log** — update `CHANGELOG_AI.md`.
+1. **Default (simple work): Build -> Review -> Log**
+2. **Complex/high-risk work: Plan -> Build -> Review -> Log**
+
+When switching to the complex mode, briefly note the trade-off for the current task (1–2 sentences, e.g., "Adding a plan step — expect a slightly longer cycle for this change" or "Review pass adds value here because the edit spans multiple modules"). Keep the tone neutral; the goal is awareness, not discouragement.
+
+In both modes:
+
+- Keep diffs small and focused.
+- Run applicable quality gates.
+- Update impacted docs.
+- Include verification evidence and residual risks.
+- Update `CHANGELOG_AI.md`.
 
 ---
 
 ## 3) Non-Negotiable Rules
 
-1. **Plan before code**: no feature implementation without a short plan + risk register.
+1. **No mandatory planner**: use a short plan + risk register only for complex/high-risk tasks.
 2. **Security gates before shipping**: CI must fail on lint/format/typecheck, tests, vulnerability scan, secret scan, and basic SAST.
 3. **No secrets in code**: never commit secrets, tokens, API keys, private URLs.
 4. **Least privilege by default**: explicit roles/permissions and deny-by-default.
@@ -117,7 +136,7 @@ A task is complete only when applicable checks pass and required docs are update
 
 Required governance files:
 
-```
+```text
 CLAUDE.md
 AGENTS.md
 CHANGELOG_AI.md
@@ -147,6 +166,7 @@ ops/STANDARDS_BASELINE.md
 ops/RELEASE_CHECKLIST.md
 ops/LESSONS_LEARNED.md
 ops/prompts/feature_request.md
+ops/prompts/SESSION_RESUME.md
 ops/prompts/bug_report.md
 ops/prompts/refactor_request.md
 ops/prompts/code_review.md

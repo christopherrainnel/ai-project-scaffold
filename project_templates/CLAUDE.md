@@ -6,13 +6,16 @@
 ## Read Order
 
 1. **This file** — essential rules and constraints.
-2. `ops/AI_WORKFLOW.md` — canonical workflow policy (source of truth).
-3. `docs/ARCHITECTURE.md` + `docs/DECISIONS.md` — anti-drift anchors.
-4. `CHANGELOG_AI.md` — recent change history.
+2. `docs/FILE_MAP.md` — primary project index; use this before opening source files.
+3. `ops/AI_WORKFLOW.md` — canonical workflow policy (source of truth).
+4. `docs/ARCHITECTURE.md` + `docs/DECISIONS.md` — anti-drift anchors.
+5. `CHANGELOG_AI.md` — recent change history.
+
+Do not load the full codebase into context. Fetch only the files required for the current task.
 
 ## Non-Negotiable Rules
 
-- **Plan before code**: Create a short plan and risk register for feature work.
+- **No mandatory planner**: Use a short plan and risk register only for complex/high-risk feature work.
 - **Security gates before shipping**: Lint/format/typecheck/tests + dependency scan + secret scan + basic SAST must pass in CI.
 - **Secrets**: Never request, paste, store, or echo secrets (keys, tokens, passwords).
 - **`.env`**: Never read or modify `.env`. Only update `.env.example`.
@@ -29,11 +32,12 @@
 
 ## Operating Mode
 
-1. Plan first — name files to change, describe the approach.
-2. Small, reviewable edits — no unrelated reformatting.
-3. Run quality gates (lint/test/build) when available.
-4. After changes — update `CHANGELOG_AI.md` with what changed, why, and how verified.
-5. If a mistake is likely to recur — log it in `ops/LESSONS_LEARNED.md`.
+1. Default flow for simple work: Build -> Review.
+2. For complex/high-risk work: add a short plan before building.
+3. Keep edits small and reviewable — no unrelated reformatting.
+4. Run quality gates (lint/test/build) when available.
+5. After changes — update `CHANGELOG_AI.md` with what changed, why, and how verified.
+6. If a mistake is likely to recur — log it in `ops/LESSONS_LEARNED.md`.
 
 ## Anti-Drift
 

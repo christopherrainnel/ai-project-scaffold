@@ -13,13 +13,19 @@
 
 On session start or first task:
 1. Check if the `ops/` folder exists.
-2. If missing, ask: *"This workspace is missing the governance scaffold. Should I install it?"*
-3. If approved, create only missing files. Never overwrite existing ones without a diff and approval.
+2. Read `docs/FILE_MAP.md` first to orient quickly before loading source files.
+3. If missing, ask: *"This workspace is missing the governance scaffold. Should I install it?"*
+4. If approved, create only missing files. Never overwrite existing ones without a diff and approval.
+
+Context efficiency rule:
+- Do not preload the full codebase.
+- Load only task-relevant files.
+- Never load more than 3 source files per task unless explicitly required.
 
 ## 1. Operating Rules
 
-- **Plan first**: Describe what will change before making edits.
-- **Risk register**: Add a short risk list for feature work.
+- **Default flow (simple work)**: Build -> Review.
+- **Planning for complex/high-risk work**: Add a short plan and risk register when complexity or risk justifies it.
 - **Small diffs**: Make reviewable, atomic changes. No unrelated reformatting.
 - **Verify**: Run lint/test/build after changes when available.
 - **Log**: Update `CHANGELOG_AI.md` after every task.
