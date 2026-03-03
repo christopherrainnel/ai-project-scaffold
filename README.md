@@ -15,7 +15,10 @@ A project template and Python tool for Vibe Coders who build products with AI ag
 Every new project starts with:
 
 - **Agent rules** (`CLAUDE.md`, `AGENTS.md`, `.github/copilot-instructions.md`) — so AI tools follow your project's policies automatically
+<<<<<<< HEAD
 - **Single-agent default + optional Build -> Review flow** — fast path for simple tasks, with planning used only when complexity/risk requires it
+=======
+>>>>>>> 179ded47758f459612eecf3c23befa4a6e98bea6
 - **Context-efficient agent startup** — read `docs/FILE_MAP.md` first, fetch only task-relevant files, and avoid full-codebase preload
 - **Canonical workflow** (`ops/AI_WORKFLOW.md`) — the single source of truth for how AI operates in your repo
 - **Security, dependency, and data policies** — sensible defaults you can customize

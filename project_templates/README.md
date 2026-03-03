@@ -26,8 +26,11 @@ You can add product folders as needed (`apps/`, `services/`, `packages/`, `infra
 
 Start with `AGENTS.md` (or `CLAUDE.md` for Claude Code). These files point to the canonical policy in `ops/AI_WORKFLOW.md`.
 Use `docs/FILE_MAP.md` first for orientation, then fetch only task-relevant files.
+<<<<<<< HEAD
 
 Free tier defaults to single-agent operation. Optional Build -> Review flow is supported, with no mandatory planner for simple tasks.
+=======
+>>>>>>> 179ded47758f459612eecf3c23befa4a6e98bea6
 
 ## Key Rules
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Release Notes: v2.6
 
 **Release Date**: March 4, 2026
@@ -49,11 +50,18 @@ All `project_templates/` files now use consistent language for:
 ---
 
 ## Release Notes: v2.5
+=======
+# Release Notes: v2.5
+>>>>>>> 179ded47758f459612eecf3c23befa4a6e98bea6
 
 **Release Date**: March 3, 2026  
 **Status**: Ready for Production
 
+<<<<<<< HEAD
 ## v2.5 Overview
+=======
+## Overview
+>>>>>>> 179ded47758f459612eecf3c23befa4a6e98bea6
 
 v2.5 adds **cross-agent context-efficiency controls** to minimize token consumption and ensure consistent AI behavior across all agent types (Claude, GitHub Copilot, VS Code Copilot, etc.). The release includes a new context-resumption prompt template and hardened build pipeline.
 
@@ -63,14 +71,21 @@ v2.5 adds **cross-agent context-efficiency controls** to minimize token consumpt
 
 New mandatory read order for all AI agents:
 
+<<<<<<< HEAD
 ```text
+=======
+```
+>>>>>>> 179ded47758f459612eecf3c23befa4a6e98bea6
 1. Read docs/FILE_MAP.md first (orientation layer)
 2. Load only task-relevant files (never preload entire codebase)
 3. Respect token budget: max 3 source files per task unless explicitly required
 ```
 
 **Where it's enforced**:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 179ded47758f459612eecf3c23befa4a6e98bea6
 - ✅ `ops/AI_WORKFLOW.md` — canonical source (Section 1.1)
 - ✅ `AGENTS.md` — universal agent entry point
 - ✅ `CLAUDE.md` — Claude Code auto-read rules
@@ -89,8 +104,12 @@ New reusable prompt template for resuming conversations or switching AI agents:
 - **Governance**: Automatically injects FILE_MAP.md + token-budget rules into context
 
 Register your use:
+<<<<<<< HEAD
 
 ```text
+=======
+```
+>>>>>>> 179ded47758f459612eecf3c23befa4a6e98bea6
 Agent: "Run ops/prompts/SESSION_RESUME.md to resume our context"
 Agent will:
   1. Load FILE_MAP.md for orientation
@@ -101,13 +120,19 @@ Agent will:
 ### 3. Build Pipeline Hardening
 
 **`build_exe.py` now bundles canonical `project_templates/`**:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 179ded47758f459612eecf3c23befa4a6e98bea6
 - Added `--add-data` flag to PyInstaller configuration
 - Ensures .exe distributions always include on-disk templates (vs. stale embedded fallback)
 - Single source of truth maintained across all distribution channels
 
 **`scaffold_project.py` now syncs runtime templates**:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 179ded47758f459612eecf3c23befa4a6e98bea6
 - Added `FILES = load_templates()` call after function definition
 - Generator always prefers on-disk `project_templates/` as primary source
 - Falls back to embedded templates only if directory missing
@@ -115,18 +140,27 @@ Agent will:
 ### 4. Documentation Alignment
 
 **Parent ReadMe Updated**:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 179ded47758f459612eecf3c23befa4a6e98bea6
 - Added "Context-efficient agent startup" to feature list
 - References to FILE_MAP.md and SESSION_RESUME.md usage
 
 **Workflow Guide Updated** (v2.4 → v2.5):
+<<<<<<< HEAD
 
+=======
+>>>>>>> 179ded47758f459612eecf3c23befa4a6e98bea6
 - Added "What Changed in v2.5" section
 - Policy hierarchy diagram now shows FILE_MAP.md as orientation-first layer
 - Clarified token-budget rule (≤3 files/task)
 
 **Template-Level Documentation Updated**:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 179ded47758f459612eecf3c23befa4a6e98bea6
 - `project_templates/README.md` — usage guidance for FILE_MAP-first and SESSION_RESUME
 - `docs/FILE_MAP.md` — registration row for SESSION_RESUME.md
 - `docs/FILE_MAP.md` — registration row for SESSION_RESUME.md
@@ -134,20 +168,29 @@ Agent will:
 ## 🔍 Quality Assurance
 
 **Testing**:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 179ded47758f459612eecf3c23befa4a6e98bea6
 - ✅ All unit tests pass (2 tests per variant, ~0.09s execution)
 - ✅ Template parity validation (embedded vs. on-disk)
 - ✅ Cross-repo consistency scans (13 references per repo confirmed)
 
 **Code Validation**:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 179ded47758f459612eecf3c23befa4a6e98bea6
 - ✅ No broken references (all FILE_MAP, SESSION_RESUME, ops/prompts paths verified)
 - ✅ No deprecated markers in release content
 - ✅ All entry points aligned on new read order
 - ✅ Build pipeline tested and verified
 
 **Version Consistency**:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 179ded47758f459612eecf3c23befa4a6e98bea6
 - ✅ Both repos (free + tier1) aligned on v2.5
 - ✅ All policy files cross-referenced and synchronized
 
@@ -156,7 +199,10 @@ Agent will:
 If you have an existing scaffolded project, to adopt v2.5:
 
 1. **Add SESSION_RESUME.md prompt template**:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 179ded47758f459612eecf3c23befa4a6e98bea6
    ```bash
    cp ops/prompts/SESSION_RESUME.md /path/to/your/project/ops/prompts/
    ```
@@ -168,7 +214,10 @@ If you have an existing scaffolded project, to adopt v2.5:
    - `.github/copilot-instructions.md` — "Read order" step
 
 3. **Update FILE_MAP.md** — Add row for SESSION_RESUME.md:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 179ded47758f459612eecf3c23befa4a6e98bea6
    ```markdown
    | `SESSION_RESUME.md` | Standard context-resume prompt: inject governance + FILE_MAP + current task only |
    ```
