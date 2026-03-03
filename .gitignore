@@ -30,6 +30,8 @@ out/
 .cache/
 tmp/
 temp/
+*.exe
+*.spec
 
 # Node (common web)
 node_modules/

@@ -1855,3 +1855,6 @@ examples:
 
 if __name__ == "__main__":
     main()
+    # When running as a bundled .exe, pause so the user can read the output
+    if getattr(sys, "frozen", False):
+        input("\nPress Enter to exit...")
