@@ -39,6 +39,12 @@ python tools/scaffold_project.py --force
 
 **Requirements**: Python 3.8+ (no external dependencies).
 
+### Windows: standalone .exe (no Python required)
+
+Download `project_scaffold.exe` from the [latest release](https://github.com/christopherrainnel/ai-project-scaffold/releases/latest), place it in the folder where you want your project, and double-click it.
+
+To build the `.exe` yourself: `python build_exe.py` (requires `pip install pyinstaller`).
+
 ## What Gets Created
 
 ```
