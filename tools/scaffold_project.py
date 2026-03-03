@@ -90,7 +90,7 @@ Use this checklist in GitHub repository settings to enforce safe merges.
 ".github/copilot-instructions.md": """\
 # Copilot Instructions (VS Code Policy Loader)
 
-**Version:** 1.1
+**Version:** 2.0
 **Last Updated:** {{DATE}}
 **Owner:** Project Lead
 
@@ -109,6 +109,7 @@ On session start or first task:
 ## 1. Operating Rules
 
 - **Plan first**: Describe what will change before making edits.
+- **Risk register**: Add a short risk list for feature work.
 - **Small diffs**: Make reviewable, atomic changes. No unrelated reformatting.
 - **Verify**: Run lint/test/build after changes when available.
 - **Log**: Update `CHANGELOG_AI.md` after every task.
@@ -120,6 +121,7 @@ On session start or first task:
 - Never read or modify `.env`. Only update `.env.example`.
 - Never run destructive commands without explicit user approval.
 - Never add dependencies without justification and version pinning.
+- Never claim certification/compliance without independent proof; use "aligned with" or "informed by".
 
 ## 3. Anti-Drift
 
@@ -129,14 +131,20 @@ Before implementing changes:
 
 ## 4. Definition of Done
 
-- [ ] Code compiles and builds.
-- [ ] Linting passes.
-- [ ] Tests pass (if applicable).
+- [ ] Code compiles/builds (if applicable).
+- [ ] Lint/format/typecheck pass.
+- [ ] Tests pass.
 - [ ] `CHANGELOG_AI.md` updated.
 - [ ] No secrets or hardcoded credentials introduced.
 - [ ] No dependency drift (lockfiles match manifests).
+- [ ] Dependency scan, secret scan, and basic SAST pass in CI.
 
-## 5. Communication
+## 5. Growth & Governance
+
+- Create product folders as needed (`apps/`, `services/`, `packages/`, `infra/`, `tests/`, etc.).
+- Treat governance files as protected; edit only when needed and with rationale logged.
+
+## 6. Communication
 
 - Explain technical concepts in plain English.
 - When introducing unfamiliar patterns, briefly state why the approach was chosen.
@@ -364,17 +372,20 @@ venv/
 
 ## Hard Constraints
 
+- Plan + risk register before feature code.
+- CI gates must include lint/format/typecheck/tests/dependency scan/secret scan/basic SAST before shipping.
 - Never overwrite governance files without showing a diff and receiving approval.
 - Never read or modify `.env`. Only update `.env.example`.
 - Never add dependencies without justification, version pinning, and lockfile updates.
 - Never run destructive commands without explicit user approval.
 - For legal/security/policy recommendations, use current official sources and state the effective date.
+- Never claim compliance/certification. Use wording such as "aligned with" or "informed by".
 
 ## After Every Task
 
 - Update `CHANGELOG_AI.md` with: date, task, files changed, verification, risks.
 - If the issue is likely to recur, add it to `ops/LESSONS_LEARNED.md`.
-
+- Update `docs/PRIVACY.md` / `docs/THREAT_MODEL.md` / `ops/RUNBOOK.md` when changes affect those areas.
 """,
 
 "CHANGELOG_AI.md": """\
@@ -422,12 +433,20 @@ venv/
 
 ## Non-Negotiable Rules
 
+- **Plan before code**: Create a short plan and risk register for feature work.
+- **Security gates before shipping**: Lint/format/typecheck/tests + dependency scan + secret scan + basic SAST must pass in CI.
 - **Secrets**: Never request, paste, store, or echo secrets (keys, tokens, passwords).
 - **`.env`**: Never read or modify `.env`. Only update `.env.example`.
 - **Destructive commands**: Never run without explicit user approval.
 - **Dependencies**: Never add without justification and version pinning.
 - **Governance files**: Never overwrite without showing a diff and receiving approval.
 - **Policy guidance**: For legal/security/compliance topics, use current official sources and include concrete dates.
+- **Compliance wording**: Never claim certification/compliance without independent proof; use "aligned with" / "informed by".
+
+## Product Growth Rules
+
+- It is acceptable to create new product folders (`apps/`, `services/`, `packages/`, `infra/`, `tests/`, etc.) as needed.
+- Keep governance stable by default: edit `ops/`, `.github/`, and governance docs only when required and log the rationale in `CHANGELOG_AI.md`.
 
 ## Operating Mode
 
@@ -441,7 +460,6 @@ venv/
 
 Before implementing changes, read `docs/ARCHITECTURE.md` and `docs/DECISIONS.md`.
 If proposed work conflicts with recorded decisions, **stop and ask**.
-
 """,
 
 "docs/ARCHITECTURE.md": """\
@@ -560,6 +578,8 @@ Last Updated: {{DATE}}
 | `ARCHITECTURE.md` | High-level system design, components, data flow |
 | `DECISIONS.md` | Decision log — what was chosen, why, and what was rejected |
 | `FILE_MAP.md` | This file — plain-English index of the entire project |
+| `PRIVACY.md` | Data inventory, subprocessors, retention, and deletion process |
+| `THREAT_MODEL.md` | Lightweight threat model (assets, threats, mitigations) |
 
 ## `ops/` — Governance and Workflow
 
@@ -570,6 +590,9 @@ Last Updated: {{DATE}}
 | `DATA_CLASSIFICATION.md` | What data can be shared, what must be redacted, what is prohibited |
 | `DEPENDENCY_POLICY.md` | Rules for adding, pinning, and auditing dependencies |
 | `QUALITY_GATES.md` | Definition of done + stack-specific commands (lint, test, build) |
+| `DEFINITION_OF_DONE.md` | Reusable checklist for future features |
+| `RUNBOOK.md` | Operations guide, monitoring, and incident basics |
+| `STANDARDS_BASELINE.md` | Current standards and official-source references to consult |
 | `RELEASE_CHECKLIST.md` | Pre-release and post-release verification steps |
 | `LESSONS_LEARNED.md` | Recurring mistakes and their fixes — grows over time |
 
@@ -587,6 +610,8 @@ Last Updated: {{DATE}}
 | File | Purpose |
 |------|---------|
 | `copilot-instructions.md` | VS Code Copilot policy loader — references `ops/AI_WORKFLOW.md` |
+| `dependabot.yml` | Automated update PRs for GitHub Actions and dependencies |
+| `workflows/ci.yml` | Baseline CI gate workflow (lint/test/scan/sast/secret scan) |
 | `ISSUE_TEMPLATE/01-bug-report.yml` | Structured bug intake form for consistent, reproducible reports |
 | `ISSUE_TEMPLATE/02-feature-request.yml` | Structured feature request form with acceptance criteria |
 | `ISSUE_TEMPLATE/config.yml` | Issue template config (disables blank issues by default) |
@@ -597,13 +622,12 @@ Last Updated: {{DATE}}
 ## `scripts/` — Automation
 
 Utility scripts for setup, builds, or deployment. Add scripts here as the project grows.
-
 """,
 
 "ops/AI_WORKFLOW.md": """\
 # AI Workflow (Canonical Policy)
 
-Version: 1.3
+Version: 2.0
 Last Updated: {{DATE}}
 Owner: Project Lead
 
@@ -611,164 +635,206 @@ Owner: Project Lead
 
 ## Purpose
 
-This file is the **single source of truth** for how AI agents and IDE assistants operate in this repository. All other agent config files (`CLAUDE.md`, `AGENTS.md`, `.github/copilot-instructions.md`) defer to this document.
+This file is the **single source of truth** for how AI agents and IDE assistants operate in this repository.
 
 Applies to: Claude Code, Cursor, VS Code Copilot, Windsurf, and any other AI-assisted tool.
 
----
-
-## 1. Session Start — Audit Rule
-
-On opening this workspace or starting the first task:
-
-1. Verify the governance scaffold exists (see Section 8).
-2. If files are missing, ask: *"This workspace is missing governance files. Should I create the missing pieces (recommended) or skip?"*
-3. If approved, create only what is missing. Never overwrite existing files unless the user approves a diff.
-4. At least once per major milestone, audit the scaffold for completeness.
+This workflow is **security-first, privacy-first, and production-minded**. It is not legal advice.
 
 ---
 
-## 2. Operating Mode
+## 1) Session Start (Hard Gate)
 
-Every task must follow this cycle:
+Before first code changes in a new feature/session:
 
-1. **Plan** — Describe what you will do, which files you will touch.
-2. **Execute** — Make small, reviewable edits. No unrelated reformatting.
-3. **Verify** — Run quality gates (lint / test / build) when available.
-4. **Summarize** — State what changed, why, how it was verified, and any risks.
-5. **Learn** — If the issue is likely to recur, add it to `ops/LESSONS_LEARNED.md`.
-6. **Log** — Record the work in `CHANGELOG_AI.md`.
+1. Confirm governance scaffold completeness (Section 10).
+2. Ask the minimum discovery questions needed to avoid building the wrong thing (see `ops/STANDARDS_BASELINE.md`).
+3. Produce a short implementation plan plus a risk register.
+4. If governance files are missing, ask to create missing files only; do not overwrite without approval.
 
 ---
 
-## 3. Safety Rules (Non-Negotiable)
+## 2) Mandatory Operating Loop
 
-| Rule | Detail |
-|------|--------|
-| Secrets | Never request, paste, store, or echo secrets (keys, tokens, passwords). |
-| `.env` | Never read or modify `.env`. Only update `.env.example`. |
-| Terminal | Never run destructive commands without explicit user approval. |
-| Data | Never request customer PII or sensitive data. Use redacted/synthetic samples. |
+Every task follows this loop:
 
----
-
-## 4. Dependency Discipline
-
-- Do not add dependencies without justification (problem it solves, why built-in code is insufficient).
-- Pin exact versions in the manifest.
-- Update lockfiles in the same commit.
-- Run vulnerability checks (`npm audit`, `pip-audit`, etc.) when dependencies change.
+1. **Plan** — scope, files, tests, risks.
+2. **Execute** — small diffs only, no unrelated reformatting.
+3. **Verify** — run applicable quality gates.
+4. **Document** — update docs impacted by the change.
+5. **Summarize** — include verification evidence and residual risks.
+6. **Log** — update `CHANGELOG_AI.md`.
 
 ---
 
-## 5. Anti-Drift Control
+## 3) Non-Negotiable Rules
 
-Before implementing any change:
+1. **Plan before code**: no feature implementation without a short plan + risk register.
+2. **Security gates before shipping**: CI must fail on lint/format/typecheck, tests, vulnerability scan, secret scan, and basic SAST.
+3. **No secrets in code**: never commit secrets, tokens, API keys, private URLs.
+4. **Least privilege by default**: explicit roles/permissions and deny-by-default.
+5. **Minimize and protect data**: collect minimum data; use encryption in transit and managed encryption at rest.
+6. **Payments**: never handle raw card data; use hosted checkout/tokenization only.
+7. **AI safety controls**: treat user input as hostile; guard against prompt injection; use tool allowlists and confirmation for sensitive actions.
+8. **Legal baseline required**: align with official sources and record effective dates; never claim certification/compliance.
+
+---
+
+## 4) Security & Privacy Baseline
+
+- Never read/modify `.env`; update `.env.example` only.
+- Use input validation at every boundary.
+- Apply secure headers where applicable (CSP, HSTS, frame protections, MIME protections).
+- Implement rate limiting and abuse controls for public endpoints.
+- Do not log PII/secrets.
+- Define retention and deletion process in `docs/PRIVACY.md`.
+
+---
+
+## 5) AI Feature Baseline (When AI Is Used)
+
+- Keep system/tool instructions isolated from user content.
+- Require explicit confirmation for destructive or external actions.
+- Restrict tool execution by allowlist.
+- Redact sensitive data before sending to model providers.
+- Store metadata or hashes where possible instead of full prompt/response logs.
+
+---
+
+## 6) Dependency & Supply Chain Discipline
+
+- Add dependencies only with rationale.
+- Pin versions and maintain lockfiles.
+- Enable dependency vulnerability scanning.
+- Enable secret scanning in pre-commit and CI.
+- Generate SBOM when feasible.
+
+---
+
+## 7) Anti-Drift Control
+
+Before implementation:
 
 1. Read `docs/ARCHITECTURE.md` and `docs/DECISIONS.md`.
-2. If the proposed work conflicts with documented decisions, **stop and ask**.
-3. If a new architectural decision is made, log it in `docs/DECISIONS.md`.
+2. If change conflicts with documented decisions, stop and ask.
+3. Log new architecture decisions in `docs/DECISIONS.md`.
 
 ---
 
-## 6. Definition of Done
+## 8) High-Risk Fail-Safe
 
-A task is complete only when:
+If the feature involves children, health data, regulated industry requirements, or direct payment handling:
 
-- [ ] Code compiles and builds (if applicable).
-- [ ] Linting passes.
-- [ ] Tests pass (if applicable).
-- [ ] `CHANGELOG_AI.md` is updated.
-- [ ] No secrets or hardcoded credentials were introduced.
-- [ ] No dependency drift (lockfiles match manifests).
-- [ ] `docs/DECISIONS.md` updated if an architectural choice was made.
+1. Pause implementation.
+2. Propose a safer reduced MVP scope.
+3. Require legal/compliance review and DPIA/PIA-style assessment.
+4. Resume only after minimization controls are documented.
 
 ---
 
-## 7. Standards and Source Quality
+## 9) Definition of Done
 
-When work touches legal, policy, compliance, privacy, security, or licensing topics:
+Use `ops/DEFINITION_OF_DONE.md` and `ops/QUALITY_GATES.md`.
 
-1. Prefer current primary sources (official docs, standards body docs, upstream project policy pages).
-2. Include concrete dates when summarizing time-sensitive guidance.
-3. Never claim legal compliance/certification unless explicitly provided by the user.
-4. Mark guidance as non-legal advice unless a qualified professional approved it.
+A task is complete only when applicable checks pass and required docs are updated.
 
 ---
 
-## 8. Scaffold Checklist
+## 10) Scaffold Checklist
 
 Required governance files:
 
 ```
-CLAUDE.md                       # Claude Code auto-read rules
-AGENTS.md                       # Universal agent entry point
-CHANGELOG_AI.md                 # AI change log
-.env.example                    # Environment variable template
-.gitignore                      # Version control exclusions
-.github/copilot-instructions.md # VS Code Copilot policy loader
+CLAUDE.md
+AGENTS.md
+CHANGELOG_AI.md
+.env.example
+.gitignore
+.github/copilot-instructions.md
+.github/workflows/ci.yml
 .github/ISSUE_TEMPLATE/01-bug-report.yml
 .github/ISSUE_TEMPLATE/02-feature-request.yml
 .github/ISSUE_TEMPLATE/config.yml
 .github/PULL_REQUEST_TEMPLATE.md
 .github/CODEOWNERS
 .github/BRANCH_PROTECTION.md
-docs/ARCHITECTURE.md            # System design
-docs/DECISIONS.md               # Decision log
-docs/FILE_MAP.md                # Plain-English file index
-ops/AI_WORKFLOW.md              # This file (canonical policy)
-ops/SECURITY_POLICY.md          # Secret and data handling rules
-ops/DATA_CLASSIFICATION.md      # Data sensitivity levels
-ops/DEPENDENCY_POLICY.md        # Dependency management rules
-ops/QUALITY_GATES.md            # Definition of done + commands
-ops/RELEASE_CHECKLIST.md        # Release verification steps
-ops/LESSONS_LEARNED.md          # Recurring issues and fixes
-ops/prompts/feature_request.md  # Feature request template
-ops/prompts/bug_report.md       # Bug report template
-ops/prompts/refactor_request.md # Refactor request template
-ops/prompts/code_review.md      # Code review template
+docs/ARCHITECTURE.md
+docs/DECISIONS.md
+docs/FILE_MAP.md
+docs/PRIVACY.md
+docs/THREAT_MODEL.md
+ops/AI_WORKFLOW.md
+ops/SECURITY_POLICY.md
+ops/DATA_CLASSIFICATION.md
+ops/DEPENDENCY_POLICY.md
+ops/QUALITY_GATES.md
+ops/DEFINITION_OF_DONE.md
+ops/RUNBOOK.md
+ops/STANDARDS_BASELINE.md
+ops/RELEASE_CHECKLIST.md
+ops/LESSONS_LEARNED.md
+ops/prompts/feature_request.md
+ops/prompts/bug_report.md
+ops/prompts/refactor_request.md
+ops/prompts/code_review.md
 ```
-
 """,
 
 "ops/DATA_CLASSIFICATION.md": """\
 # Data Classification
 
-Version: 1.0
+Version: 2.0
 Last Updated: {{DATE}}
 
-> Use this guide to determine what data can be shared with AI agents, committed to git, or discussed in chat.
+> Use this guide to decide what can be shared with AI tools, logs, and repositories.
 
-## Public (Safe to Share)
+## Public
 
-- Open-source code and documentation
-- Synthetic / sample / mock data
-- Sanitized logs (no secrets, no PII)
-- Published API documentation
-- Error messages with redacted context
+- Open-source code and docs
+- Synthetic/mock datasets
+- Redacted error logs
+- Public API documentation
 
-## Internal (Redaction Required Before Sharing)
+## Internal
 
-- Internal strategy documents, pricing models, unpublished roadmaps
-- Contracts and vendor terms (redact names, amounts, dates)
-- Architecture diagrams with internal hostnames or IPs (redact infra details)
-- Analytics data with user segments (aggregate only, no individual records)
+- Non-public roadmap and pricing material
+- Internal architecture and runbooks
+- Aggregated analytics without direct identifiers
 
-## Prohibited (Never Share)
+## Confidential
 
-- Secrets: API keys, tokens, passwords, signing keys, certificates
-- Customer PII: names, emails, phone numbers, addresses, payment info
-- Production database dumps or connection strings
-- Session tokens, JWTs, or auth cookies
-- Internal IP addresses, hostnames, or infrastructure topology
-- Source code of proprietary third-party systems
+- Customer account metadata
+- Non-public business contracts
+- Deployment and infrastructure internals
 
-## What to Do If Data Is Misclassified
+## Regulated / Restricted (Highest)
 
-1. If prohibited data was shared in chat: note it immediately, do not copy or repeat it.
-2. If prohibited data was committed to git: remove it, rotate any exposed secrets, and scrub git history.
-3. When in doubt, treat data as **Internal** and ask the user for clarification.
+- Secrets and credentials
+- Personal data (name, email, phone, address, location, identifiers)
+- Payment data (never store raw card data)
+- Health, children, or other sensitive-category data
+- Session tokens, auth cookies, private keys
 
+## Handling Rules by Class
+
+| Class | AI Sharing | Logging | Git Commit |
+|------|------------|---------|------------|
+| Public | Allowed | Allowed | Allowed |
+| Internal | Redacted only | Minimal | Allowed with care |
+| Confidential | Prefer no; redact if required | Metadata-only | Avoid unless necessary |
+| Regulated/Restricted | Do not share by default | Avoid payload logging | Never commit raw values |
+
+## Retention & Deletion
+
+- Every collected data class must have an owner, retention period, and deletion path in `docs/PRIVACY.md`.
+- If uncertain, default to shorter retention.
+
+## Incident Response for Misclassification
+
+1. Stop sharing immediately.
+2. Revoke/rotate impacted secrets.
+3. Remove exposed data from git history and logs where possible.
+4. Document incident in `ops/RUNBOOK.md` and add follow-up controls.
 """,
 
 "ops/DEPENDENCY_POLICY.md": """\
@@ -1009,59 +1075,77 @@ Commands to verify:
 "ops/QUALITY_GATES.md": """\
 # Quality Gates
 
-Version: 1.0
+Version: 2.0
 Last Updated: {{DATE}}
 
-## Definition of Done
+## Shipping Gate (Required)
 
-A task is not complete until all applicable items pass:
+Code is not shippable unless all applicable checks pass locally and in CI:
 
-- [ ] Code compiles / builds without errors
-- [ ] Linting passes without errors
-- [ ] Tests pass (unit, integration as applicable)
-- [ ] `CHANGELOG_AI.md` updated with the change
-- [ ] No secrets or hardcoded credentials introduced
-- [ ] No dependency drift (lockfiles match manifests)
-- [ ] `docs/DECISIONS.md` updated if an architectural choice was made
+- [ ] Lint
+- [ ] Format check
+- [ ] Type check
+- [ ] Unit tests
+- [ ] Dependency vulnerability scan
+- [ ] Secret scan
+- [ ] Basic SAST scan
+- [ ] Build (if applicable)
+- [ ] `CHANGELOG_AI.md` updated
+- [ ] Relevant governance docs updated (`docs/DECISIONS.md`, `docs/PRIVACY.md`, `docs/THREAT_MODEL.md`, `ops/RUNBOOK.md`)
 
-## Project Commands
+## CI Policy
 
-> Fill these in when you choose your tech stack. AI agents will use these to verify their work.
+- CI is mandatory for protected branches.
+- Failing checks must block merges.
+- Keep CI checks deterministic and fast.
+- See `.github/workflows/ci.yml` as the baseline workflow.
+
+## Project Commands (Fill Per Stack)
 
 | Action | Command |
 |--------|---------|
 | Install | |
 | Lint | |
-| Format | |
-| Test | |
+| Format check | |
+| Type check | |
+| Unit test | |
 | Build | |
-| Audit (deps) | |
+| Dependency scan | |
+| Secret scan | |
+| SAST scan | |
 | Dev server | |
 
-### Common Stacks (Reference)
+## Reference Commands
 
-**Node.js / Next.js**
-```
-Install:  npm install
-Lint:     npx eslint .
-Format:   npx prettier --check .
-Test:     npx jest  (or: npx vitest)
-Build:    npm run build
-Audit:    npm audit
-Dev:      npm run dev
-```
+### Node.js / Next.js (example)
 
-**Python / FastAPI / Django**
 ```
-Install:  pip install -r requirements.txt
-Lint:     ruff check .
-Format:   ruff format --check .
-Test:     pytest
-Build:    (not applicable for most Python projects)
-Audit:    pip-audit
-Dev:      uvicorn main:app --reload  (or: python manage.py runserver)
+Install:            npm ci
+Lint:               npx eslint .
+Format check:       npx prettier --check .
+Type check:         npx tsc --noEmit
+Unit test:          npm test
+Build:              npm run build
+Dependency scan:    npm audit --audit-level=high
+Secret scan:        gitleaks detect --source . --no-git --redact
+SAST scan:          semgrep --config auto
+Dev server:         npm run dev
 ```
 
+### Python / FastAPI / Django (example)
+
+```
+Install:            pip install -r requirements.txt
+Lint:               ruff check .
+Format check:       ruff format --check .
+Type check:         mypy .
+Unit test:          pytest
+Build:              (optional for many Python apps)
+Dependency scan:    pip-audit
+Secret scan:        gitleaks detect --source . --no-git --redact
+SAST scan:          semgrep --config auto
+Dev server:         uvicorn main:app --reload
+```
 """,
 
 "ops/RELEASE_CHECKLIST.md": """\
@@ -1104,50 +1188,69 @@ Last Updated: {{DATE}}
 "ops/SECURITY_POLICY.md": """\
 # Security Policy
 
-Version: 1.0
+Version: 2.0
 Last Updated: {{DATE}}
 
 ## Goal
 
-Prevent secret leakage, unsafe command execution, and accidental exposure of sensitive data throughout the development lifecycle.
+Maintain a secure-by-default baseline for MVP delivery without custom security complexity.
+
+## Core Rules
+
+1. **No secrets in repository or client code.**
+2. **Least privilege by default.** Explicit permissions and deny-by-default access.
+3. **Data minimization.** Collect and retain only what is needed for the feature.
+4. **Managed services over custom crypto/auth.** Prefer proven providers.
 
 ## Secret Management
 
 | Rule | Detail |
 |------|--------|
-| Storage | Secrets go in `.env` (local) or a platform secret manager (production). |
-| Git | `.env` is never committed. `.gitignore` enforces this. |
-| Template | `.env.example` contains placeholder keys only — no real values. |
-| Rotation | If a secret is accidentally committed, rotate it immediately and scrub git history. |
+| Storage | Secrets in `.env` (local) and managed secret store (non-local). |
+| Git | `.env` is never committed. Only `.env.example` is tracked. |
+| Rotation | Rotate immediately after any suspected exposure. |
+| Environment split | Separate keys per dev/stage/prod. |
 
-## Prohibited Content (Never Share in Chat, Logs, or Commits)
+## Access Control
 
-- API keys, tokens, passwords, or signing secrets
-- Private URLs containing tokens or session IDs
-- Production database exports or connection strings
-- Customer PII (names, phone numbers, email addresses, payment info)
-- Internal infrastructure details (IP addresses, internal hostnames)
+- Use explicit roles/permissions.
+- Deny-by-default endpoint behavior.
+- Prefer managed auth (OIDC/OAuth) when accounts are needed.
+- Use short-lived tokens/sessions with secure cookie settings when applicable.
 
-## Terminal Safety
+## App & API Controls
 
-- Explain what a command does before running it.
-- Require explicit user approval before execution.
-- Never run destructive operations without confirmation (`rm -rf`, destructive migrations, `DROP TABLE`, credential changes).
-- Prefer `--dry-run` flags when available for risky operations.
+- Input validation and output encoding at all trust boundaries.
+- CSRF protection when cookie auth is used.
+- Secure headers: CSP, HSTS, frame protections, and MIME protections (when applicable).
+- Rate limiting and abuse controls for public interfaces.
+- Upload controls: MIME/type checks, size limits, private storage, malware scanning strategy.
 
-## Code Safety
+## Data Protection
 
-- Never hardcode secrets — always use environment variables.
-- Validate and sanitize all external input (user input, API responses).
-- Use parameterized queries — never concatenate user input into SQL.
-- Keep dependencies updated and run vulnerability scans regularly.
+- Encrypt in transit (TLS).
+- Use provider-managed encryption at rest.
+- Do not log secrets or full sensitive payloads.
+- Define retention/deletion in `docs/PRIVACY.md`.
 
-## Privacy
+## Payments Baseline
 
-- Prefer privacy/telemetry-off modes where supported.
-- Avoid sending proprietary code to third-party AI services unless explicitly approved.
-- Minimize data collection — only request what the feature needs.
+- Never process raw card number/CVV in app code.
+- Use hosted checkout/tokenization with a PCI-compliant payment provider.
 
+## AI Safety Controls (If AI Features Exist)
+
+- Treat user prompts and uploads as hostile input.
+- Isolate system/tool prompts from user content.
+- Require explicit user confirmation for sensitive actions.
+- Apply tool/action allowlists and safe-fail behavior.
+
+## Prohibited Content in Chat/Logs/Commits
+
+- API keys, tokens, passwords, private URLs with auth material
+- Production database exports/connection strings
+- Customer PII and regulated data unless explicitly approved and redacted
+- Internal infrastructure-sensitive data (hostnames/IP topology)
 """,
 
 "README.md": """\
@@ -1173,6 +1276,8 @@ scripts/        Utility and automation scripts
 
 See `docs/FILE_MAP.md` for a plain-English guide to every file.
 
+You can add product folders as needed (`apps/`, `services/`, `packages/`, `infra/`, `tests/`, etc.).
+
 ## For AI Agents
 
 Start with `AGENTS.md` (or `CLAUDE.md` for Claude Code). These files point to the canonical policy in `ops/AI_WORKFLOW.md`.
@@ -1182,6 +1287,9 @@ Start with `AGENTS.md` (or `CLAUDE.md` for Claude Code). These files point to th
 - Never commit `.env` — only `.env.example` is tracked.
 - All AI changes are logged in `CHANGELOG_AI.md`.
 - Decisions and their rationale go in `docs/DECISIONS.md`.
+- Use `ops/QUALITY_GATES.md` + `.github/workflows/ci.yml` as merge-blocking quality/security gates.
+- Keep `docs/PRIVACY.md` and `docs/THREAT_MODEL.md` updated as features evolve.
+- Treat governance files (`ops/`, `.github/`, and core governance docs) as protected; only edit them when necessary and log why in `CHANGELOG_AI.md`.
 
 ## Maturity and Improvement
 
@@ -1200,11 +1308,376 @@ If this template helps your project, please use it and share constructive feedba
 ## Contribution Terms
 
 By submitting contributions, contributors agree the work is provided under the repository `LICENSE`, with no expectation of payment unless separately agreed in writing by maintainers.
-
 """,
 
 "scripts/.gitkeep": """\
 
+""",
+
+".github/dependabot.yml": """\
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "security"
+
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "security"
+""",
+
+".github/workflows/ci.yml": """\
+name: CI Gates
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  quality-and-security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node (if package.json exists)
+        if: hashFiles('**/package.json') != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Setup Python (if requirements exist)
+        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install Semgrep
+        run: pipx install semgrep
+
+      - name: Install Gitleaks
+        run: |
+          curl -sSL https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks_$(uname -s)_$(uname -m).tar.gz -o gitleaks.tar.gz
+          tar -xzf gitleaks.tar.gz gitleaks
+          sudo mv gitleaks /usr/local/bin/gitleaks
+
+      - name: Node install
+        if: hashFiles('**/package.json') != ''
+        run: npm ci
+
+      - name: Node lint
+        if: hashFiles('**/package.json') != ''
+        run: npm run lint --if-present
+
+      - name: Node format check
+        if: hashFiles('**/package.json') != ''
+        run: npm run format:check --if-present
+
+      - name: Node typecheck
+        if: hashFiles('**/package.json') != ''
+        run: npm run typecheck --if-present
+
+      - name: Node test
+        if: hashFiles('**/package.json') != ''
+        run: npm test --if-present
+
+      - name: Node build
+        if: hashFiles('**/package.json') != ''
+        run: npm run build --if-present
+
+      - name: Node dependency audit
+        if: hashFiles('**/package.json') != ''
+        run: npm audit --audit-level=high
+
+      - name: Python install deps
+        if: hashFiles('**/requirements*.txt') != ''
+        run: pip install -r requirements.txt
+
+      - name: Python lint (ruff)
+        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
+        run: ruff check .
+        continue-on-error: true
+
+      - name: Python format check (ruff)
+        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
+        run: ruff format --check .
+        continue-on-error: true
+
+      - name: Python tests
+        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
+        run: pytest
+        continue-on-error: true
+
+      - name: Python dependency audit
+        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
+        run: |
+          pip install pip-audit
+          pip-audit
+        continue-on-error: true
+
+      - name: Secret scan
+        run: gitleaks detect --source . --no-git --redact
+
+      - name: Basic SAST scan
+        run: semgrep --config auto --error
+""",
+
+"docs/PRIVACY.md": """\
+# Privacy Baseline
+
+Version: 0.1
+Last Updated: {{DATE}}
+
+> This document is a practical privacy baseline for MVP teams. It is not legal advice.
+
+## Data Inventory
+
+| Data Category | Purpose | Required? | Storage Location | Shared With | Retention | Deletion Method |
+|---------------|---------|-----------|------------------|-------------|-----------|-----------------|
+| Account email | | | | | | |
+| Profile name | | | | | | |
+| App content/uploads | | | | | | |
+| Payment metadata (non-card) | | | | | | |
+| Logs/telemetry metadata | | | | | | |
+
+## Legal/Jurisdiction Snapshot
+
+- Target users: <!-- EU/UK/US/CA/other -->
+- Regulated context: <!-- none / health / finance / education / other -->
+- Applicable baseline laws (as relevant): GDPR/UK GDPR, CCPA/CPRA, ePrivacy/cookie rules, COPPA.
+
+## Collection Principles
+
+- Collect the minimum data needed for the feature.
+- Do not collect sensitive categories unless there is a clear product need and additional controls.
+- Do not process raw card data in app code.
+
+## User Rights Process (MVP)
+
+- Access/export request process: <!-- email + manual SLA -->
+- Deletion request process: <!-- email + manual/automated flow -->
+- Correction process: <!-- how user can correct profile data -->
+- SLA target: <!-- e.g., 30 days -->
+
+## Subprocessors
+
+| Vendor | Purpose | Data Shared | DPA/Terms Checked | Region |
+|--------|---------|-------------|-------------------|--------|
+| | | | | |
+
+## Cookies / Analytics
+
+- Default to privacy-preserving analytics.
+- If non-essential cookies are used, add consent flow where legally required.
+
+## Security Controls Supporting Privacy
+
+- Encryption in transit (TLS)
+- Managed encryption at rest
+- Access controls with least privilege
+- Redaction/no-PII logging policy
+
+## Review Cadence
+
+- Review this file at each release with user-facing data changes.
+""",
+
+"docs/THREAT_MODEL.md": """\
+# Threat Model (Lightweight)
+
+Version: 0.1
+Last Updated: {{DATE}}
+
+## Scope
+
+- Product area: <!-- API / Web app / worker -->
+- In-scope environments: <!-- local/stage/prod -->
+
+## Critical Assets
+
+- User identity/session
+- Application data
+- Secrets and credentials
+- Payment/session metadata
+
+## Trust Boundaries
+
+- Client ↔ API
+- API ↔ Database
+- API ↔ Third-party services
+- CI/CD ↔ Repository/Secrets
+
+## Top Threats and Mitigations
+
+| Threat | Example | Mitigation | Status |
+|--------|---------|------------|--------|
+| Injection | SQL/command/template injection | Input validation, parameterized queries, escaping | |
+| Auth bypass | Broken auth/authorization | Managed auth, RBAC, deny-by-default checks | |
+| Secrets exposure | Key in repo/logs | Secret scanning, `.env.example` only, redaction | |
+| Data leakage | PII in logs or responses | Data minimization, no-PII logging, response filtering | |
+| Abuse/DoS | Endpoint flood | Rate limits, abuse monitoring | |
+| Prompt injection (AI) | User text manipulates tools | Tool allowlist, confirmation gates, context isolation | |
+
+## Security Tests
+
+- Unit tests for auth and permission checks
+- Input validation tests at every external boundary
+- CI SAST + dependency + secret scanning
+
+## Residual Risks
+
+- <!-- List known risks accepted for MVP and planned next step -->
+""",
+
+"ops/DEFINITION_OF_DONE.md": """\
+# Definition of Done (Future Features)
+
+Version: 1.0
+Last Updated: {{DATE}}
+
+Use this checklist before merging feature work.
+
+## Product Quality
+
+- [ ] Acceptance criteria are met.
+- [ ] One vertical slice is complete end-to-end.
+- [ ] Non-goals were not accidentally included.
+
+## Engineering Quality
+
+- [ ] Lint, format, typecheck, tests, and build pass.
+- [ ] CI workflow passes on pull request.
+- [ ] Changes are small, focused, and reviewed.
+
+## Security & Privacy
+
+- [ ] No secrets are committed.
+- [ ] Input validation and authorization checks are in place.
+- [ ] Rate limits/abuse controls are added for public endpoints.
+- [ ] Logging avoids secrets and personal data.
+- [ ] Data retention/deletion impacts are reflected in `docs/PRIVACY.md`.
+
+## Documentation & Operations
+
+- [ ] `docs/DECISIONS.md` updated for architectural choices.
+- [ ] `docs/THREAT_MODEL.md` updated for new attack surfaces.
+- [ ] `ops/RUNBOOK.md` updated if operations changed.
+- [ ] `CHANGELOG_AI.md` entry added.
+
+## Compliance Wording Rule
+
+- [ ] Language uses "aligned with" or "informed by" standards.
+- [ ] No certification/compliance claims are made without proof.
+""",
+
+"ops/RUNBOOK.md": """\
+# Runbook (Operations Basics)
+
+Version: 0.1
+Last Updated: {{DATE}}
+
+## Environments
+
+| Environment | URL/Endpoint | Owner | Notes |
+|-------------|--------------|-------|-------|
+| Dev | | | |
+| Stage | | | |
+| Prod | | | |
+
+## Monitoring Baseline
+
+- Structured logs enabled
+- Error tracking configured
+- Basic service health checks
+- No secrets/PII in logs
+
+## Incident Severity (Simple)
+
+- **SEV-1**: major outage/data-impacting issue
+- **SEV-2**: partial outage or major feature degraded
+- **SEV-3**: minor issue with workaround
+
+## Incident Response Steps
+
+1. Acknowledge and assign incident owner.
+2. Stabilize service (rollback/feature flag/isolation).
+3. Assess privacy/security impact.
+4. Communicate status internally.
+5. Resolve and verify.
+6. Record post-incident actions in `ops/LESSONS_LEARNED.md`.
+
+## Security/Privacy Incident Minimum Actions
+
+- Rotate exposed secrets immediately.
+- Disable compromised credentials/tokens.
+- Preserve logs/evidence for review.
+- Document impact, scope, and remediation.
+
+## Backup and Restore Notes
+
+- Backup schedule: <!-- define -->
+- Restore procedure: <!-- define -->
+- Last restore test date: <!-- define -->
+""",
+
+"ops/STANDARDS_BASELINE.md": """\
+# Standards Baseline (Official Sources)
+
+Version: 1.0
+Last Updated: {{DATE}}
+
+> Use this checklist before finalizing architecture or compliance-related recommendations.
+> Always verify the latest updates on official pages and record the date reviewed.
+
+## Security Baseline
+
+- OWASP Top 10: https://owasp.org/www-project-top-ten/
+- OWASP ASVS: https://owasp.org/www-project-application-security-verification-standard/
+
+## Privacy & Data Protection
+
+- GDPR (EU): https://gdpr.eu/
+- UK GDPR + DPA guidance (ICO): https://ico.org.uk/
+- CCPA/CPRA (California): https://oag.ca.gov/privacy/ccpa
+- ePrivacy/cookies overview (EU): https://eur-lex.europa.eu/
+
+## Children’s Data
+
+- COPPA (FTC): https://www.ftc.gov/legal-library/browse/rules/childrens-online-privacy-protection-rule-coppa
+
+## Payments
+
+- PCI SSC (PCI DSS): https://www.pcisecuritystandards.org/
+
+## Security Management References
+
+- ISO/IEC 27001 overview: https://www.iso.org/isoiec-27001-information-security.html
+- SOC for Service Organizations (AICPA overview): https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2
+
+## Required Usage Rule
+
+When advice touches legal/privacy/security/payment topics:
+
+1. Cite the official source URL used.
+2. Record "Reviewed on: YYYY-MM-DD" in output/docs.
+3. If uncertain, choose safer defaults and explicitly call out uncertainty.
+4. Recommend professional legal/compliance review for sensitive or regulated use cases.
 """,
 
 }
@@ -1267,12 +1740,14 @@ def load_templates() -> dict:
 
 def create_scaffold(
     target_dir: Path,
-  templates: dict,
     project_name: str,
+    templates: dict = None,
     dry_run: bool = False,
     force: bool = False,
 ):
     """Create the full project scaffold under target_dir."""
+    if templates is None:
+        templates = FILES
     target_dir = target_dir.resolve()
     created_dirs = set()
     created_files = []
