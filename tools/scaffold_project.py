@@ -1738,6 +1738,12 @@ def load_templates() -> dict:
   return loaded if loaded else FILES
 
 
+# Keep FILES aligned with on-disk templates when this repository includes
+# project_templates/. This preserves embedded fallback behavior for single-file
+# distribution while ensuring local tests and scaffolding use canonical content.
+FILES = load_templates()
+
+
 def create_scaffold(
     target_dir: Path,
     project_name: str,

@@ -1,6 +1,6 @@
 # AI Project Workflow Guide
 
-Version: 2.4
+Version: 2.5
 Last Updated: 2026-03-03
 Owner: Project Lead
 
@@ -23,6 +23,15 @@ This is the complete reference for the AI Project Scaffold system — how it wor
   - `.github/workflows/ci.yml`
 - Updated security and quality hard gates in `ops/AI_WORKFLOW.md`, `ops/SECURITY_POLICY.md`, and `ops/QUALITY_GATES.md`
 - Updated generator behavior: `tools/scaffold_project.py` now loads from `project_templates/` as source of truth, with embedded fallback templates
+
+## What Changed in v2.5
+
+- Added cross-agent context-efficiency standards:
+  - Read `docs/FILE_MAP.md` first for orientation
+  - Avoid full-codebase preload by default
+  - Token budget rule: load no more than 3 source files per task unless explicitly required
+- Added `ops/prompts/SESSION_RESUME.md` for standardized context restore and agent handoff
+- Updated policy loaders (`AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`) to align on FILE_MAP-first behavior
 
 ## What Changed in v2.2
 
@@ -57,7 +66,7 @@ Major update to the scaffold and generator:
 
 ---
 
-## Standard Project Scaffold (34 files)
+## Standard Project Scaffold
 
 Created by `scaffold_project.py`:
 
@@ -95,12 +104,13 @@ ops/
   STANDARDS_BASELINE.md             # Official-source standards baseline
   LESSONS_LEARNED.md                # Recurring issues and fixes
   prompts/
+    SESSION_RESUME.md              # Session resume template (governance + FILE_MAP + current task)
     feature_request.md              # Feature request template
     bug_report.md                   # Bug report template
     refactor_request.md             # Refactor request template
     code_review.md                  # Code review template
-  workflows/
-    ci.yml                          # Merge-blocking quality + security gates
+.github/workflows/
+  ci.yml                            # Merge-blocking quality + security gates
 scripts/
   .gitkeep                          # Placeholder for utility scripts
 ```
@@ -113,12 +123,12 @@ Multiple files exist to support different AI tools, but they all defer to one so
 
 ```
 CLAUDE.md ─────────────┐
-AGENTS.md ─────────────┤──> ops/AI_WORKFLOW.md  (canonical policy)
-.github/copilot-       │
-  instructions.md ─────┘
-                              │
-                              ├──> docs/ARCHITECTURE.md  (anti-drift)
-                              └──> docs/DECISIONS.md     (anti-drift)
+AGENTS.md ─────────────┤──> docs/FILE_MAP.md       (orientation-first)
+.github/copilot-       │            │
+  instructions.md ─────┘            └──> ops/AI_WORKFLOW.md  (canonical policy)
+                                         │
+                                         ├──> docs/ARCHITECTURE.md  (anti-drift)
+                                         └──> docs/DECISIONS.md     (anti-drift)
 ```
 
 | File | Who reads it | Purpose |

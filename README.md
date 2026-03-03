@@ -15,10 +15,11 @@ A project template and Python tool for Vibe Coders who build products with AI ag
 Every new project starts with:
 
 - **Agent rules** (`CLAUDE.md`, `AGENTS.md`, `.github/copilot-instructions.md`) — so AI tools follow your project's policies automatically
+- **Context-efficient agent startup** — read `docs/FILE_MAP.md` first, fetch only task-relevant files, and avoid full-codebase preload
 - **Canonical workflow** (`ops/AI_WORKFLOW.md`) — the single source of truth for how AI operates in your repo
 - **Security, dependency, and data policies** — sensible defaults you can customize
 - **Architecture and decision docs** — anti-drift anchors that prevent AI from going off-track
-- **Prompt templates** — structured templates for feature requests, bug reports, refactors, and code reviews
+- **Prompt templates** — structured templates for session resume, feature requests, bug reports, refactors, and code reviews
 - **Change log** — automatic tracking of every AI-made change
 
 ## Quick Start
@@ -83,6 +84,7 @@ my-project/
 │   ├── RELEASE_CHECKLIST.md        # Release verification steps
 │   ├── LESSONS_LEARNED.md          # Recurring issues and fixes
 │   └── prompts/
+│       ├── SESSION_RESUME.md      # Resume-context prompt (governance + FILE_MAP + current task)
 │       ├── feature_request.md      # Feature request template
 │       ├── bug_report.md           # Bug report template
 │       ├── refactor_request.md     # Refactor request template
@@ -117,6 +119,7 @@ PROJECT CREATION/
 3. Fill in `docs/DECISIONS.md` as you make architectural choices.
 4. Fill in `ops/QUALITY_GATES.md` with your stack's lint/test/build commands.
 5. Start building with your AI agent — it will follow the governance rules automatically.
+6. When resuming a conversation or switching agents, use `ops/prompts/SESSION_RESUME.md` to restore only the minimum required context.
 
 ## Growing Your Project
 
@@ -135,7 +138,7 @@ The scaffold gives you the governance skeleton. As you build, your project will 
 
 See `guides/AI_Project_Workflow_Guide.md` for the complete documentation on:
 - How the governance system works
-- The agent read order and policy hierarchy
+- The cross-agent read order and policy hierarchy (`FILE_MAP.md` first)
 - Daily development flow with AI
 - Security rules and anti-drift controls
 
