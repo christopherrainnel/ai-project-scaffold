@@ -54,3 +54,7 @@ venv/
 # Local agent handoff notes
 REPO_ALIGNMENT_AGENT_HANDOFF.md
 ALIGNMENT_AGENT_HANDOFF.md
+
+# Local-only agent policy notes
+guides/TIERING_POLICY.md
+guides/TIERING_POLICY.local.md

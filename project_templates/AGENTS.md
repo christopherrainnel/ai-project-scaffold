@@ -7,8 +7,11 @@
 
 1. `docs/FILE_MAP.md` — primary project index; use this first for fast orientation.
 2. `ops/AI_WORKFLOW.md` — **canonical policy** (source of truth for all agents).
-3. `docs/ARCHITECTURE.md` — system design and component map.
-4. `docs/DECISIONS.md` — why things were built this way.
+3. `guides/TIERING_POLICY.local.md` (or `guides/TIERING_POLICY.md`) — optional local policy overlay for paid/free boundary decisions.
+4. `docs/ARCHITECTURE.md` — system design and component map.
+5. `docs/DECISIONS.md` — why things were built this way.
+
+If no local tiering file exists, continue normally without failing.
 
 Do not preload the full codebase. Fetch only files needed for the current task.
 

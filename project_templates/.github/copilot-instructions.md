@@ -14,8 +14,11 @@
 On session start or first task:
 1. Check if the `ops/` folder exists.
 2. Read `docs/FILE_MAP.md` first to orient quickly before loading source files.
-3. If missing, ask: *"This workspace is missing the governance scaffold. Should I install it?"*
-4. If approved, create only missing files. Never overwrite existing ones without a diff and approval.
+3. Read `guides/TIERING_POLICY.local.md` (or `guides/TIERING_POLICY.md`) if present for local tiering boundary rules.
+4. If missing, ask: *"This workspace is missing the governance scaffold. Should I install it?"*
+5. If approved, create only missing files. Never overwrite existing ones without a diff and approval.
+
+If no local tiering file exists, continue normally without failing.
 
 Context efficiency rule:
 - Do not preload the full codebase.
