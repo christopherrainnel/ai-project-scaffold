@@ -7,6 +7,19 @@ on:
     branches: [main]
 
 jobs:
+  alignment-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Enforce template-root alignment
+        run: |
+          BASE_SHA="${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}"
+          python tools/check_alignment_guard.py --base "$BASE_SHA" --head "${{ github.sha }}"
+
   test:
     runs-on: ${{ matrix.os }}
     strategy:

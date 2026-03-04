@@ -1,3 +1,31 @@
+# Release Notes: v2.8
+
+**Release Date**: March 5, 2026
+**Status**: Ready for Production
+
+## Overview
+
+v2.8 aligns current template behavior with clearer review and session-resume controls.
+
+## What's New
+
+### 1. Two-Mode QA Boundary (Free + Tier1)
+
+- Added explicit review modes in templates:
+  - `Mode A: Discovery` (findings only, no edits)
+  - `Mode B: Fix` (edits only after explicit approval)
+- Added guidance in `ops/AI_WORKFLOW.md` and `ops/prompts/code_review.md`.
+
+### 2. Strict Session Resume Sequence
+
+- `ops/prompts/SESSION_RESUME.md` now requires:
+  1. confirm latest relevant `CHANGELOG_AI.md` entry,
+  2. restate the next concrete action,
+  3. read only the minimal required files.
+- Added compact handoff block for low-token context recovery.
+
+---
+
 # Release Notes: v2.7
 
 **Release Date**: March 5, 2026
