@@ -23,6 +23,14 @@ Every new project starts with:
 - **Prompt templates** — structured templates for session resume, feature requests, bug reports, refactors, and code reviews
 - **Change log** — automatic tracking of every AI-made change
 
+## Tier Boundary (Free vs Tier1)
+
+- `both`: Governance baseline (agent rules, AI workflow, quality/security gates, decision logs, privacy/threat modeling, changelog discipline)
+- `free` (this repo): Bootstrap-less scaffold with single-agent default and optional Build -> Review flow
+- `tier1`: Bootstrap Protocol plus tier1-only files (`docs/PROJECT_BRIEF.md`, `docs/STACK_SUMMARY.md`, `docs/TRIGGERS.md`, `ops/prompts/project_bootstrap.md`)
+
+This split is intentional: both repos stay aligned on governance quality, while Tier1 remains the guided-entry upgrade path.
+
 ## Quick Start
 
 ```bash

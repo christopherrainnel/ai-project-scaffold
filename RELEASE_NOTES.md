@@ -1,3 +1,26 @@
+# Release Notes: v2.7
+
+**Release Date**: March 5, 2026
+**Status**: Ready for Production
+
+## Overview
+
+v2.7 clarifies repo boundary rules between free and Tier1 so cross-repo sync can remain deterministic.
+
+## What's New
+
+### 1. Tier Scope Clarification
+
+- Added explicit `both` vs `free` vs `tier1` wording in documentation.
+- Confirmed shared governance baseline remains aligned across both repos.
+
+### 2. Alignment Handoff Classification
+
+- Updated `REPO_ALIGNMENT_AGENT_HANDOFF.md` with scope (`free`, `tier1`, `both`) and applied/deferred status.
+- Marked entitlement-runtime candidates as `tier1` future work until runtime modules exist.
+
+---
+
 # Release Notes: v2.6
 
 **Release Date**: March 4, 2026

@@ -3,6 +3,12 @@
 > Built with AI-assisted development using a governed scaffold.
 > Support this project via [GitHub Sponsors](https://github.com/sponsors/christopherrainnel) or [Patreon](https://www.patreon.com/posts/standard-one-tip-152177425?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link).
 
+## Tier Scope
+
+- `both`: governance baseline and quality/security expectations
+- `free`: single-agent-first workflow without Bootstrap Interview prerequisites
+- `tier1`: guided Bootstrap Interview flow and trigger-based escalation artifacts
+
 ## Quick Start
 
 1. Clone this repo and open it in your IDE (Cursor, VS Code, or any AI-enabled editor).
