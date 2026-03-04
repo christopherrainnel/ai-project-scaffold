@@ -35,7 +35,7 @@ Free tier defaults to single-agent operation. Optional Build -> Review flow is s
 - Never commit `.env` — only `.env.example` is tracked.
 - All AI changes are logged in `CHANGELOG_AI.md`.
 - Decisions and their rationale go in `docs/DECISIONS.md`.
-- Use `ops/QUALITY_GATES.md` + `.github/workflows/ci.yml` as merge-blocking quality/security gates.
+- Use `ops/QUALITY_GATES.md` + `.github/workflows/ci.yml` as merge-blocking quality/security gates for all configured and applicable checks.
 - Keep `docs/PRIVACY.md` and `docs/THREAT_MODEL.md` updated as features evolve.
 - Treat governance files (`ops/`, `.github/`, and core governance docs) as protected; only edit them when necessary and log why in `CHANGELOG_AI.md`.
 - Use `ops/prompts/SESSION_RESUME.md` when resuming context or switching AI agents.

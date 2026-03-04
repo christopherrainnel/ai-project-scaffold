@@ -44,6 +44,7 @@ python tools/scaffold_project.py --force
 ### Windows: standalone .exe (no Python required)
 
 Download `project_scaffold.exe` from the [latest release](https://github.com/christopherrainnel/ai-project-scaffold/releases/latest), place it in the folder where you want your project, and double-click it.
+If a release is not published yet or the artifact is unavailable, build locally using `python build_exe.py`.
 
 To build the `.exe` yourself: `python build_exe.py` (requires `pip install pyinstaller`).
 
@@ -149,6 +150,12 @@ See `guides/AI_Project_Workflow_Guide.md` for the complete documentation on:
 This project is useful in practice, but it is still early compared with long-established ecosystems and does not yet match their maturity/adoption level.
 
 We improve this repo continuously through maintainer review and contributions from approved contributors (see `CONTRIBUTING.md`).
+
+## Roadmap (Brief)
+
+- **Current focus (A): Access Hub**
+- **Next focus (3): VS Code extension companion**
+- **Later hardening (2): GitHub App model**
 
 ## Feedback
 

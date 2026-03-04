@@ -23,6 +23,7 @@ EXE_NAME = "project_scaffold"
 DIST_DIR = ROOT / "dist"
 BUILD_DIR = ROOT / "build"
 
+
 def main():
     # Verify PyInstaller is installed
     try:
@@ -32,26 +33,37 @@ def main():
         subprocess.check_call([sys.executable, "-m", "pip", "install", "pyinstaller"])
 
     print(f"\n=== Building {EXE_NAME}.exe ===\n")
-    subprocess.check_call([
-        sys.executable, "-m", "PyInstaller",
-        "--onefile",
-        "--name", EXE_NAME,
-        "--distpath", str(DIST_DIR),
-        "--workpath", str(BUILD_DIR),
-        "--specpath", str(BUILD_DIR),
-        "--add-data", f"{ROOT / 'project_templates'};project_templates",
-        "--clean",
-        str(SCRIPT),
-    ])
+    subprocess.check_call(
+        [
+            sys.executable,
+            "-m",
+            "PyInstaller",
+            "--onefile",
+            "--name",
+            EXE_NAME,
+            "--distpath",
+            str(DIST_DIR),
+            "--workpath",
+            str(BUILD_DIR),
+            "--specpath",
+            str(BUILD_DIR),
+            "--add-data",
+            f"{ROOT / 'project_templates'};project_templates",
+            "--clean",
+            str(SCRIPT),
+        ]
+    )
 
     # Move .exe to repo root
     built_exe = DIST_DIR / f"{EXE_NAME}.exe"
     target_exe = ROOT / f"{EXE_NAME}.exe"
     if built_exe.exists():
         shutil.move(str(built_exe), str(target_exe))
-        print(f"\n=== Done! ===")
+        print("\n=== Done! ===")
         print(f"  {target_exe}")
-        print(f"\nUsers can double-click this .exe to scaffold a project in the same folder.\n")
+        print(
+            "\nUsers can double-click this .exe to scaffold a project in the same folder.\n"
+        )
     else:
         print("ERROR: Build succeeded but .exe not found in dist/", file=sys.stderr)
         sys.exit(1)
@@ -62,7 +74,10 @@ def main():
             try:
                 shutil.rmtree(d)
             except PermissionError:
-                print(f"  Note: Could not remove {d.name}/ (may be locked by OneDrive). Safe to delete manually.")
+                print(
+                    f"  Note: Could not remove {d.name}/ (may be locked by OneDrive). Safe to delete manually."
+                )
+
 
 if __name__ == "__main__":
     main()

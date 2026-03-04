@@ -5,7 +5,7 @@ Last Updated: {{DATE}}
 
 ## Shipping Gate (Required)
 
-Code is not shippable unless all applicable checks pass locally and in CI:
+Code is not shippable unless all applicable checks pass locally and in CI.
 
 - [ ] Lint
 - [ ] Format check
@@ -21,7 +21,7 @@ Code is not shippable unless all applicable checks pass locally and in CI:
 ## CI Policy
 
 - CI is mandatory for protected branches.
-- Failing checks must block merges.
+- Failing configured and applicable checks must block merges.
 - Keep CI checks deterministic and fast.
 - See `.github/workflows/ci.yml` as the baseline workflow.
 
