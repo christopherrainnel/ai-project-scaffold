@@ -200,6 +200,7 @@ Both variants updated and ready:
 - Open issues on respective GitHub repos
 - Contribute improvements via pull requests
 - See CONTRIBUTING.md for guidelines
+- Support via [GitHub Sponsors](https://github.com/sponsors/christopherrainnel) or [Patreon](https://www.patreon.com/posts/standard-one-tip-152177425?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
 
 ---
 

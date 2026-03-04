@@ -1,6 +1,7 @@
 # {{PROJECT_NAME}}
 
 > Built with AI-assisted development using a governed scaffold.
+> Support this project via [GitHub Sponsors](https://github.com/sponsors/christopherrainnel) or [Patreon](https://www.patreon.com/posts/standard-one-tip-152177425?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link).
 
 ## Quick Start
 
