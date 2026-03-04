@@ -62,7 +62,7 @@ In both modes:
 ## 3) Non-Negotiable Rules
 
 1. **No mandatory planner**: use a short plan + risk register only for complex/high-risk tasks.
-2. **Security gates before shipping**: CI must fail on lint/format/typecheck, tests, vulnerability scan, secret scan, and basic SAST.
+2. **Security gates before shipping**: CI must fail on configured and applicable checks in `.github/workflows/ci.yml` (lint/format/typecheck/tests, vulnerability scan, secret scan, and basic SAST).
 3. **No secrets in code**: never commit secrets, tokens, API keys, private URLs.
 4. **Least privilege by default**: explicit roles/permissions and deny-by-default.
 5. **Minimize and protect data**: collect minimum data; use encryption in transit and managed encryption at rest.

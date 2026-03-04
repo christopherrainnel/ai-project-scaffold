@@ -30,7 +30,7 @@ DEFAULT_PROJECT_FOLDER = "project_template"
 # ---------------------------------------------------------------------------
 
 FILES = {
-".env.example": """\
+    ".env.example": """\
 # Environment Variables
 # Copy this file to .env and fill in your values.
 # NEVER commit .env — it is excluded by .gitignore.
@@ -51,8 +51,7 @@ FILES = {
 # AWS_SECRET_ACCESS_KEY=
 
 """,
-
-".github/BRANCH_PROTECTION.md": """\
+    ".github/BRANCH_PROTECTION.md": """\
 # Branch Protection Checklist (`main`)
 
 Use this checklist in GitHub repository settings to enforce safe merges.
@@ -80,14 +79,12 @@ Use this checklist in GitHub repository settings to enforce safe merges.
 - [ ] Enforce DCO sign-off checks if you want explicit per-commit contributor certification.
 
 """,
-
-".github/CODEOWNERS": """\
+    ".github/CODEOWNERS": """\
 # TODO: Replace with your GitHub username/org team
 * @your-github-handle
 
 """,
-
-".github/copilot-instructions.md": """\
+    ".github/copilot-instructions.md": """\
 # Copilot Instructions (VS Code Policy Loader)
 
 **Version:** 2.0
@@ -152,8 +149,7 @@ Before implementing changes:
 - For legal/security/policy guidance, prefer current official sources and include concrete dates.
 
 """,
-
-".github/ISSUE_TEMPLATE/01-bug-report.yml": """\
+    ".github/ISSUE_TEMPLATE/01-bug-report.yml": """\
 name: Bug report
 description: Report a reproducible problem to help us improve the project.
 title: "[Bug]: "
@@ -211,8 +207,7 @@ body:
           required: true
 
 """,
-
-".github/ISSUE_TEMPLATE/02-feature-request.yml": """\
+    ".github/ISSUE_TEMPLATE/02-feature-request.yml": """\
 name: Feature request
 description: Suggest an improvement with clear use case and acceptance criteria.
 title: "[Feature]: "
@@ -266,13 +261,11 @@ body:
           required: true
 
 """,
-
-".github/ISSUE_TEMPLATE/config.yml": """\
+    ".github/ISSUE_TEMPLATE/config.yml": """\
 blank_issues_enabled: false
 
 """,
-
-".github/PULL_REQUEST_TEMPLATE.md": """\
+    ".github/PULL_REQUEST_TEMPLATE.md": """\
 ## Summary
 
 Describe what changed and why.
@@ -305,8 +298,7 @@ List the commands or checks you ran.
 Closes #
 
 """,
-
-".gitignore": """\
+    ".gitignore": """\
 # Secrets
 .env
 .env.*
@@ -357,8 +349,7 @@ venv/
 *.tmp
 
 """,
-
-"AGENTS.md": """\
+    "AGENTS.md": """\
 # Agent Rules (Read First)
 
 > Universal entry point for all AI agents and IDE assistants.
@@ -387,8 +378,7 @@ venv/
 - If the issue is likely to recur, add it to `ops/LESSONS_LEARNED.md`.
 - Update `docs/PRIVACY.md` / `docs/THREAT_MODEL.md` / `ops/RUNBOOK.md` when changes affect those areas.
 """,
-
-"CHANGELOG_AI.md": """\
+    "CHANGELOG_AI.md": """\
 # AI Change Log
 
 > Every AI-made change is recorded here. Entries are newest-first.
@@ -417,8 +407,7 @@ venv/
 <!-- Add new entries above this line, newest first -->
 
 """,
-
-"CLAUDE.md": """\
+    "CLAUDE.md": """\
 # Project Rules (Claude Code)
 
 > Claude Code reads this file automatically on every session.
@@ -461,8 +450,7 @@ venv/
 Before implementing changes, read `docs/ARCHITECTURE.md` and `docs/DECISIONS.md`.
 If proposed work conflicts with recorded decisions, **stop and ask**.
 """,
-
-"docs/ARCHITECTURE.md": """\
+    "docs/ARCHITECTURE.md": """\
 # Architecture
 
 Version: 0.1
@@ -519,8 +507,7 @@ User -> [Frontend] -> [API] -> [Database]
 | Production | | |
 
 """,
-
-"docs/DECISIONS.md": """\
+    "docs/DECISIONS.md": """\
 # Decisions Log
 
 Version: 0.1
@@ -553,8 +540,7 @@ Last Updated: {{DATE}}
 <!-- Add new decisions above this line, newest first -->
 
 """,
-
-"docs/FILE_MAP.md": """\
+    "docs/FILE_MAP.md": """\
 # File Map
 
 > Plain-English guide to what every file and folder does.
@@ -611,7 +597,7 @@ Last Updated: {{DATE}}
 |------|---------|
 | `copilot-instructions.md` | VS Code Copilot policy loader — references `ops/AI_WORKFLOW.md` |
 | `dependabot.yml` | Automated update PRs for GitHub Actions and dependencies |
-| `workflows/ci.yml` | Baseline CI gate workflow (lint/test/scan/sast/secret scan) |
+| `workflows/ci.yml` | Merge-blocking quality + security workflow for configured and applicable checks |
 | `ISSUE_TEMPLATE/01-bug-report.yml` | Structured bug intake form for consistent, reproducible reports |
 | `ISSUE_TEMPLATE/02-feature-request.yml` | Structured feature request form with acceptance criteria |
 | `ISSUE_TEMPLATE/config.yml` | Issue template config (disables blank issues by default) |
@@ -623,8 +609,7 @@ Last Updated: {{DATE}}
 
 Utility scripts for setup, builds, or deployment. Add scripts here as the project grows.
 """,
-
-"ops/AI_WORKFLOW.md": """\
+    "ops/AI_WORKFLOW.md": """\
 # AI Workflow (Canonical Policy)
 
 Version: 2.0
@@ -670,7 +655,7 @@ Every task follows this loop:
 ## 3) Non-Negotiable Rules
 
 1. **Plan before code**: no feature implementation without a short plan + risk register.
-2. **Security gates before shipping**: CI must fail on lint/format/typecheck, tests, vulnerability scan, secret scan, and basic SAST.
+2. **Security gates before shipping**: CI must fail on configured and applicable checks in `.github/workflows/ci.yml` (lint/format/typecheck/tests, vulnerability scan, secret scan, and basic SAST).
 3. **No secrets in code**: never commit secrets, tokens, API keys, private URLs.
 4. **Least privilege by default**: explicit roles/permissions and deny-by-default.
 5. **Minimize and protect data**: collect minimum data; use encryption in transit and managed encryption at rest.
@@ -779,8 +764,7 @@ ops/prompts/refactor_request.md
 ops/prompts/code_review.md
 ```
 """,
-
-"ops/DATA_CLASSIFICATION.md": """\
+    "ops/DATA_CLASSIFICATION.md": """\
 # Data Classification
 
 Version: 2.0
@@ -836,8 +820,7 @@ Last Updated: {{DATE}}
 3. Remove exposed data from git history and logs where possible.
 4. Document incident in `ops/RUNBOOK.md` and add follow-up controls.
 """,
-
-"ops/DEPENDENCY_POLICY.md": """\
+    "ops/DEPENDENCY_POLICY.md": """\
 # Dependency Policy
 
 Version: 1.0
@@ -875,8 +858,7 @@ Periodically review for unused packages:
 Remove anything that is no longer imported or used.
 
 """,
-
-"ops/LESSONS_LEARNED.md": """\
+    "ops/LESSONS_LEARNED.md": """\
 # Lessons Learned
 
 > Log recurring mistakes and their fixes here. Only add entries that are likely to happen again.
@@ -897,8 +879,7 @@ Remove anything that is no longer imported or used.
 <!-- Add entries below this line -->
 
 """,
-
-"ops/prompts/bug_report.md": """\
+    "ops/prompts/bug_report.md": """\
 # Bug Report
 
 > Copy this template and fill it in before handing the task to an AI agent.
@@ -947,8 +928,7 @@ Commands to verify:
 ```
 
 """,
-
-"ops/prompts/code_review.md": """\
+    "ops/prompts/code_review.md": """\
 # Code Review (Agent Task)
 
 ## Scope
@@ -986,8 +966,7 @@ Fix: <recommended change>
 ```
 
 """,
-
-"ops/prompts/feature_request.md": """\
+    "ops/prompts/feature_request.md": """\
 # Feature Request
 
 > Copy this template and fill it in before handing the task to an AI agent.
@@ -1031,8 +1010,7 @@ Commands to run after implementation:
 ```
 
 """,
-
-"ops/prompts/refactor_request.md": """\
+    "ops/prompts/refactor_request.md": """\
 # Refactor Request
 
 > Copy this template and fill it in before handing the task to an AI agent.
@@ -1071,8 +1049,7 @@ Commands to verify:
 ```
 
 """,
-
-"ops/QUALITY_GATES.md": """\
+    "ops/QUALITY_GATES.md": """\
 # Quality Gates
 
 Version: 2.0
@@ -1080,7 +1057,7 @@ Last Updated: {{DATE}}
 
 ## Shipping Gate (Required)
 
-Code is not shippable unless all applicable checks pass locally and in CI:
+Code is not shippable unless all applicable checks pass locally and in CI.
 
 - [ ] Lint
 - [ ] Format check
@@ -1096,7 +1073,7 @@ Code is not shippable unless all applicable checks pass locally and in CI:
 ## CI Policy
 
 - CI is mandatory for protected branches.
-- Failing checks must block merges.
+- Failing configured and applicable checks must block merges.
 - Keep CI checks deterministic and fast.
 - See `.github/workflows/ci.yml` as the baseline workflow.
 
@@ -1147,8 +1124,7 @@ SAST scan:          semgrep --config auto
 Dev server:         uvicorn main:app --reload
 ```
 """,
-
-"ops/RELEASE_CHECKLIST.md": """\
+    "ops/RELEASE_CHECKLIST.md": """\
 # Release Checklist
 
 Version: 1.0
@@ -1184,8 +1160,7 @@ Last Updated: {{DATE}}
 - [ ] Update `ops/LESSONS_LEARNED.md` if anything unexpected happened
 
 """,
-
-"ops/SECURITY_POLICY.md": """\
+    "ops/SECURITY_POLICY.md": """\
 # Security Policy
 
 Version: 2.0
@@ -1252,8 +1227,7 @@ Maintain a secure-by-default baseline for MVP delivery without custom security c
 - Customer PII and regulated data unless explicitly approved and redacted
 - Internal infrastructure-sensitive data (hostnames/IP topology)
 """,
-
-"README.md": """\
+    "README.md": """\
 # {{PROJECT_NAME}}
 
 > Built with AI-assisted development using a governed scaffold.
@@ -1287,7 +1261,7 @@ Start with `AGENTS.md` (or `CLAUDE.md` for Claude Code). These files point to th
 - Never commit `.env` — only `.env.example` is tracked.
 - All AI changes are logged in `CHANGELOG_AI.md`.
 - Decisions and their rationale go in `docs/DECISIONS.md`.
-- Use `ops/QUALITY_GATES.md` + `.github/workflows/ci.yml` as merge-blocking quality/security gates.
+- Use `ops/QUALITY_GATES.md` + `.github/workflows/ci.yml` as merge-blocking quality/security gates for all configured and applicable checks.
 - Keep `docs/PRIVACY.md` and `docs/THREAT_MODEL.md` updated as features evolve.
 - Treat governance files (`ops/`, `.github/`, and core governance docs) as protected; only edit them when necessary and log why in `CHANGELOG_AI.md`.
 
@@ -1309,12 +1283,10 @@ If this template helps your project, please use it and share constructive feedba
 
 By submitting contributions, contributors agree the work is provided under the repository `LICENSE`, with no expectation of payment unless separately agreed in writing by maintainers.
 """,
-
-"scripts/.gitkeep": """\
+    "scripts/.gitkeep": """\
 
 """,
-
-".github/dependabot.yml": """\
+    ".github/dependabot.yml": """\
 version: 2
 updates:
   - package-ecosystem: "github-actions"
@@ -1335,8 +1307,7 @@ updates:
       - "dependencies"
       - "security"
 """,
-
-".github/workflows/ci.yml": """\
+    ".github/workflows/ci.yml": """\
 name: CI Gates
 
 on:
@@ -1368,15 +1339,6 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install Semgrep
-        run: pipx install semgrep
-
-      - name: Install Gitleaks
-        run: |
-          curl -sSL https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks_$(uname -s)_$(uname -m).tar.gz -o gitleaks.tar.gz
-          tar -xzf gitleaks.tar.gz gitleaks
-          sudo mv gitleaks /usr/local/bin/gitleaks
-
       - name: Node install
         if: hashFiles('**/package.json') != ''
         run: npm ci
@@ -1407,38 +1369,55 @@ jobs:
 
       - name: Python install deps
         if: hashFiles('**/requirements*.txt') != ''
-        run: pip install -r requirements.txt
+        run: |
+          req_file=$(ls requirements*.txt | head -n 1)
+          pip install -r "$req_file"
+
+      - name: Python install quality tools
+        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
+        run: pip install ruff mypy pytest pip-audit bandit
 
       - name: Python lint (ruff)
         if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
-        run: ruff check .
-        continue-on-error: true
+        run: python -m ruff check .
 
       - name: Python format check (ruff)
         if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
-        run: ruff format --check .
-        continue-on-error: true
+        run: python -m ruff format --check .
+
+      - name: Python type check (mypy)
+        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
+        run: mypy --ignore-missing-imports --no-strict-optional .
 
       - name: Python tests
-        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
+        if: hashFiles('tests/**/*.py') != ''
         run: pytest
-        continue-on-error: true
 
       - name: Python dependency audit
         if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
         run: |
-          pip install pip-audit
-          pip-audit
-        continue-on-error: true
+          req_file=$(ls requirements*.txt 2>/dev/null | head -n 1)
+          if [ -n "$req_file" ]; then
+            python -m pip_audit -r "$req_file"
+          else
+            python -m pip_audit
+          fi
 
-      - name: Secret scan
-        run: gitleaks detect --source . --no-git --redact
+      - name: Secret scan (gitleaks)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Basic SAST scan
-        run: semgrep --config auto --error
+      - name: Basic SAST scan (bandit)
+        if: hashFiles('**/*.py') != ''
+        run: python -m bandit -r . -lll
+
+      - name: Basic SAST scan (semgrep)
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: auto
 """,
-
-"docs/PRIVACY.md": """\
+    "docs/PRIVACY.md": """\
 # Privacy Baseline
 
 Version: 0.1
@@ -1497,8 +1476,7 @@ Last Updated: {{DATE}}
 
 - Review this file at each release with user-facing data changes.
 """,
-
-"docs/THREAT_MODEL.md": """\
+    "docs/THREAT_MODEL.md": """\
 # Threat Model (Lightweight)
 
 Version: 0.1
@@ -1544,8 +1522,7 @@ Last Updated: {{DATE}}
 
 - <!-- List known risks accepted for MVP and planned next step -->
 """,
-
-"ops/DEFINITION_OF_DONE.md": """\
+    "ops/DEFINITION_OF_DONE.md": """\
 # Definition of Done (Future Features)
 
 Version: 1.0
@@ -1585,8 +1562,7 @@ Use this checklist before merging feature work.
 - [ ] Language uses "aligned with" or "informed by" standards.
 - [ ] No certification/compliance claims are made without proof.
 """,
-
-"ops/RUNBOOK.md": """\
+    "ops/RUNBOOK.md": """\
 # Runbook (Operations Basics)
 
 Version: 0.1
@@ -1635,8 +1611,7 @@ Last Updated: {{DATE}}
 - Restore procedure: <!-- define -->
 - Last restore test date: <!-- define -->
 """,
-
-"ops/STANDARDS_BASELINE.md": """\
+    "ops/STANDARDS_BASELINE.md": """\
 # Standards Baseline (Official Sources)
 
 Version: 1.0
@@ -1679,7 +1654,6 @@ When advice touches legal/privacy/security/payment topics:
 3. If uncertain, choose safer defaults and explicitly call out uncertainty.
 4. Recommend professional legal/compliance review for sensitive or regulated use cases.
 """,
-
 }
 
 
@@ -1687,16 +1661,20 @@ When advice touches legal/privacy/security/payment topics:
 # Color output helpers (works on most terminals including Windows 10+)
 # ---------------------------------------------------------------------------
 
+
 def _supports_color():
     """Check if the terminal supports ANSI colors."""
     if sys.platform == "win32":
         # Windows 10+ supports ANSI if VIRTUAL_TERMINAL_PROCESSING is enabled
         # or if running in Windows Terminal / modern shells
         import os
+
         return os.environ.get("WT_SESSION") or os.environ.get("TERM_PROGRAM")
     return hasattr(sys.stdout, "isatty") and sys.stdout.isatty()
 
+
 USE_COLOR = _supports_color()
+
 
 def _c(code, text):
     """Wrap text in ANSI color codes if supported."""
@@ -1704,15 +1682,31 @@ def _c(code, text):
         return f"\033[{code}m{text}\033[0m"
     return text
 
-def green(text):  return _c("32", text)
-def yellow(text): return _c("33", text)
-def cyan(text):   return _c("36", text)
-def bold(text):   return _c("1", text)
-def dim(text):    return _c("2", text)
+
+def green(text):
+    return _c("32", text)
+
+
+def yellow(text):
+    return _c("33", text)
+
+
+def cyan(text):
+    return _c("36", text)
+
+
+def bold(text):
+    return _c("1", text)
+
+
+def dim(text):
+    return _c("2", text)
+
 
 # ---------------------------------------------------------------------------
 # Generator logic
 # ---------------------------------------------------------------------------
+
 
 def resolve_placeholders(content: str, project_name: str) -> str:
     """Replace template placeholders with actual values."""
@@ -1722,20 +1716,20 @@ def resolve_placeholders(content: str, project_name: str) -> str:
 
 
 def load_templates() -> dict:
-  """Load templates from project_templates/ when available, else fallback to embedded FILES."""
-  script_dir = Path(__file__).resolve().parent
-  template_root = script_dir.parent / "project_templates"
+    """Load templates from project_templates/ when available, else fallback to embedded FILES."""
+    script_dir = Path(__file__).resolve().parent
+    template_root = script_dir.parent / "project_templates"
 
-  if not template_root.exists():
-    return FILES
+    if not template_root.exists():
+        return FILES
 
-  loaded = {}
-  for file_path in sorted(template_root.rglob("*")):
-    if file_path.is_file():
-      rel_path = file_path.relative_to(template_root).as_posix()
-      loaded[rel_path] = file_path.read_text(encoding="utf-8")
+    loaded = {}
+    for file_path in sorted(template_root.rglob("*")):
+        if file_path.is_file():
+            rel_path = file_path.relative_to(template_root).as_posix()
+            loaded[rel_path] = file_path.read_text(encoding="utf-8")
 
-  return loaded if loaded else FILES
+    return loaded if loaded else FILES
 
 
 # Keep FILES aligned with on-disk templates when this repository includes
@@ -1830,14 +1824,18 @@ examples:
 
     # Header
     if args.dry_run:
-        print(f"\n{bold('=== DRY RUN ===')} Scaffold preview for: {cyan(str(target.resolve()))}\n")
+        print(
+            f"\n{bold('=== DRY RUN ===')} Scaffold preview for: {cyan(str(target.resolve()))}\n"
+        )
     else:
-        print(f"\n{bold('=== Scaffolding project ===')} {cyan(str(target.resolve()))}\n")
+        print(
+            f"\n{bold('=== Scaffolding project ===')} {cyan(str(target.resolve()))}\n"
+        )
         target.mkdir(parents=True, exist_ok=True)
 
     created, skipped = create_scaffold(
         target,
-      templates=load_templates(),
+        templates=load_templates(),
         project_name=project_name,
         dry_run=args.dry_run,
         force=args.force,
@@ -1847,15 +1845,17 @@ examples:
     print(f"\n{bold('--- Summary ---')}")
     print(f"  Created : {green(str(len(created)))} file(s)")
     if skipped:
-        print(f"  Skipped : {yellow(str(len(skipped)))} file(s) {dim('(already exist, use --force to overwrite)')}")
+        print(
+            f"  Skipped : {yellow(str(len(skipped)))} file(s) {dim('(already exist, use --force to overwrite)')}"
+        )
     if args.dry_run:
         print(f"\n  {dim('(No files were written — this was a dry run)')}")
     else:
         print(f"\n  {green('Done!')} Your project scaffold is ready.")
         print(f"\n  {bold('Next steps:')}")
-        print(f"    1. Fill in docs/ARCHITECTURE.md with your system design")
-        print(f"    2. Fill in docs/DECISIONS.md as you make choices")
-        print(f"    3. Fill in ops/QUALITY_GATES.md with your stack commands")
+        print("    1. Fill in docs/ARCHITECTURE.md with your system design")
+        print("    2. Fill in docs/DECISIONS.md as you make choices")
+        print("    3. Fill in ops/QUALITY_GATES.md with your stack commands")
     print()
 
 
