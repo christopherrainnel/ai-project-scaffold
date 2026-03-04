@@ -55,6 +55,7 @@ python -m unittest discover -s tests -v
 - [ ] Documentation updated if behavior changed.
 - [ ] If `project_templates/` changed, update at least one root alignment doc (`README.md`, `RELEASE_NOTES.md`, or `guides/AI_Project_Workflow_Guide.md`) to reflect the feature change.
 - [ ] Follow template-to-root mapping expectations enforced by `tools/check_alignment_guard.py` (file-specific alignment checks).
+- [ ] Classify new capabilities as `both`, `free`, or `tier1` and preserve paid/free boundary intent.
 - [ ] Tests added or updated where relevant.
 - [ ] `project_templates/` and `tools/scaffold_project.py` remain in sync (`project_templates/` is source of truth; update scaffold script to match).
 - [ ] No secrets or credentials introduced.

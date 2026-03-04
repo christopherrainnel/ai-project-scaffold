@@ -21,9 +21,12 @@ This workflow is **security-first, privacy-first, and production-minded**. It is
 Before first code changes in a new feature/session:
 
 1. Confirm governance scaffold completeness (Section 10).
-2. Ask the minimum discovery questions needed to avoid building the wrong thing (see `ops/STANDARDS_BASELINE.md`).
-3. Choose execution mode: direct Build -> Review for simple work, or add a short plan + risk register for complex/high-risk work.
-4. If governance files are missing, ask to create missing files only; do not overwrite without approval.
+2. Read local tiering overlay if present: `guides/TIERING_POLICY.local.md` (fallback: `guides/TIERING_POLICY.md`).
+3. Ask the minimum discovery questions needed to avoid building the wrong thing (see `ops/STANDARDS_BASELINE.md`).
+4. Choose execution mode: direct Build -> Review for simple work, or add a short plan + risk register for complex/high-risk work.
+5. If governance files are missing, ask to create missing files only; do not overwrite without approval.
+
+If no local tiering file exists, continue normally without failing.
 
 ### Context-Efficient Read Order (All Agents)
 
