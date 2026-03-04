@@ -1,7 +1,7 @@
 # AI Project Workflow Guide
 
-Version: 2.5
-Last Updated: 2026-03-03
+Version: 2.8
+Last Updated: 2026-03-05
 Owner: Project Lead
 
 ---
@@ -32,6 +32,17 @@ This is the complete reference for the AI Project Scaffold system — how it wor
   - Token budget rule: load no more than 3 source files per task unless explicitly required
 - Added `ops/prompts/SESSION_RESUME.md` for standardized context restore and agent handoff
 - Updated policy loaders (`AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`) to align on FILE_MAP-first behavior
+
+## What Changed in v2.8
+
+- Added two-mode code review boundary:
+  - `Mode A: Discovery` (findings only, no edits)
+  - `Mode B: Fix` (edits only after explicit approval)
+- Updated `ops/prompts/SESSION_RESUME.md` with strict low-token resume sequence:
+  - confirm latest relevant `CHANGELOG_AI.md` entry
+  - restate next concrete action
+  - load minimal required files only
+- Added compact handoff block format for session recovery.
 
 ## What Changed in v2.2
 

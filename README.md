@@ -18,9 +18,11 @@ Every new project starts with:
 - **Single-agent default + optional Build -> Review flow** — fast path for simple tasks, with planning used only when complexity/risk requires it
 - **Context-efficient agent startup** — read `docs/FILE_MAP.md` first, fetch only task-relevant files, and avoid full-codebase preload
 - **Canonical workflow** (`ops/AI_WORKFLOW.md`) — the single source of truth for how AI operates in your repo
+- **Two-mode code-review boundary** — default to findings-only review first, apply fixes only after explicit approval
 - **Security, dependency, and data policies** — sensible defaults you can customize
 - **Architecture and decision docs** — anti-drift anchors that prevent AI from going off-track
 - **Prompt templates** — structured templates for session resume, feature requests, bug reports, refactors, and code reviews
+- **Strict resume sequence** — `SESSION_RESUME` enforces low-token restart order with next-action recovery
 - **Change log** — automatic tracking of every AI-made change
 
 ## Tier Boundary (Free vs Tier1)

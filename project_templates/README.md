@@ -35,6 +35,7 @@ Start with `AGENTS.md` (or `CLAUDE.md` for Claude Code). These files point to th
 Use `docs/FILE_MAP.md` first for orientation, then fetch only task-relevant files.
 
 Free tier defaults to single-agent operation. Optional Build -> Review flow is supported, with no mandatory planner for simple tasks.
+Code review defaults to two modes: Discovery first (no edits), then Fix after explicit approval.
 
 ## Key Rules
 
@@ -45,6 +46,7 @@ Free tier defaults to single-agent operation. Optional Build -> Review flow is s
 - Keep `docs/PRIVACY.md` and `docs/THREAT_MODEL.md` updated as features evolve.
 - Treat governance files (`ops/`, `.github/`, and core governance docs) as protected; only edit them when necessary and log why in `CHANGELOG_AI.md`.
 - Use `ops/prompts/SESSION_RESUME.md` when resuming context or switching AI agents.
+- `ops/prompts/SESSION_RESUME.md` uses a strict low-token resume sequence (latest changelog note -> next action -> minimal file reads).
 
 ## Maturity and Improvement
 

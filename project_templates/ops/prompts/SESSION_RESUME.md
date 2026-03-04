@@ -17,11 +17,24 @@ Rules:
 - Expand only if needed and explain why.
 - Follow governance and security constraints from `ops/AI_WORKFLOW.md`.
 
+Strict resume sequence:
+1. Confirm latest entry in `CHANGELOG_AI.md` relevant to the task.
+2. Restate the next concrete action in one sentence.
+3. Read only files required to execute that next action.
+
 Current task:
 {{CURRENT_TASK}}
 
 Relevant files (if known):
 {{RELEVANT_FILES}}
+
+Compact handoff block (optional):
+```
+Last completed step:
+Next action:
+Open risks/assumptions:
+Required files (max 3 to start):
+```
 
 Output format:
 1. Short plan

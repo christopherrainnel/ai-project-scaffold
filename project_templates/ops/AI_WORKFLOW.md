@@ -57,6 +57,15 @@ In both modes:
 - Include verification evidence and residual risks.
 - Update `CHANGELOG_AI.md`.
 
+### Two-Mode QA Boundary (Code Review Tasks)
+
+When the user asks for a review, default to **Mode A: Discovery**.
+
+- Mode A (Discovery): analyze and report findings only. Do not edit files.
+- Mode B (Fix): apply fixes only after explicit user approval.
+
+For review responses, list findings first (ordered by severity) with file and line references, then open questions/assumptions, then optional change summary.
+
 ---
 
 ## 3) Non-Negotiable Rules

@@ -1,5 +1,14 @@
 # Code Review (Agent Task)
 
+## Mode Selection
+
+- **Mode A: Discovery (default)**
+	- Inspect and report issues only.
+	- Do not modify files.
+- **Mode B: Fix (after approval)**
+	- Apply fixes only after explicit user confirmation.
+	- Keep edits scoped to approved findings.
+
 ## Scope
 
 What files or modules should be reviewed?
@@ -33,3 +42,5 @@ Severity: critical | warning | suggestion
 Issue: <description>
 Fix: <recommended change>
 ```
+
+If no issues are found, state that explicitly and list any residual testing gaps.
