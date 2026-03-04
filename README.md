@@ -178,5 +178,7 @@ Contributions are governed by `LICENSE` (MIT). By submitting a contribution, con
 
 This free scaffold gives you governance and structure. If you want **an agent that guides you from day one** — asks the right questions, derives your stack from constraints, defines a 7-day vertical slice before coding, and keeps you from overbuilding — the [AI-guided tier](https://github.com/christopherrainnel/ai-project-scaffold-tier1) adds that. Access via sponsorship or other payment methods.
 
+**Support / Sponsor:** [GitHub](https://github.com/christopherrainnel) · [Patreon](https://www.patreon.com/posts/standard-one-tip-152177425?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link)
+
 - **This tier**: MIT, fully usable, no strings attached.
 - **That tier**: Bootstrap Protocol, deterministic incomplete detection, Run Order conventions, and trigger-based architecture escalation.
