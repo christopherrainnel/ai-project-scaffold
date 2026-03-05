@@ -14,6 +14,15 @@
 
 ---
 
+### 2026-03-05 — Clarified user-journey gate for non-purchase projects
+
+**Files**: `project_templates/ops/AI_WORKFLOW.md`, `project_templates/ops/DEFINITION_OF_DONE.md`, `project_templates/ops/RELEASE_CHECKLIST.md`
+**Commands**: none
+**Verification**: Manual review confirmed `Buy (if applicable)` now supports explicit access/adoption mapping for internal and team-only projects.
+**Notes/Risks**: AI may propose journey mapping, but human validation remains required before phase closure.
+
+---
+
 ### 2026-03-05 — Added phase/stage user journey completion gate
 
 **Files**: `project_templates/ops/AI_WORKFLOW.md`, `project_templates/ops/DEFINITION_OF_DONE.md`, `project_templates/ops/RELEASE_CHECKLIST.md`, `project_templates/CHANGELOG_AI.md`, `RELEASE_NOTES.md`
