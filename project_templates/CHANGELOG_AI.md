@@ -14,6 +14,15 @@
 
 ---
 
+### 2026-03-05 — Added phase/stage user journey completion gate
+
+**Files**: `project_templates/ops/AI_WORKFLOW.md`, `project_templates/ops/DEFINITION_OF_DONE.md`, `project_templates/ops/RELEASE_CHECKLIST.md`, `project_templates/CHANGELOG_AI.md`, `RELEASE_NOTES.md`
+**Commands**: `git grep` marker verification
+**Verification**: Confirmed journey-gate policy and checklist markers are present across workflow, done criteria, and release checklist.
+**Notes/Risks**: Gate adds explicit tracking discipline; teams still need to provide practical evidence per stage.
+
+---
+
 ### 2026-03-04 — Enforced CI gates + wording consistency hardening
 
 **Files**: `.github/workflows/ci.yml`, `project_templates/.github/workflows/ci.yml`, `README.md`, `project_templates/README.md`, `project_templates/ops/AI_WORKFLOW.md`, `project_templates/ops/QUALITY_GATES.md`, `build_exe.py`, `tools/scaffold_project.py`, `project_templates/CHANGELOG_AI.md`

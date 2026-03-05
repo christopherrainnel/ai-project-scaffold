@@ -23,6 +23,11 @@ Last Updated: {{DATE}}
 - [ ] Any AI-assisted legal drafting has explicit human approval before release
 - [ ] Release professionalism pass completed (naming, links, changelog clarity, and consistent product language)
 
+## User Journey Completion Gate
+
+- [ ] Journey stages are reviewed with evidence for release scope (`Discover -> Buy (if applicable) -> Verify -> Deliver -> Study/Use -> Support/Recovery`)
+- [ ] Any incomplete journey stage has a documented owner, mitigation plan, and target date
+
 ## Release
 
 - [ ] Tag the release in git (`git tag vX.Y.Z`)
