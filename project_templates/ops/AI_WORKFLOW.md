@@ -60,6 +60,19 @@ In both modes:
 - Include verification evidence and residual risks.
 - Update `CHANGELOG_AI.md`.
 
+### User Journey Completion Gate (Phase/Stage Close)
+
+At the end of each major phase or stage, run and record a journey-gate evaluation before marking the phase complete:
+
+- Discover
+- Buy (if applicable)
+- Verify
+- Deliver
+- Study/Use
+- Support/Recovery
+
+Any unmet stage requirement must be tracked as an explicit gap with owner and follow-up date in `docs/DECISIONS.md` or `ops/RELEASE_CHECKLIST.md`.
+
 ### Product Readiness Polish Gate (Pre-Release)
 
 Before any release, run a final polish pass and record outcomes in `ops/RELEASE_CHECKLIST.md`:

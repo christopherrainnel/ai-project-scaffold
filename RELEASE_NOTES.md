@@ -1,3 +1,23 @@
+# Release Notes: v2.10
+
+**Release Date**: March 5, 2026
+**Status**: Ready for Production
+
+## Overview
+
+v2.10 introduces a phase/stage User Journey Completion Gate so projects cannot mark major phases complete without evaluating real user-lifecycle coverage.
+
+## What's New
+
+### 1. User Journey Completion Gate (Phase/Stage Close)
+
+- Added a mandatory journey-gate evaluation to `project_templates/ops/AI_WORKFLOW.md` at the close of each major phase/stage.
+- Added a matching Definition of Done requirement in `project_templates/ops/DEFINITION_OF_DONE.md`.
+- Added release-time journey checks in `project_templates/ops/RELEASE_CHECKLIST.md`.
+- Journey sequence now explicitly tracked as: `Discover -> Buy (if applicable) -> Verify -> Deliver -> Study/Use -> Support/Recovery`.
+
+---
+
 # Release Notes: v2.9
 
 **Release Date**: March 5, 2026
