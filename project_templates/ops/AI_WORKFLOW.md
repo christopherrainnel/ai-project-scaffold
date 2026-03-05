@@ -73,6 +73,9 @@ At the end of each major phase or stage, run and record a journey-gate evaluatio
 
 Any unmet stage requirement must be tracked as an explicit gap with owner and follow-up date in `docs/DECISIONS.md` or `ops/RELEASE_CHECKLIST.md`.
 
+For non-commercial, internal, or team-only projects, interpret `Buy (if applicable)` as the equivalent access/adoption checkpoint (for example: approval, provisioning, onboarding, or assignment).
+AI can research likely user/consumer paths and propose the mapped journey, but a human owner must validate the mapping before phase closure.
+
 ### Product Readiness Polish Gate (Pre-Release)
 
 Before any release, run a final polish pass and record outcomes in `ops/RELEASE_CHECKLIST.md`:
