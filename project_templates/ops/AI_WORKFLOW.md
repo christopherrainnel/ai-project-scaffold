@@ -60,6 +60,16 @@ In both modes:
 - Include verification evidence and residual risks.
 - Update `CHANGELOG_AI.md`.
 
+### Product Readiness Polish Gate (Pre-Release)
+
+Before any release, run a final polish pass and record outcomes in `ops/RELEASE_CHECKLIST.md`:
+
+- UI quality check: verify key pages are coherent, current, and free of obvious placeholder/stale content.
+- Legal page alignment: ensure policy pages and product behavior are consistent; AI-generated legal text is support only and requires human approval.
+- Release professionalism: verify naming, copy, links, and changelog entries are release-ready.
+
+For legal/policy text generation, default to pattern-based synthesis. Verbatim reuse is allowed only for clearly standard/public-domain, legally mandated, or compatibly licensed text with attribution.
+
 ### Two-Mode QA Boundary (Code Review Tasks)
 
 When the user asks for a review, default to **Mode A: Discovery**.

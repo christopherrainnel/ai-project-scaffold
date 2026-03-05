@@ -19,6 +19,7 @@ Every new project starts with:
 - **Context-efficient agent startup** — read `docs/FILE_MAP.md` first, fetch only task-relevant files, and avoid full-codebase preload
 - **Canonical workflow** (`ops/AI_WORKFLOW.md`) — the single source of truth for how AI operates in your repo
 - **Two-mode code-review boundary** — default to findings-only review first, apply fixes only after explicit approval
+- **Product readiness polish gate** — pre-release UI/legal/professionalism checks with mandatory human approval for AI-assisted legal drafting
 - **Security, dependency, and data policies** — sensible defaults you can customize
 - **Architecture and decision docs** — anti-drift anchors that prevent AI from going off-track
 - **Prompt templates** — structured templates for session resume, feature requests, bug reports, refactors, and code reviews

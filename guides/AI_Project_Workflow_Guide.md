@@ -1,6 +1,6 @@
 # AI Project Workflow Guide
 
-Version: 2.8
+Version: 2.9
 Last Updated: 2026-03-05
 Owner: Project Lead
 
@@ -43,6 +43,15 @@ This is the complete reference for the AI Project Scaffold system — how it wor
   - restate next concrete action
   - load minimal required files only
 - Added compact handoff block format for session recovery.
+
+## What Changed in v2.9
+
+- Added Product Readiness Polish Gate to pre-release workflow:
+  - UI quality pass
+  - legal-page alignment check
+  - release professionalism pass
+  - explicit human approval for AI-assisted legal drafting
+- Added legal text guidance: default to pattern-based synthesis; use verbatim reuse only when clearly permissible and attributable.
 
 ## What Changed in v2.2
 

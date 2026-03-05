@@ -16,6 +16,13 @@ Last Updated: {{DATE}}
 - [ ] Database migrations tested (if applicable)
 - [ ] Feature flags configured (if applicable)
 
+## Product Readiness Polish Gate
+
+- [ ] UI quality pass completed for key user-facing pages (no stale placeholders, broken copy, or obvious UX regressions)
+- [ ] Legal pages are aligned with implemented behavior (privacy/terms/disclaimers reviewed)
+- [ ] Any AI-assisted legal drafting has explicit human approval before release
+- [ ] Release professionalism pass completed (naming, links, changelog clarity, and consistent product language)
+
 ## Release
 
 - [ ] Tag the release in git (`git tag vX.Y.Z`)
