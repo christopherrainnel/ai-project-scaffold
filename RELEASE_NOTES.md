@@ -1,3 +1,26 @@
+# Release Notes: v2.9
+
+**Release Date**: March 5, 2026
+**Status**: Ready for Production
+
+## Overview
+
+v2.9 adds a Product Readiness Polish Gate to reduce stale UI/legal drift before release.
+
+## What's New
+
+### 1. Product Readiness Polish Gate
+
+- Added a required pre-release polish gate in `ops/AI_WORKFLOW.md` and `ops/RELEASE_CHECKLIST.md`.
+- Free-tier baseline now requires:
+  - UI quality pass,
+  - legal-page alignment review,
+  - explicit human approval for AI-assisted legal drafting,
+  - release professionalism pass.
+- Legal drafting guidance defaults to pattern-based synthesis, with constrained verbatim reuse only when clearly permissible.
+
+---
+
 # Release Notes: v2.8
 
 **Release Date**: March 5, 2026
