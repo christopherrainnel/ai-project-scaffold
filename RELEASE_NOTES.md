@@ -1,3 +1,28 @@
+# Release Notes: v2.11
+
+**Release Date**: March 5, 2026
+**Status**: Ready for Production
+
+## Overview
+
+v2.11 aligns free template journey terminology and phase-close evaluation language with the latest VibeCoder_Pack governance model while preserving free-tier boundaries.
+
+## What's New
+
+### 1. Journey Language Alignment (Free Templates)
+
+- Updated `project_templates/ops/AI_WORKFLOW.md` to use the current lifecycle naming:
+  - `Acquire Access` (replacing `Buy (if applicable)`)
+  - `Study + Use` naming consistency
+- Added lightweight Dual-Lens Planning Gate language to keep phase work tied to both builder and user/consumer outcomes.
+
+### 2. Completion + Release Evidence Consistency
+
+- Updated `project_templates/ops/DEFINITION_OF_DONE.md` to require phase journey completeness/defer tracking.
+- Updated `project_templates/ops/RELEASE_CHECKLIST.md` to require explicit journey-variant mapping (`paid consumer`, `self-use`, `team/internal`) before release closure.
+
+---
+
 # Release Notes: v2.10
 
 **Release Date**: March 5, 2026

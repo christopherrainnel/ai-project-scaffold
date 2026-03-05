@@ -53,6 +53,14 @@ This is the complete reference for the AI Project Scaffold system — how it wor
   - explicit human approval for AI-assisted legal drafting
 - Added legal text guidance: default to pattern-based synthesis; use verbatim reuse only when clearly permissible and attributable.
 
+## What Changed in v2.11
+
+- Aligned free-tier journey terminology to current lifecycle naming:
+  - `Acquire Access` (instead of `Buy (if applicable)`)
+  - `Study + Use` naming consistency in gate language
+- Updated phase/release closure guidance so journey evidence is mapped to the active journey variant (`paid consumer`, `self-use`, `team/internal`).
+- Added lightweight Dual-Lens Planning Gate language to keep implementation scope tied to both technical and user outcomes.
+
 ## What Changed in v2.2
 
 Major update to the scaffold and generator:
