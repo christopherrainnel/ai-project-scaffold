@@ -6,21 +6,18 @@ Use this template when restarting context or handing off work between AI agents.
 
 Resume this project session using strict context minimization.
 
-Read order:
-1. `docs/FILE_MAP.md`
-2. `ops/AI_WORKFLOW.md`
-3. Only the files required for the current task
-
 Rules:
 - Do not load the full codebase.
 - Load at most 3 source files initially.
 - Expand only if needed and explain why.
 - Follow governance and security constraints from `ops/AI_WORKFLOW.md`.
 
-Strict resume sequence:
-1. Confirm latest entry in `CHANGELOG_AI.md` relevant to the task.
-2. Restate the next concrete action in one sentence.
-3. Read only files required to execute that next action.
+Resume sequence (strict order):
+1. Read `docs/FILE_MAP.md`
+2. Read `ops/AI_WORKFLOW.md`
+3. Read the newest `CHANGELOG_AI.md` entry only
+4. Read up to 3 task-relevant files
+5. Continue from last confirmed next action
 
 Current task:
 {{CURRENT_TASK}}
@@ -28,13 +25,12 @@ Current task:
 Relevant files (if known):
 {{RELEVANT_FILES}}
 
-Compact handoff block (optional):
-```
-Last completed step:
-Next action:
-Open risks/assumptions:
-Required files (max 3 to start):
-```
+Handoff block (keep compact):
+- Objective:
+- Completed:
+- Next:
+- Risks/Blockers:
+- Files touched:
 
 Output format:
 1. Short plan

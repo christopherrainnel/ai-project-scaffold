@@ -10,8 +10,8 @@ Use this checklist before merging feature work.
 - [ ] Acceptance criteria are met.
 - [ ] One vertical slice is complete end-to-end.
 - [ ] Non-goals were not accidentally included.
-- [ ] User Journey Completion Gate evaluated for the current phase/stage (`Discover -> Buy (if applicable) -> Verify -> Deliver -> Study/Use -> Support/Recovery`) with unresolved gaps explicitly documented.
-- [ ] If the project has no purchase path, the `Buy (if applicable)` stage is mapped to an equivalent access/adoption checkpoint and recorded.
+- [ ] User/Consumer Journey Completion Gate reviewed for this phase (`Discover`, `Acquire Access`, `Verify`, `Deliver`, `Study + Use`, `Support + Recovery`) with in-scope stages marked `Complete`.
+- [ ] Any non-complete journey stage has explicit owner-approved defer note recorded in `CHANGELOG_AI.md`.
 
 ## Engineering Quality
 

@@ -25,8 +25,8 @@ Last Updated: {{DATE}}
 
 ## User Journey Completion Gate
 
-- [ ] Journey stages are reviewed with evidence for release scope (`Discover -> Buy (if applicable) -> Verify -> Deliver -> Study/Use -> Support/Recovery`)
-- [ ] For non-purchase flows, `Buy (if applicable)` is explicitly mapped to an equivalent access/adoption checkpoint (approval/provisioning/onboarding)
+- [ ] User/Consumer Journey Completion Gate completed (`Discover -> Acquire Access -> Verify -> Deliver -> Study/Use -> Support/Recovery`)
+- [ ] Journey variant is explicitly mapped for release scope (`paid consumer`, `self-use`, or `team/internal`) and assumptions are documented when evidence is partial
 - [ ] Any incomplete journey stage has a documented owner, mitigation plan, and target date
 
 ## Release

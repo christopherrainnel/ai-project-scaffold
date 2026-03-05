@@ -41,6 +41,19 @@ Token budget rule:
 - Never load more than 3 source files per task unless explicitly required by the user or task complexity.
 - If more files are needed, expand in small batches and justify why.
 
+### Dual-Lens Planning Gate (Required for feature and phase work)
+
+Before implementing any new feature, major enhancement, or phase-stage closure, capture both perspectives:
+
+1. Technical Builder POV:
+	- implementation boundaries and non-goals,
+	- quality/security expectations and verification evidence.
+2. User/Consumer POV:
+	- journey variant for the phase (`paid consumer`, `self-use`, or `team/internal`),
+	- required outcomes for `Discover`, `Acquire Access`, `Verify`, `Deliver`, `Study + Use`, `Support + Recovery`.
+
+For narrow bugfix/doc-only tasks, use a lightweight dual-lens note instead of full mapping.
+
 ---
 
 ## 2) Standard Operating Loop
@@ -65,15 +78,19 @@ In both modes:
 At the end of each major phase or stage, run and record a journey-gate evaluation before marking the phase complete:
 
 - Discover
-- Buy (if applicable)
+- Acquire Access
 - Verify
 - Deliver
-- Study/Use
+- Study + Use
 - Support/Recovery
 
 Any unmet stage requirement must be tracked as an explicit gap with owner and follow-up date in `docs/DECISIONS.md` or `ops/RELEASE_CHECKLIST.md`.
 
-For non-commercial, internal, or team-only projects, interpret `Buy (if applicable)` as the equivalent access/adoption checkpoint (for example: approval, provisioning, onboarding, or assignment).
+Journey mapping rule:
+
+- AI must identify the active journey type for the phase (for example: paid consumer, self-use, team/internal).
+- The gate must be scored against that mapped variant, and assumptions must be recorded in `CHANGELOG_AI.md` when evidence is partial.
+
 AI can research likely user/consumer paths and propose the mapped journey, but a human owner must validate the mapping before phase closure.
 
 ### Product Readiness Polish Gate (Pre-Release)
