@@ -11,6 +11,7 @@ Use this checklist before merging feature work.
 - [ ] One vertical slice is complete end-to-end.
 - [ ] Non-goals were not accidentally included.
 - [ ] User Journey Completion Gate evaluated for the current phase/stage (`Discover -> Buy (if applicable) -> Verify -> Deliver -> Study/Use -> Support/Recovery`) with unresolved gaps explicitly documented.
+- [ ] If the project has no purchase path, the `Buy (if applicable)` stage is mapped to an equivalent access/adoption checkpoint and recorded.
 
 ## Engineering Quality
 
