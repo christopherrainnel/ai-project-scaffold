@@ -1,7 +1,7 @@
 # {{PROJECT_NAME}}
 
 > Built with AI-assisted development using a governed scaffold.
-> Support this project via [GitHub Sponsors](https://github.com/sponsors/christopherrainnel) or [Patreon](https://www.patreon.com/posts/standard-one-tip-152177425?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link).
+> Fill this README with your project-specific overview, setup steps, and access model.
 
 ## Tier Scope
 
@@ -16,14 +16,10 @@
 3. Read `ops/AI_WORKFLOW.md` — this is the source of truth for how AI agents work in this project.
 4. Fill in `docs/ARCHITECTURE.md` and `docs/DECISIONS.md` with your project specifics.
 
-## Required: Start Every AI Session With This Prompt
+## Recommended: Start Every AI Session With A Governance Prompt
 
-```text
-Before anything else this session: read docs/FILE_MAP.md, AGENTS.md, and ops/AI_WORKFLOW.md -
-follow the governance rules you find there. For any feature or phase work, produce a dual-lens
-plan (Technical Builder POV + User/Consumer POV) and at least one risk with mitigation before
-implementing. My task: [REPLACE WITH ACTUAL TASK]
-```
+Start each new AI session with a governance-loading first message.
+Keep the full recommended prompt in `ops/prompts/SESSION_RESUME.md` Section 1 and point users there instead of duplicating it here.
 
 ## Project Structure
 
