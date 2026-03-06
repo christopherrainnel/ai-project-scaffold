@@ -1,3 +1,32 @@
+# Release Notes: v2.13
+
+**Release Date**: March 6, 2026
+**Status**: Ready for Production
+
+## Overview
+
+v2.13 backports shared-safe governance/template updates from the latest Tier1 template snapshot while preserving free-tier friction boundaries.
+
+## What's New
+
+### 1. Cross-Tier Shared Governance Wording Alignment
+
+- Updated free `project_templates/` governance loaders and docs to use flexible governance-first wording and point to `ops/prompts/SESSION_RESUME.md` as the canonical prompt location.
+- Applied to:
+  - `project_templates/.github/copilot-instructions.md`
+  - `project_templates/AGENTS.md`
+  - `project_templates/CLAUDE.md`
+  - `project_templates/README.md`
+  - `project_templates/ops/AI_WORKFLOW.md`
+  - `project_templates/ops/prompts/SESSION_RESUME.md`
+
+### 2. Template Hygiene Reset (Free)
+
+- Reset `project_templates/CHANGELOG_AI.md` and `project_templates/ops/LESSONS_LEARNED.md` to starter-template form.
+- Confirmed free-tier boundaries remain intact: no `project_bootstrap.md`, no `PROJECT_BRIEF.md`, no `STACK_SUMMARY.md`, no `TRIGGERS.md`, and no bootstrap hard gates were introduced.
+
+---
+
 # Release Notes: v2.12
 
 **Release Date**: March 6, 2026

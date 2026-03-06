@@ -18,14 +18,8 @@ Do not load the full codebase into context. Fetch only the files required for th
 
 ## Session-Start Prompt
 
-If the user has not provided a governance boot prompt, ask for this exact prompt before implementation work:
-
-```text
-Before anything else this session: read docs/FILE_MAP.md, AGENTS.md, and ops/AI_WORKFLOW.md -
-follow the governance rules you find there. For any feature or phase work, produce a dual-lens
-plan (Technical Builder POV + User/Consumer POV) and at least one risk with mitigation before
-implementing. My task: [REPLACE WITH ACTUAL TASK]
-```
+If the user has not provided a governance-loading first message, ask for one before implementation work.
+Exact wording is flexible. Point to `ops/prompts/SESSION_RESUME.md` Section 1 for the full recommended prompt instead of duplicating it here.
 
 ## Non-Negotiable Rules
 

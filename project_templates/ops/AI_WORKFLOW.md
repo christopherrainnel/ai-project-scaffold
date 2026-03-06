@@ -30,14 +30,9 @@ If no local tiering file exists, continue normally without failing.
 
 ### User Action - Required Session-Start Prompt
 
-Before implementation work, require this prompt from the user:
+Before implementation work, ensure the user's first message tells the agent to read docs/FILE_MAP.md, AGENTS.md, and ops/AI_WORKFLOW.md before task work.
 
-```text
-Before anything else this session: read docs/FILE_MAP.md, AGENTS.md, and ops/AI_WORKFLOW.md -
-follow the governance rules you find there. For any feature or phase work, produce a dual-lens
-plan (Technical Builder POV + User/Consumer POV) and at least one risk with mitigation before
-implementing. My task: [REPLACE WITH ACTUAL TASK]
-```
+Exact wording can vary. Keep the full recommended prompt in `ops/prompts/SESSION_RESUME.md` Section 1 and point users there instead of duplicating it here.
 
 ### Context-Efficient Read Order (All Agents)
 

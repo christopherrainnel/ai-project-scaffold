@@ -2,9 +2,9 @@
 
 Use this template when restarting context or handing off work between AI agents.
 
-## Section 1 - GOVERNANCE BOOT (Required Copy/Paste)
+## Section 1 - GOVERNANCE BOOT (Recommended Prompt)
 
-Copy/paste this block at the start of every AI session:
+Use this recommended block at the start of every AI session. Equivalent first-message wording is also valid if it loads governance before task work:
 
 ```text
 Before anything else this session: read docs/FILE_MAP.md, AGENTS.md, and ops/AI_WORKFLOW.md -
