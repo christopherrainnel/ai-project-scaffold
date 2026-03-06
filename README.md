@@ -35,6 +35,10 @@ Every new project starts with:
 
 This split is intentional: both repos stay aligned on governance quality, while Tier1 remains the guided-entry upgrade path.
 
+## Template Alignment Note (v2.13)
+
+Template governance loaders now point to `project_templates/ops/prompts/SESSION_RESUME.md` as the canonical location for the full recommended session-start prompt, instead of duplicating the full prompt block across multiple files.
+
 ## Quick Start
 
 ```bash
