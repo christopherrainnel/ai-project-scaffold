@@ -28,6 +28,17 @@ Before first code changes in a new feature/session:
 
 If no local tiering file exists, continue normally without failing.
 
+### User Action - Required Session-Start Prompt
+
+Before implementation work, require this prompt from the user:
+
+```text
+Before anything else this session: read docs/FILE_MAP.md, AGENTS.md, and ops/AI_WORKFLOW.md -
+follow the governance rules you find there. For any feature or phase work, produce a dual-lens
+plan (Technical Builder POV + User/Consumer POV) and at least one risk with mitigation before
+implementing. My task: [REPLACE WITH ACTUAL TASK]
+```
+
 ### Context-Efficient Read Order (All Agents)
 
 At the start of each task/session:

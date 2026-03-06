@@ -16,6 +16,15 @@
 3. Read `ops/AI_WORKFLOW.md` — this is the source of truth for how AI agents work in this project.
 4. Fill in `docs/ARCHITECTURE.md` and `docs/DECISIONS.md` with your project specifics.
 
+## Required: Start Every AI Session With This Prompt
+
+```text
+Before anything else this session: read docs/FILE_MAP.md, AGENTS.md, and ops/AI_WORKFLOW.md -
+follow the governance rules you find there. For any feature or phase work, produce a dual-lens
+plan (Technical Builder POV + User/Consumer POV) and at least one risk with mitigation before
+implementing. My task: [REPLACE WITH ACTUAL TASK]
+```
+
 ## Project Structure
 
 ```text

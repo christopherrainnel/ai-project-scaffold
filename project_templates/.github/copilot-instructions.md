@@ -15,8 +15,17 @@ On session start or first task:
 1. Check if the `ops/` folder exists.
 2. Read `docs/FILE_MAP.md` first to orient quickly before loading source files.
 3. Read `guides/TIERING_POLICY.local.md` (or `guides/TIERING_POLICY.md`) if present for local tiering boundary rules.
-4. If missing, ask: *"This workspace is missing the governance scaffold. Should I install it?"*
-5. If approved, create only missing files. Never overwrite existing ones without a diff and approval.
+4. Require the user to provide this session-start prompt before implementation work:
+
+```text
+Before anything else this session: read docs/FILE_MAP.md, AGENTS.md, and ops/AI_WORKFLOW.md -
+follow the governance rules you find there. For any feature or phase work, produce a dual-lens
+plan (Technical Builder POV + User/Consumer POV) and at least one risk with mitigation before
+implementing. My task: [REPLACE WITH ACTUAL TASK]
+```
+
+5. If missing, ask: *"This workspace is missing the governance scaffold. Should I install it?"*
+6. If approved, create only missing files. Never overwrite existing ones without a diff and approval.
 
 If no local tiering file exists, continue normally without failing.
 

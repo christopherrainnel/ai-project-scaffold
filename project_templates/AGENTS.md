@@ -15,6 +15,17 @@ If no local tiering file exists, continue normally without failing.
 
 Do not preload the full codebase. Fetch only files needed for the current task.
 
+## Session Start - Required User Action
+
+Have the user paste this at session start (also in `ops/prompts/SESSION_RESUME.md`, Section 1):
+
+```text
+Before anything else this session: read docs/FILE_MAP.md, AGENTS.md, and ops/AI_WORKFLOW.md -
+follow the governance rules you find there. For any feature or phase work, produce a dual-lens
+plan (Technical Builder POV + User/Consumer POV) and at least one risk with mitigation before
+implementing. My task: [REPLACE WITH ACTUAL TASK]
+```
+
 ## Hard Constraints
 
 - Single-agent mode is default. Multi-agent behavior is optional.

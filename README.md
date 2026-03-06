@@ -23,6 +23,7 @@ Every new project starts with:
 - **Security, dependency, and data policies** — sensible defaults you can customize
 - **Architecture and decision docs** — anti-drift anchors that prevent AI from going off-track
 - **Prompt templates** — structured templates for session resume, feature requests, bug reports, refactors, and code reviews
+- **GOVERNANCE BOOT session-start prompt** — a required copy/paste prompt that forces policy loading before implementation
 - **Strict resume sequence** — `SESSION_RESUME` enforces low-token restart order with next-action recovery
 - **Change log** — automatic tracking of every AI-made change
 
@@ -51,6 +52,15 @@ python tools/scaffold_project.py --force
 ```
 
 **Requirements**: Python 3.8+ (no external dependencies).
+
+## Required: Start Every AI Session With This Prompt
+
+```text
+Before anything else this session: read docs/FILE_MAP.md, AGENTS.md, and ops/AI_WORKFLOW.md -
+follow the governance rules you find there. For any feature or phase work, produce a dual-lens
+plan (Technical Builder POV + User/Consumer POV) and at least one risk with mitigation before
+implementing. My task: [REPLACE WITH ACTUAL TASK]
+```
 
 ### Windows: standalone .exe (no Python required)
 
