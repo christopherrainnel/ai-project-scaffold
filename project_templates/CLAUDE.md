@@ -16,6 +16,17 @@ If no local tiering file exists, continue normally without failing.
 
 Do not load the full codebase into context. Fetch only the files required for the current task.
 
+## Session-Start Prompt
+
+If the user has not provided a governance boot prompt, ask for this exact prompt before implementation work:
+
+```text
+Before anything else this session: read docs/FILE_MAP.md, AGENTS.md, and ops/AI_WORKFLOW.md -
+follow the governance rules you find there. For any feature or phase work, produce a dual-lens
+plan (Technical Builder POV + User/Consumer POV) and at least one risk with mitigation before
+implementing. My task: [REPLACE WITH ACTUAL TASK]
+```
+
 ## Non-Negotiable Rules
 
 - **No mandatory planner**: Use a short plan and risk register only for complex/high-risk feature work.

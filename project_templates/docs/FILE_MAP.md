@@ -43,7 +43,7 @@
 
 | File | Purpose |
 |------|---------|
-| `SESSION_RESUME.md` | Standard context-resume prompt: inject governance + FILE_MAP + current task only |
+| `SESSION_RESUME.md` | GOVERNANCE BOOT + context-resume template for session start and low-token handoff |
 | `feature_request.md` | Structured template for requesting new features |
 | `bug_report.md` | Structured template for reporting and fixing bugs |
 | `refactor_request.md` | Structured template for refactoring tasks |

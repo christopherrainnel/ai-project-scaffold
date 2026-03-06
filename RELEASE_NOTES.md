@@ -1,3 +1,32 @@
+# Release Notes: v2.12
+
+**Release Date**: March 6, 2026
+**Status**: Ready for Production
+
+## Overview
+
+v2.12 adds a required GOVERNANCE BOOT session-start prompt so agents load policy context before implementation work.
+
+## What's New
+
+### 1. Required Session-Start Prompt
+
+- Added a standard copy/paste GOVERNANCE BOOT prompt to:
+  - `project_templates/ops/prompts/SESSION_RESUME.md` (Section 1)
+  - `project_templates/README.md`
+  - `project_templates/AGENTS.md`
+  - `project_templates/CLAUDE.md`
+  - `project_templates/.github/copilot-instructions.md`
+  - `project_templates/ops/AI_WORKFLOW.md`
+
+### 2. Context and Ops Documentation Alignment
+
+- Updated `project_templates/docs/FILE_MAP.md` so `SESSION_RESUME.md` is explicitly described as governance boot + handoff template.
+- Added a recurring-issue entry in `project_templates/ops/LESSONS_LEARNED.md` for governance-boot skipping.
+- Confirmed free-tier boundary remains unchanged (no Tier1 bootstrap artifacts added).
+
+---
+
 # Release Notes: v2.11
 
 **Release Date**: March 5, 2026

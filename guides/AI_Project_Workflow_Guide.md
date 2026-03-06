@@ -61,6 +61,19 @@ This is the complete reference for the AI Project Scaffold system — how it wor
 - Updated phase/release closure guidance so journey evidence is mapped to the active journey variant (`paid consumer`, `self-use`, `team/internal`).
 - Added lightweight Dual-Lens Planning Gate language to keep implementation scope tied to both technical and user outcomes.
 
+## What Changed in v2.12
+
+- Added required `GOVERNANCE BOOT` session-start prompt across template policy loaders:
+  - `AGENTS.md`
+  - `CLAUDE.md`
+  - `.github/copilot-instructions.md`
+  - `ops/AI_WORKFLOW.md`
+- Upgraded `ops/prompts/SESSION_RESUME.md` to include:
+  - Section 1 copy/paste governance boot prompt,
+  - optional expanded cold-start details block.
+- Updated `docs/FILE_MAP.md` to describe `SESSION_RESUME.md` as governance boot + handoff template.
+- Added `ops/LESSONS_LEARNED.md` entry documenting governance-boot skipping failure mode and prevention.
+
 ## What Changed in v2.2
 
 Major update to the scaffold and generator:

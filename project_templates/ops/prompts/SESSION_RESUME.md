@@ -2,6 +2,20 @@
 
 Use this template when restarting context or handing off work between AI agents.
 
+## Section 1 - GOVERNANCE BOOT (Required Copy/Paste)
+
+Copy/paste this block at the start of every AI session:
+
+```text
+Before anything else this session: read docs/FILE_MAP.md, AGENTS.md, and ops/AI_WORKFLOW.md -
+follow the governance rules you find there. For any feature or phase work, produce a dual-lens
+plan (Technical Builder POV + User/Consumer POV) and at least one risk with mitigation before
+implementing. My task: [REPLACE WITH ACTUAL TASK]
+```
+
+<details>
+<summary>Expanded Cold-Start Version (Optional)</summary>
+
 ## Prompt Template
 
 Resume this project session using strict context minimization.
@@ -36,3 +50,5 @@ Output format:
 1. Short plan
 2. Risks/assumptions
 3. Minimal file reads to begin
+
+</details>
