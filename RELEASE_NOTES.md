@@ -1,3 +1,26 @@
+# Release Notes: v2.16
+
+**Release Date**: March 7, 2026
+**Status**: Ready for Production
+
+## Overview
+
+v2.16 locks the free-tier user journey checklist at its current baseline and routes future checklist-component enhancements to Tier1+.
+
+## What's New
+
+### 1. Free Checklist Baseline Freeze
+
+- Added CI guardrail in `tools/check_alignment_guard.py` to fail when this path changes in free:
+  - `project_templates/docs/USER_CONSUMER_JOURNEY_CHECKLIST.md`
+- Rationale: keep free usable with a stable checklist baseline while preserving premium differentiation for future checklist expansions.
+
+### 2. Documentation Clarification
+
+- Updated root `README.md` tier-boundary section to state that future checklist-component expansions are Tier1+ only.
+
+---
+
 # Release Notes: v2.15
 
 **Release Date**: March 7, 2026

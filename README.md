@@ -35,6 +35,8 @@ Every new project starts with:
 - `free` (this repo): Bootstrap-less scaffold with single-agent default and optional Build -> Review flow
 - `tier1`: Bootstrap Protocol plus tier1-only files (`docs/PROJECT_BRIEF.md`, `docs/STACK_SUMMARY.md`, `docs/TRIGGERS.md`, `ops/prompts/project_bootstrap.md`)
 
+Free policy note: `project_templates/docs/USER_CONSUMER_JOURNEY_CHECKLIST.md` is intentionally kept as a stable baseline in free. Future checklist-component expansions are Tier1+ only.
+
 This split is intentional: both repos stay aligned on governance quality, while Tier1 remains the guided-entry upgrade path.
 
 ## Template Alignment Note (v2.15)
