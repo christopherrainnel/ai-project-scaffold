@@ -13,13 +13,23 @@
 
 1. Clone this repo and open it in your IDE (Cursor, VS Code, or any AI-enabled editor).
 2. Copy `.env.example` to `.env` and fill in your values.
-3. Read `ops/AI_WORKFLOW.md` — this is the source of truth for how AI agents work in this project.
+3. Read `ops/AI_WORKFLOW.md` - this is the source of truth for how AI agents work in this project.
 4. Fill in `docs/ARCHITECTURE.md` and `docs/DECISIONS.md` with your project specifics.
 
 ## Recommended: Start Every AI Session With A Governance Prompt
 
 Start each new AI session with a governance-loading first message.
 Keep the full recommended prompt in `ops/prompts/SESSION_RESUME.md` Section 1 and point users there instead of duplicating it here.
+
+## Free-Tier Enforcement Baseline
+
+This free scaffold keeps a focused enforcement baseline:
+
+- Native layer: `.claude/settings.json`.
+- Loader layer: `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, and `ops/prompts/SESSION_RESUME.md`.
+- Canonical policy: `ops/AI_WORKFLOW.md` remains the source of truth.
+
+Tool-specific native rule packs for Cursor, Windsurf, and Cline are intentionally Tier1-only.
 
 ## Project Structure
 
@@ -48,7 +58,7 @@ Code review defaults to two modes: Discovery first (no edits), then Fix after ex
 - All AI changes are logged in `CHANGELOG_AI.md`.
 - Decisions and their rationale go in `docs/DECISIONS.md`.
 - Use `ops/QUALITY_GATES.md` + `.github/workflows/ci.yml` as merge-blocking quality/security gates for all configured and applicable checks.
-- Keep `docs/PRIVACY.md` and `docs/THREAT_MODEL.md` updated as features evolve.
+- Keep `docs/PRIVACY.md`, `docs/TERMS.md`, and `docs/THREAT_MODEL.md` updated as features evolve.
 - Treat governance files (`ops/`, `.github/`, and core governance docs) as protected; only edit them when necessary and log why in `CHANGELOG_AI.md`.
 - Use `ops/prompts/SESSION_RESUME.md` when resuming context or switching AI agents.
 - `ops/prompts/SESSION_RESUME.md` uses a strict low-token resume sequence (latest changelog note -> next action -> minimal file reads).
