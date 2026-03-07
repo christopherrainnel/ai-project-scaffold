@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "disableBypassPermissionsMode": "disable",
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./**/.env)",
+      "Read(./**/.env.*)",
+      "Edit(./.env)",
+      "Edit(./.env.*)",
+      "Edit(./**/.env)",
+      "Edit(./**/.env.*)",
+      "MultiEdit(./.env)",
+      "MultiEdit(./.env.*)",
+      "MultiEdit(./**/.env)",
+      "MultiEdit(./**/.env.*)",
+      "Write(./.env)",
+      "Write(./.env.*)",
+      "Write(./**/.env)",
+      "Write(./**/.env.*)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(git reset:*)",
+      "Bash(git checkout --:*)",
+      "Bash(git clean:*)",
+      "Bash(rm -rf:*)",
+      "Bash(Remove-Item:*)",
+      "Bash(del:*)"
+    ]
+  }
+}

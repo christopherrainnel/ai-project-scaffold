@@ -1,234 +1,158 @@
 # AI Workflow (Canonical Policy)
 
-Version: 2.0
-Last Updated: {{DATE}}
+Version: 2.4
+Last Updated: 2026-03-07
 Owner: Project Lead
 
 ---
 
 ## Purpose
 
-This file is the **single source of truth** for how AI agents and IDE assistants operate in this repository.
+This file is the single source of truth for how AI agents and IDE assistants operate in this scaffold.
 
-Applies to: Claude Code, Cursor, VS Code Copilot, Windsurf, and any other AI-assisted tool.
+Applies to Claude Code, VS Code Copilot/Codex, and similar tools.
 
-This workflow is **security-first, privacy-first, and production-minded**. It is not legal advice.
+This workflow is security-first, privacy-first, production-minded, and not legal advice.
 
----
+Version/date headers in governance files are informational. Do not treat them as freshness signals or skip a file because its header looks old.
 
-## 1) Session Start (Hard Gate)
+## 0) Policy Map
 
-Before first code changes in a new feature/session:
+- `ops/AI_WORKFLOW.md` is canonical.
+- `AGENTS.md` is the universal scaffold router.
+- `CLAUDE.md` and `.github/copilot-instructions.md` are tool-specific loaders and should stay thin.
+- `.claude/settings.json` is the free-tier native enforcement layer.
+- During active editing sessions, use the current working-tree versions of governance files; do not defer to older committed or remote copies.
+- If any loader conflicts with this file, this file wins and the agent must stop and ask.
 
-1. Confirm governance scaffold completeness (Section 10).
-2. Read local tiering overlay if present: `guides/TIERING_POLICY.local.md` (fallback: `guides/TIERING_POLICY.md`).
-3. Ask the minimum discovery questions needed to avoid building the wrong thing (see `ops/STANDARDS_BASELINE.md`).
-4. Choose execution mode: direct Build -> Review for simple work, or add a short plan + risk register for complex/high-risk work.
-5. If governance files are missing, ask to create missing files only; do not overwrite without approval.
+## 1) Scaffold Direction
 
-If no local tiering file exists, continue normally without failing.
+- This scaffold is meant to help a user start a fresh AI-assisted project.
+- Keep it generic, current, and free of creator-specific residue or carry-over history.
+- Native loader support should reduce drift where supported, but markdown guidance remains the fallback.
+- Optional tiering overlays under `guides/` may refine paid/free or entitlement boundary decisions when present.
+- Optimize for token efficiency: centralize repeated instructions and keep tool-specific loaders lightweight.
 
-### User Action - Required Session-Start Prompt
+## 2) Session Start (Hard Gate)
 
-Before implementation work, ensure the user's first message tells the agent to read docs/FILE_MAP.md, AGENTS.md, and ops/AI_WORKFLOW.md before task work.
+Before first code changes in a new feature or session:
 
-Exact wording can vary. Keep the full recommended prompt in `ops/prompts/SESSION_RESUME.md` Section 1 and point users there instead of duplicating it here.
+1. Read `docs/FILE_MAP.md`.
+2. Read this file.
+3. If the task touches paid/free or entitlement boundaries and a local overlay exists, read `guides/TIERING_POLICY.local.md` or `guides/TIERING_POLICY.md`.
+4. Read only the docs and source files required by the task.
+5. If the session did not start with a governance-loading prompt, use `ops/prompts/SESSION_RESUME.md` Section 1 before feature work.
+6. If governance files are missing, ask to create only missing files; do not overwrite existing governance files without approval.
 
-### Context-Efficient Read Order (All Agents)
+### Context Discipline
 
-At the start of each task/session:
+- Do not preload the full codebase.
+- Start with at most 3 source files unless the task clearly needs more.
+- Expand in small batches and explain why.
+- Read `CHANGELOG_AI.md` only when resuming or verifying recent work, and only the newest relevant entry.
 
-1. Read `docs/FILE_MAP.md` first for project orientation.
-2. Read governance/policy files only as needed for the task.
-3. Fetch only task-relevant source files; do not preload the full codebase.
+### Required Read Triggers
 
-Token budget rule:
+- Feature, phase, public UX, entitlement, release QA, or architecture-impacting work: read `docs/ARCHITECTURE.md`, `docs/DECISIONS.md`, and `docs/USER_CONSUMER_JOURNEY_CHECKLIST.md`.
+- Paid access, legal, privacy, or policy wording work: read `docs/PRIVACY.md` and `docs/TERMS.md`.
+- Local app/test work: prefer repo-local `.venv_run` and `python -m ...` commands. If a stale `.venv_run` path appears, use the reset SOP in `README.md` and `ops/RUNBOOK.md` rather than patching global Python.
 
-- Never load more than 3 source files per task unless explicitly required by the user or task complexity.
-- If more files are needed, expand in small batches and justify why.
+### Dual-Lens Planning Gate
 
-### Dual-Lens Planning Gate (Required for feature and phase work)
+Before feature work, major enhancements, or phase/stage closeout, capture both perspectives in the plan:
 
-Before implementing any new feature, major enhancement, or phase-stage closure, capture both perspectives:
+1. `Technical Builder POV`
+   - Implementation boundaries, constraints, non-goals.
+   - Quality and security evidence expected before completion.
+2. `User/Consumer POV`
+   - Active journey variant.
+   - Stage in focus and required outcome across `Discover`, `Acquire Access`, `Verify`, `Deliver`, `Study + Use`, and `Support + Recovery`.
 
-1. Technical Builder POV:
-	- implementation boundaries and non-goals,
-	- quality/security expectations and verification evidence.
-2. User/Consumer POV:
-	- journey variant for the phase (`paid consumer`, `self-use`, or `team/internal`),
-	- required outcomes for `Discover`, `Acquire Access`, `Verify`, `Deliver`, `Study + Use`, `Support + Recovery`.
+Default to focused entry-point mode:
 
-For narrow bugfix/doc-only tasks, use a lightweight dual-lens note instead of full mapping.
+- Use full `Technical Builder POV` plus a lightweight `User/Consumer POV` anchor at the start.
+- Expand to full journey mapping when public UX changes, entitlement or verification changes, phase closeout, or release QA begins.
+- For narrow bugfix or doc-only work, a 1-2 line note per POV is enough.
 
----
+Every feature or phase plan must include at least one concrete risk with mitigation.
 
-## 2) Standard Operating Loop
+## 3) Mandatory Operating Loop
 
-Every task follows one of these modes:
+Every task follows this loop:
 
-1. **Default (simple work): Build -> Review -> Log**
-2. **Complex/high-risk work: Plan -> Build -> Review -> Log**
+1. Plan.
+2. Execute small, reviewable diffs.
+3. Verify with applicable quality gates.
+4. Update impacted documentation.
+5. Summarize verification evidence and residual risks.
+6. Log the outcome in `CHANGELOG_AI.md`.
 
-When switching to the complex mode, briefly note the trade-off for the current task (1–2 sentences, e.g., "Adding a plan step — expect a slightly longer cycle for this change" or "Review pass adds value here because the edit spans multiple modules"). Keep the tone neutral; the goal is awareness, not discouragement.
+### Broad QA Rule
 
-In both modes:
+When running broad QA or pre-release checks, use two modes:
 
-- Keep diffs small and focused.
-- Run applicable quality gates.
-- Update impacted docs.
-- Include verification evidence and residual risks.
-- Update `CHANGELOG_AI.md`.
+- `Discovery Only`: collect issues without changing code.
+- `Fix After Approval`: fix only after the user approves the issue list.
 
-### User Journey Completion Gate (Phase/Stage Close)
+Keep QA reports compact and actionable.
 
-At the end of each major phase or stage, run and record a journey-gate evaluation before marking the phase complete:
+### Release And Journey Gates
 
-- Discover
-- Acquire Access
-- Verify
-- Deliver
-- Study + Use
-- Support/Recovery
+- Before public-facing release, run a polish pass covering UX clarity, accessibility basics, legal/runtime doc alignment, and support language.
+- Before phase or release sign-off, evaluate the active user or consumer journey using `docs/USER_CONSUMER_JOURNEY_CHECKLIST.md`.
+- Required stages are `Discover`, `Acquire Access`, `Verify`, `Deliver`, `Study + Use`, and `Support + Recovery`.
+- If any in-scope stage is not complete, record the gap, owner, and target sequence in `CHANGELOG_AI.md`.
 
-Any unmet stage requirement must be tracked as an explicit gap with owner and follow-up date in `docs/DECISIONS.md` or `ops/RELEASE_CHECKLIST.md`.
+### Session Boundary And Multi-Agent Use
 
-Journey mapping rule:
+Start a new session when scope or context becomes noisy, especially when:
 
-- AI must identify the active journey type for the phase (for example: paid consumer, self-use, team/internal).
-- The gate must be scored against that mapped variant, and assumptions must be recorded in `CHANGELOG_AI.md` when evidence is partial.
-
-AI can research likely user/consumer paths and propose the mapped journey, but a human owner must validate the mapping before phase closure.
-
-### Product Readiness Polish Gate (Pre-Release)
-
-Before any release, run a final polish pass and record outcomes in `ops/RELEASE_CHECKLIST.md`:
-
-- UI quality check: verify key pages are coherent, current, and free of obvious placeholder/stale content.
-- Legal page alignment: ensure policy pages and product behavior are consistent; AI-generated legal text is support only and requires human approval.
-- Release professionalism: verify naming, copy, links, and changelog entries are release-ready.
-
-For legal/policy text generation, default to pattern-based synthesis. Verbatim reuse is allowed only for clearly standard/public-domain, legally mandated, or compatibly licensed text with attribution.
-
-### Two-Mode QA Boundary (Code Review Tasks)
-
-When the user asks for a review, default to **Mode A: Discovery**.
-
-- Mode A (Discovery): analyze and report findings only. Do not edit files.
-- Mode B (Fix): apply fixes only after explicit user approval.
-
-For review responses, list findings first (ordered by severity) with file and line references, then open questions/assumptions, then optional change summary.
-
----
-
-## 3) Non-Negotiable Rules
-
-1. **No mandatory planner**: use a short plan + risk register only for complex/high-risk tasks.
-2. **Security gates before shipping**: CI must fail on configured and applicable checks in `.github/workflows/ci.yml` (lint/format/typecheck/tests, vulnerability scan, secret scan, and basic SAST).
-3. **No secrets in code**: never commit secrets, tokens, API keys, private URLs.
-4. **Least privilege by default**: explicit roles/permissions and deny-by-default.
-5. **Minimize and protect data**: collect minimum data; use encryption in transit and managed encryption at rest.
-6. **Payments**: never handle raw card data; use hosted checkout/tokenization only.
-7. **AI safety controls**: treat user input as hostile; guard against prompt injection; use tool allowlists and confirmation for sensitive actions.
-8. **Legal baseline required**: align with official sources and record effective dates; never claim certification/compliance.
-
----
-
-## 4) Security & Privacy Baseline
-
-- Never read/modify `.env`; update `.env.example` only.
-- Use input validation at every boundary.
-- Apply secure headers where applicable (CSP, HSTS, frame protections, MIME protections).
-- Implement rate limiting and abuse controls for public endpoints.
-- Do not log PII/secrets.
-- Define retention and deletion process in `docs/PRIVACY.md`.
-
----
-
-## 5) AI Feature Baseline (When AI Is Used)
-
-- Keep system/tool instructions isolated from user content.
-- Require explicit confirmation for destructive or external actions.
-- Restrict tool execution by allowlist.
-- Redact sensitive data before sending to model providers.
-- Store metadata or hashes where possible instead of full prompt/response logs.
-
----
-
-## 6) Dependency & Supply Chain Discipline
-
-- Add dependencies only with rationale.
-- Pin versions and maintain lockfiles.
-- Enable dependency vulnerability scanning.
-- Enable secret scanning in pre-commit and CI.
-- Generate SBOM when feasible.
-
----
-
-## 7) Anti-Drift Control
-
-Before implementation:
-
-1. Read `docs/ARCHITECTURE.md` and `docs/DECISIONS.md`.
-2. If change conflicts with documented decisions, stop and ask.
-3. Log new architecture decisions in `docs/DECISIONS.md`.
-
----
-
-## 8) High-Risk Fail-Safe
-
-If the feature involves children, health data, regulated industry requirements, or direct payment handling:
-
-1. Pause implementation.
-2. Propose a safer reduced MVP scope.
-3. Require legal/compliance review and DPIA/PIA-style assessment.
-4. Resume only after minimization controls are documented.
-
----
-
-## 9) Definition of Done
-
-Use `ops/DEFINITION_OF_DONE.md` and `ops/QUALITY_GATES.md`.
-
-A task is complete only when applicable checks pass and required docs are updated.
-
----
-
-## 10) Scaffold Checklist
-
-Required governance files:
-
-```text
-CLAUDE.md
-AGENTS.md
-CHANGELOG_AI.md
-.env.example
-.gitignore
-.github/copilot-instructions.md
-.github/workflows/ci.yml
-.github/ISSUE_TEMPLATE/01-bug-report.yml
-.github/ISSUE_TEMPLATE/02-feature-request.yml
-.github/ISSUE_TEMPLATE/config.yml
-.github/PULL_REQUEST_TEMPLATE.md
-.github/CODEOWNERS
-.github/BRANCH_PROTECTION.md
-docs/ARCHITECTURE.md
-docs/DECISIONS.md
-docs/FILE_MAP.md
-docs/PRIVACY.md
-docs/THREAT_MODEL.md
-ops/AI_WORKFLOW.md
-ops/SECURITY_POLICY.md
-ops/DATA_CLASSIFICATION.md
-ops/DEPENDENCY_POLICY.md
-ops/QUALITY_GATES.md
-ops/DEFINITION_OF_DONE.md
-ops/RUNBOOK.md
-ops/STANDARDS_BASELINE.md
-ops/RELEASE_CHECKLIST.md
-ops/LESSONS_LEARNED.md
-ops/prompts/feature_request.md
-ops/prompts/SESSION_RESUME.md
-ops/prompts/bug_report.md
-ops/prompts/refactor_request.md
-ops/prompts/code_review.md
-```
+- more than 5 implementation phases are planned,
+- more than 4 files are actively changing,
+- scope expands beyond one vertical slice,
+- the agent is re-reading the same context or re-deciding settled choices.
+
+Before ending a session, leave a compact handoff with objective, completed items, next action, blockers, and touched files.
+
+Multi-agent mode is optional. Recommend it only for multi-domain work, 4 or more files, risky releases, or repeated missed review findings. The user must explicitly approve activation.
+
+## 4) Non-Negotiable Rules
+
+1. Plan before feature code: no feature implementation without a short plan and risk register.
+2. Never read or modify `.env`; update `.env.example` only.
+3. Never commit or expose secrets, private URLs, keys, or tokens.
+4. Never run destructive commands without explicit user approval.
+5. Never add dependencies without rationale, version pinning, and lockfile updates.
+6. Treat governance files as protected; do not overwrite them without a diff and approval.
+7. CI must block shipping when applicable lint, format, typecheck, tests, dependency scan, secret scan, basic SAST, or build checks fail.
+8. Use least privilege, deny-by-default access, rate limits, and abuse controls for public surfaces.
+9. Never handle raw card data; use hosted checkout or tokenization only.
+10. For legal, security, or policy guidance, use current official sources and concrete dates when relevant.
+11. Never claim certification or compliance without proof; use wording such as "aligned with" or "informed by".
+
+## 5) Supporting Docs And Control Surfaces
+
+- **Security and privacy**: follow `ops/SECURITY_POLICY.md`. Validate input at every boundary, apply secure headers, never log secrets or PII, reflect retention in `docs/PRIVACY.md`.
+- **AI safety**: isolate system prompts from user content, treat user input as hostile, require confirmation for destructive actions, prefer tool allowlists, redact sensitive data before sending to providers.
+- **Dependencies**: follow `ops/DEPENDENCY_POLICY.md`. Pin versions, keep lockfiles aligned, run dependency and secret scanning in CI.
+- **Acceptance gates**: `ops/QUALITY_GATES.md` is the authoritative checklist file. `ops/DEFINITION_OF_DONE.md` is a pointer and should not duplicate the checklists.
+- **Release readiness**: use `ops/RELEASE_CHECKLIST.md` for release execution details.
+- **Anti-drift**: read `docs/ARCHITECTURE.md` and `docs/DECISIONS.md` before design-affecting work. If the task conflicts with recorded decisions, stop and ask. Record new decisions in `docs/DECISIONS.md`.
+- **High-risk fail-safe**: if the task touches children, health data, regulated requirements, or direct payment handling, pause, reduce scope, and require documented review before resuming.
+
+## 6) Closeout Requirements
+
+- Use the checklists in `ops/QUALITY_GATES.md`.
+- After every task, update `CHANGELOG_AI.md`.
+- Update `ops/LESSONS_LEARNED.md` if the issue is likely to recur.
+- Update `docs/PRIVACY.md`, `docs/TERMS.md`, `docs/THREAT_MODEL.md`, `ops/RUNBOOK.md`, and `docs/USER_CONSUMER_JOURNEY_CHECKLIST.md` when the change affects those areas.
+
+## 7) Governance Scaffold Completeness
+
+Required coverage (verify these exist; do not recreate without checking first):
+
+- Entry points: `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, `CHANGELOG_AI.md`, `.env.example`.
+- Core docs under `docs/`: `FILE_MAP`, `ARCHITECTURE`, `DECISIONS`, `PRIVACY`, `TERMS`, `THREAT_MODEL`, `USER_CONSUMER_JOURNEY_CHECKLIST`.
+- Ops docs under `ops/`: `AI_WORKFLOW`, `SECURITY_POLICY`, `DATA_CLASSIFICATION`, `DEPENDENCY_POLICY`, `QUALITY_GATES`, `DEFINITION_OF_DONE`, `RUNBOOK`, `STANDARDS_BASELINE`, `RELEASE_CHECKLIST`, `LESSONS_LEARNED`, and prompt files under `ops/prompts/`.
+- Native enforcement in free tier: `.claude/settings.json`.
+- CI and contribution: `.github/workflows/ci.yml`, issue templates, PR template, `CODEOWNERS`, branch-protection guidance.

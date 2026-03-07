@@ -1,39 +1,42 @@
 # Agent Rules (Read First)
 
-> Universal entry point for all AI agents and IDE assistants.
-> If your tool reads a specific config file (e.g., `CLAUDE.md`, `.github/copilot-instructions.md`), follow that file — it references the same canonical policy below.
+> Universal entry point for AI agents in this scaffold.
+> Tool-specific loaders (`CLAUDE.md`, `.github/copilot-instructions.md`) are thin front doors into the canonical policy at `ops/AI_WORKFLOW.md`.
+> During active editing sessions, use the current working-tree versions of governance files; do not defer to older committed or remote copies.
 
-## Mandatory Read Order
+## Start Here
 
-1. `docs/FILE_MAP.md` — primary project index; use this first for fast orientation.
-2. `ops/AI_WORKFLOW.md` — **canonical policy** (source of truth for all agents).
-3. `guides/TIERING_POLICY.local.md` (or `guides/TIERING_POLICY.md`) — optional local policy overlay for paid/free boundary decisions.
-4. `docs/ARCHITECTURE.md` — system design and component map.
-5. `docs/DECISIONS.md` — why things were built this way.
+1. Read `docs/FILE_MAP.md`.
+2. Read `ops/AI_WORKFLOW.md`.
+3. If the task touches paid/free or entitlement boundaries and a local overlay exists, read `guides/TIERING_POLICY.local.md` or `guides/TIERING_POLICY.md`.
+4. Open only task-relevant files. Expand in small batches.
+5. If you are resuming, read only the newest relevant `CHANGELOG_AI.md` entry.
 
 If no local tiering file exists, continue normally without failing.
 
-Do not preload the full codebase. Fetch only files needed for the current task.
+Use `ops/prompts/SESSION_RESUME.md` Section 1 when a session did not start with a governance-loading prompt.
 
-## Session Start - Required Governance Intent
+## Read Triggers
 
-Start each new AI session with a first message that tells the agent to read `docs/FILE_MAP.md`, `AGENTS.md`, and `ops/AI_WORKFLOW.md` before task work.
-Exact wording is flexible. Keep the full recommended prompt in `ops/prompts/SESSION_RESUME.md` Section 1 and point users there instead of duplicating it here.
+- Feature, phase, public UX, entitlement, release QA, or architecture-impacting work: also read `docs/ARCHITECTURE.md`, `docs/DECISIONS.md`, and `docs/USER_CONSUMER_JOURNEY_CHECKLIST.md`.
+- Paid access, legal, privacy, or policy wording work: also read `docs/PRIVACY.md` and `docs/TERMS.md`.
+- Local app or test work: use repo-local `.venv_run` and `python -m ...` commands per `ops/RUNBOOK.md`.
 
-## Hard Constraints
+## Scaffold Rules
 
-- Single-agent mode is default. Multi-agent behavior is optional.
-- No mandatory planner: use a short plan + risk register only for complex/high-risk tasks.
-- CI gates must include lint/format/typecheck/tests/dependency scan/secret scan/basic SAST before shipping.
-- Never overwrite governance files without showing a diff and receiving approval.
-- Never read or modify `.env`. Only update `.env.example`.
-- Never add dependencies without justification, version pinning, and lockfile updates.
-- Never run destructive commands without explicit user approval.
-- For legal/security/policy recommendations, use current official sources and state the effective date.
-- Never claim compliance/certification. Use wording such as "aligned with" or "informed by".
+- Keep the scaffold fresh, generic, and free of carry-over history or creator-specific residue.
+- Optional tiering overlays under `guides/` refine paid/free or entitlement boundary decisions when present.
+- Never read or modify `.env`; only update `.env.example`.
+- Never add dependencies without justification, version pinning, and lockfile update.
+- Never run destructive commands or overwrite governance files without user approval.
+- For legal, security, or policy guidance, use current official sources with concrete dates.
+- Never claim certification or compliance without proof; use "aligned with" or "informed by".
 
-## After Every Task
+## Closeout
 
-- Update `CHANGELOG_AI.md` with: date, task, files changed, verification, risks.
-- If the issue is likely to recur, add it to `ops/LESSONS_LEARNED.md`.
-- Update `docs/PRIVACY.md` / `docs/THREAT_MODEL.md` / `ops/RUNBOOK.md` when changes affect those areas.
+- Run applicable quality gates from `ops/QUALITY_GATES.md`.
+- Update `CHANGELOG_AI.md` after every task in a real project that uses this scaffold.
+- Update `ops/LESSONS_LEARNED.md` for recurring issues.
+- Update `docs/PRIVACY.md`, `docs/TERMS.md`, `docs/THREAT_MODEL.md`, `ops/RUNBOOK.md`, and `docs/USER_CONSUMER_JOURNEY_CHECKLIST.md` when affected.
+
+Reminder: in a real project created from this scaffold, a task is not done until its outcome is recorded in `CHANGELOG_AI.md`.

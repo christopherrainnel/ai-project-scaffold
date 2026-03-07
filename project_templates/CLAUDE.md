@@ -1,53 +1,43 @@
 # Project Rules (Claude Code)
 
-> Claude Code reads this file automatically on every session.
-> This is the quick-start authority file. For full policy, see `ops/AI_WORKFLOW.md`.
+> Claude Code reads this file automatically.
+> Use it together with `.claude/settings.json`. For full policy, see `ops/AI_WORKFLOW.md`.
+> During active editing sessions, use the current working-tree versions of governance files.
 
-## Read Order
+## Claude Startup
 
-1. **This file** — essential rules and constraints.
-2. `docs/FILE_MAP.md` — primary project index; use this before opening source files.
-3. `ops/AI_WORKFLOW.md` — canonical workflow policy (source of truth).
-4. `guides/TIERING_POLICY.local.md` (or `guides/TIERING_POLICY.md`) — optional local policy overlay for paid/free boundary decisions.
-5. `docs/ARCHITECTURE.md` + `docs/DECISIONS.md` — anti-drift anchors.
-6. `CHANGELOG_AI.md` — recent change history.
+1. Read this file.
+2. Read `docs/FILE_MAP.md`.
+3. Read `ops/AI_WORKFLOW.md`.
+4. If the task touches paid/free or entitlement boundaries and a local overlay exists, read `guides/TIERING_POLICY.local.md` or `guides/TIERING_POLICY.md`.
+5. Open only task-relevant files. If resuming, read only the newest relevant `CHANGELOG_AI.md` entry.
 
 If no local tiering file exists, continue normally without failing.
 
-Do not load the full codebase into context. Fetch only the files required for the current task.
+If the session did not begin with a governance-loading prompt, use `ops/prompts/SESSION_RESUME.md` Section 1 before feature work.
 
-## Session-Start Prompt
+Expand the read set only when triggered by the workflow:
 
-If the user has not provided a governance-loading first message, ask for one before implementation work.
-Exact wording is flexible. Point to `ops/prompts/SESSION_RESUME.md` Section 1 for the full recommended prompt instead of duplicating it here.
+- Feature, phase, public UX, entitlement, release QA, or architecture-impacting work: read `docs/ARCHITECTURE.md`, `docs/DECISIONS.md`, and `docs/USER_CONSUMER_JOURNEY_CHECKLIST.md`.
+- Paid access, legal, privacy, or policy wording work: read `docs/PRIVACY.md` and `docs/TERMS.md`.
 
-## Non-Negotiable Rules
+## Claude-Specific Enforcement
 
-- **No mandatory planner**: Use a short plan and risk register only for complex/high-risk feature work.
-- **Security gates before shipping**: Lint/format/typecheck/tests + dependency scan + secret scan + basic SAST must pass in CI.
-- **Secrets**: Never request, paste, store, or echo secrets (keys, tokens, passwords).
-- **`.env`**: Never read or modify `.env`. Only update `.env.example`.
-- **Destructive commands**: Never run without explicit user approval.
-- **Dependencies**: Never add without justification and version pinning.
-- **Governance files**: Never overwrite without showing a diff and receiving approval.
-- **Policy guidance**: For legal/security/compliance topics, use current official sources and include concrete dates.
-- **Compliance wording**: Never claim certification/compliance without independent proof; use "aligned with" / "informed by".
+- Respect `.claude/settings.json` deny and ask rules.
+- `ops/AI_WORKFLOW.md` remains canonical if this file and the workflow ever diverge.
+- This loader is intentionally thin; do not restate the full policy when the workflow file is available.
 
-## Product Growth Rules
+## Non-Negotiables
 
-- It is acceptable to create new product folders (`apps/`, `services/`, `packages/`, `infra/`, `tests/`, etc.) as needed.
-- Keep governance stable by default: edit `ops/`, `.github/`, and governance docs only when required and log the rationale in `CHANGELOG_AI.md`.
+- Plan plus risk register before feature or phase work; use the dual-lens gate from `ops/AI_WORKFLOW.md`.
+- Never read or modify `.env`; only update `.env.example`.
+- Never expose secrets or run destructive commands without approval.
+- Treat governance files as protected.
+- Keep the scaffold fresh, generic, and free of creator-specific residue.
+- Update `CHANGELOG_AI.md` after every task in a real project that uses this scaffold.
 
-## Operating Mode
+## Local Python Pattern
 
-1. Default flow for simple work: Build -> Review.
-2. For complex/high-risk work: add a short plan before building.
-3. Keep edits small and reviewable — no unrelated reformatting.
-4. Run quality gates (lint/test/build) when available.
-5. After changes — update `CHANGELOG_AI.md` with what changed, why, and how verified.
-6. If a mistake is likely to recur — log it in `ops/LESSONS_LEARNED.md`.
-
-## Anti-Drift
-
-Before implementing changes, read `docs/ARCHITECTURE.md` and `docs/DECISIONS.md`.
-If proposed work conflicts with recorded decisions, **stop and ask**.
+- Prefer repo-local `.venv_run`.
+- Use `python -m ...` command forms for app start and test execution.
+- If `.venv_run` points to an old path, follow the reset SOP in `README.md` and `ops/RUNBOOK.md`.

@@ -1,3 +1,93 @@
+# Release Notes: v2.15
+
+**Release Date**: March 7, 2026
+**Status**: Ready for Production
+
+## Overview
+
+v2.15 tightens free-tier boundaries by keeping a focused loader baseline (Claude + VS Code Copilot/Codex) and moving additional tool-native rule packs back to Tier1.
+
+## What's New
+
+### 1. Free-Tier Boundary Rollback (Tool-Native Rules)
+
+- Removed from free `project_templates/`:
+  - `.cursor/`
+  - `.windsurf/`
+  - `.clinerules/`
+  - `docs/IDE_ENFORCEMENT.md`
+- Kept in free:
+  - `.claude/settings.json`
+  - `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`
+  - `docs/TERMS.md`
+
+### 2. Policy And Enforcement Guardrail Updates
+
+- Updated free `guides/TIERING_POLICY.md` with explicit loader boundary:
+  - free baseline = Claude + VS Code Copilot/Codex loader set
+  - Cursor/Windsurf/Cline native rule packs = Tier1-only
+- Updated `tools/check_alignment_guard.py` to fail if free template reintroduces:
+  - `.cursor/`
+  - `.windsurf/`
+  - `.clinerules/`
+  - `docs/IDE_ENFORCEMENT.md`
+
+### 3. Documentation Realignment
+
+- Aligned free root/template docs to the narrowed free boundary while retaining `TERMS.md` and journey-gate docs.
+
+---
+
+# Release Notes: v2.14
+
+**Release Date**: March 7, 2026
+**Status**: Ready for Production
+
+## Overview
+
+v2.14 applies shared-safe governance upgrades from the Tier1 snapshot to the free template while preserving all free-tier friction boundaries.
+
+## What's New
+
+### 1. Shared IDE-Native Enforcement Layer (Free)
+
+- Added repo-native governance integrations in `project_templates/`:
+  - `.claude/settings.json`
+  - `.cursor/rules/00-governance.mdc`
+  - `.windsurf/rules/00-governance.md`
+  - `.clinerules/01-governance.md`
+  - `.clinerules/hooks/TaskStart`
+  - `.clinerules/hooks/PreToolUse`
+- Added governance documentation stubs:
+  - `project_templates/docs/IDE_ENFORCEMENT.md`
+  - `project_templates/docs/TERMS.md`
+  - `project_templates/docs/USER_CONSUMER_JOURNEY_CHECKLIST.md`
+
+### 2. Free Template Governance Refactor (Shared-Safe)
+
+- Refreshed shared policy loaders and canonical docs:
+  - `project_templates/AGENTS.md`
+  - `project_templates/CLAUDE.md`
+  - `project_templates/.github/copilot-instructions.md`
+  - `project_templates/ops/AI_WORKFLOW.md`
+  - `project_templates/docs/FILE_MAP.md`
+  - `project_templates/ops/QUALITY_GATES.md`
+  - `project_templates/ops/DEFINITION_OF_DONE.md`
+  - `project_templates/README.md`
+- `ops/QUALITY_GATES.md` now carries the authoritative shipping and feature-acceptance checklists.
+- `ops/DEFINITION_OF_DONE.md` is now a pointer file to avoid checklist duplication drift.
+
+### 3. Tier Boundary Validation (Free vs Tier1)
+
+- Confirmed these remain Tier1-only and were not added to free:
+  - `project_templates/docs/[redacted-tiering-item].md`
+  - `project_templates/docs/[redacted-tiering-item].md`
+  - `project_templates/docs/[redacted-tiering-item]`
+  - `project_templates/ops/prompts/[redacted-tiering-item].md`
+- Confirmed free canonical workflow does not include the tier1-only bootstrap hard-gate marker.
+
+---
+
 # Release Notes: v2.13
 
 **Release Date**: March 6, 2026

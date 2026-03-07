@@ -15,6 +15,7 @@ A project template and Python tool for Vibe Coders who build products with AI ag
 Every new project starts with:
 
 - **Agent rules** (`CLAUDE.md`, `AGENTS.md`, `.github/copilot-instructions.md`) — so AI tools follow your project's policies automatically
+- **Free enforcement baseline** (`.claude/settings.json` + loader docs) — focused governance loading for Claude and VS Code Copilot/Codex workflows
 - **Single-agent default + optional Build -> Review flow** — fast path for simple tasks, with planning used only when complexity/risk requires it
 - **Context-efficient agent startup** — read `docs/FILE_MAP.md` first, fetch only task-relevant files, and avoid full-codebase preload
 - **Canonical workflow** (`ops/AI_WORKFLOW.md`) — the single source of truth for how AI operates in your repo
@@ -22,6 +23,7 @@ Every new project starts with:
 - **Product readiness polish gate** — pre-release UI/legal/professionalism checks with mandatory human approval for AI-assisted legal drafting
 - **Security, dependency, and data policies** — sensible defaults you can customize
 - **Architecture and decision docs** — anti-drift anchors that prevent AI from going off-track
+- **Operational policy docs** (`docs/TERMS.md`, `docs/USER_CONSUMER_JOURNEY_CHECKLIST.md`) — plain-language terms and journey-stage release evidence tracking
 - **Prompt templates** — structured templates for session resume, feature requests, bug reports, refactors, and code reviews
 - **GOVERNANCE BOOT session-start prompt** — a required copy/paste prompt that forces policy loading before implementation
 - **Strict resume sequence** — `SESSION_RESUME` enforces low-token restart order with next-action recovery
@@ -35,9 +37,9 @@ Every new project starts with:
 
 This split is intentional: both repos stay aligned on governance quality, while Tier1 remains the guided-entry upgrade path.
 
-## Template Alignment Note (v2.13)
+## Template Alignment Note (v2.15)
 
-Template governance loaders now point to `project_templates/ops/prompts/SESSION_RESUME.md` as the canonical location for the full recommended session-start prompt, instead of duplicating the full prompt block across multiple files.
+Free template policy now keeps a focused baseline: `.claude/settings.json` plus loader docs (`AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`). Cursor/Windsurf/Cline native rule packs and `IDE_ENFORCEMENT.md` are Tier1-only. `docs/TERMS.md` remains in free.
 
 ## Quick Start
 
@@ -83,6 +85,8 @@ my-project/
 ├── README.md                       # Project README
 ├── .env.example                    # Environment variable template
 ├── .gitignore                      # Git exclusions
+├── .claude/
+│   └── settings.json               # Claude native permission policy
 ├── .github/
 │   ├── copilot-instructions.md     # VS Code Copilot policy loader
 │   ├── PULL_REQUEST_TEMPLATE.md    # Pull request checklist
@@ -98,14 +102,16 @@ my-project/
 │   ├── DECISIONS.md                # Decision log (fill in as you go)
 │   ├── FILE_MAP.md                 # Plain-English file index
 │   ├── PRIVACY.md                  # Data inventory, retention, deletion, subprocessors
-│   └── THREAT_MODEL.md             # Assets, threats, mitigations
+│   ├── TERMS.md                    # Plain-language operating terms stub
+│   ├── THREAT_MODEL.md             # Assets, threats, mitigations
+│   └── USER_CONSUMER_JOURNEY_CHECKLIST.md  # Journey-stage release evidence checklist
 ├── ops/
 │   ├── AI_WORKFLOW.md              # Canonical AI policy (source of truth)
 │   ├── SECURITY_POLICY.md          # Secret and data handling rules
 │   ├── DATA_CLASSIFICATION.md      # Data sensitivity levels
 │   ├── DEPENDENCY_POLICY.md        # Dependency management rules
-│   ├── QUALITY_GATES.md            # Definition of done + commands
-│   ├── DEFINITION_OF_DONE.md       # Reusable security/privacy/testing checklist
+│   ├── QUALITY_GATES.md            # Shipping gate + feature acceptance gate + commands
+│   ├── DEFINITION_OF_DONE.md       # Pointer to authoritative checklists in QUALITY_GATES
 │   ├── RUNBOOK.md                  # Ops, logging, and incident basics
 │   ├── STANDARDS_BASELINE.md       # Official-source standards cross-check baseline
 │   ├── RELEASE_CHECKLIST.md        # Release verification steps

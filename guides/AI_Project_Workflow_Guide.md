@@ -74,6 +74,22 @@ This is the complete reference for the AI Project Scaffold system — how it wor
 - Updated `docs/FILE_MAP.md` to describe `SESSION_RESUME.md` as governance boot + handoff template.
 - Added `ops/LESSONS_LEARNED.md` entry documenting governance-boot skipping failure mode and prevention.
 
+## What Changed in v2.14
+
+- Added `docs/TERMS.md` and `docs/USER_CONSUMER_JOURNEY_CHECKLIST.md` to free template governance surfaces.
+- Updated template `ops/QUALITY_GATES.md` as the authoritative acceptance-checklist source and converted `ops/DEFINITION_OF_DONE.md` to a pointer file.
+- Preserved free-tier boundaries: no bootstrap artifacts (`[redacted-tiering-item]`, `[redacted-tiering-item]`, `TRIGGERS`, `[redacted-tiering-item]`) were introduced.
+
+## What Changed in v2.15
+
+- Refined free-tier loader boundary to a focused baseline:
+  - keep `.claude/settings.json`
+  - keep `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`
+- Removed free template tool-native rule packs for `.cursor`, `.windsurf`, and `.clinerules`.
+- Removed `docs/IDE_ENFORCEMENT.md` from free templates.
+- Kept `docs/TERMS.md` in free tier because it remains broadly useful for project/legal hygiene.
+- Added guardrails in `tools/check_alignment_guard.py` so removed free-tier files cannot be reintroduced unintentionally.
+
 ## What Changed in v2.2
 
 Major update to the scaffold and generator:

@@ -12,6 +12,10 @@ ROOT_DOC_FILES: Set[str] = {
 }
 
 FREE_FORBIDDEN_TEMPLATE_PATHS: Set[str] = {
+    "project_templates/.cursor",
+    "project_templates/.windsurf",
+    "project_templates/.clinerules",
+    "project_templates/docs/IDE_ENFORCEMENT.md",
     "project_templates/docs/[redacted-tiering-item].md",
     "project_templates/docs/[redacted-tiering-item].md",
     "project_templates/docs/[redacted-tiering-item]",

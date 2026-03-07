@@ -1,40 +1,11 @@
-# Definition of Done (Future Features)
+# Definition of Done
 
-Version: 1.0
-Last Updated: {{DATE}}
+Version: 1.2
+Last Updated: 2026-03-07
 
-Use this checklist before merging feature work.
+The authoritative acceptance checklists for shipping and feature work live in `ops/QUALITY_GATES.md`:
 
-## Product Quality
+- **Shipping Gate** - automated quality checks (lint, test, scan, etc.) that must pass before code ships.
+- **Feature Acceptance Gate** - product quality, security/privacy, documentation, journey, and compliance wording checks for feature merges.
 
-- [ ] Acceptance criteria are met.
-- [ ] One vertical slice is complete end-to-end.
-- [ ] Non-goals were not accidentally included.
-- [ ] User/Consumer Journey Completion Gate reviewed for this phase (`Discover`, `Acquire Access`, `Verify`, `Deliver`, `Study + Use`, `Support + Recovery`) with in-scope stages marked `Complete`.
-- [ ] Any non-complete journey stage has explicit owner-approved defer note recorded in `CHANGELOG_AI.md`.
-
-## Engineering Quality
-
-- [ ] Lint, format, typecheck, tests, and build pass.
-- [ ] CI workflow passes on pull request.
-- [ ] Changes are small, focused, and reviewed.
-
-## Security & Privacy
-
-- [ ] No secrets are committed.
-- [ ] Input validation and authorization checks are in place.
-- [ ] Rate limits/abuse controls are added for public endpoints.
-- [ ] Logging avoids secrets and personal data.
-- [ ] Data retention/deletion impacts are reflected in `docs/PRIVACY.md`.
-
-## Documentation & Operations
-
-- [ ] `docs/DECISIONS.md` updated for architectural choices.
-- [ ] `docs/THREAT_MODEL.md` updated for new attack surfaces.
-- [ ] `ops/RUNBOOK.md` updated if operations changed.
-- [ ] `CHANGELOG_AI.md` entry added.
-
-## Compliance Wording Rule
-
-- [ ] Language uses "aligned with" or "informed by" standards.
-- [ ] No certification/compliance claims are made without proof.
+Use those checklists directly. Keep this file as a pointer only so the acceptance criteria are maintained in one place.
