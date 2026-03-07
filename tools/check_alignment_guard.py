@@ -28,6 +28,11 @@ FREE_FORBIDDEN_TERMS: Dict[str, Set[str]] = {
     }
 }
 
+# Free-tier docs that are intentionally baseline-frozen.
+FREE_LOCKED_TEMPLATE_PATHS: Set[str] = {
+    "project_templates/docs/USER_CONSUMER_JOURNEY_CHECKLIST.md",
+}
+
 # Small mapping table: when a template path changes, at least one mapped root doc
 # must also change in the same PR.
 ALIGNMENT_EXACT_MAP: Dict[str, Set[str]] = {
@@ -107,6 +112,13 @@ def _validate_free_tier_invariants() -> list[str]:
 def _validate(changed: Set[str]) -> list[str]:
     violations: list[str] = []
     violations.extend(_validate_free_tier_invariants())
+
+    for path in sorted(FREE_LOCKED_TEMPLATE_PATHS):
+        if path in changed:
+            violations.append(
+                f"Free tier keeps `{path}` as a baseline-only document. "
+                "Enhancements belong in Tier1+ and should not be mirrored into free."
+            )
 
     template_changed = any(path.startswith("project_templates/") for path in changed)
     if not template_changed:
