@@ -9,10 +9,9 @@
 1. Read `docs/FILE_MAP.md`.
 2. Read `ops/AI_WORKFLOW.md`.
 3. If the task touches paid/free or entitlement boundaries and a local overlay exists, read `guides/TIERING_POLICY.local.md` or `guides/TIERING_POLICY.md`.
-4. Open only task-relevant files. Expand in small batches.
-5. If you are resuming, read only the newest relevant `CHANGELOG_AI.md` entry.
-
-If no local tiering file exists, continue normally without failing.
+4. Run the `Workstation Context Check` from `ops/AI_WORKFLOW.md` before implementation and before treating a session as a safe resume.
+5. Open only task-relevant files. Expand in small batches.
+6. If you are resuming, read only the newest relevant `CHANGELOG_AI.md` entry.
 
 Use `ops/prompts/SESSION_RESUME.md` Section 1 when a session did not start with a governance-loading prompt.
 
@@ -26,6 +25,7 @@ Use `ops/prompts/SESSION_RESUME.md` Section 1 when a session did not start with 
 
 - Keep the scaffold fresh, generic, and free of carry-over history or creator-specific residue.
 - Optional tiering overlays under `guides/` refine paid/free or entitlement boundary decisions when present.
+- Follow the scaffold practical-testing and workstation-change rules in `ops/AI_WORKFLOW.md`; loaders should point to the canonical rule, not restate it.
 - Never read or modify `.env`; only update `.env.example`.
 - Never add dependencies without justification, version pinning, and lockfile update.
 - Never run destructive commands or overwrite governance files without user approval.

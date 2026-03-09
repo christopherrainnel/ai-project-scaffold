@@ -1,7 +1,7 @@
 # Runbook (Operations Basics)
 
-Version: 0.1
-Last Updated: {{DATE}}
+Version: 0.2
+Last Updated: 2026-03-09
 
 ## Environments
 
@@ -10,6 +10,19 @@ Last Updated: {{DATE}}
 | Dev | | | |
 | Stage | | | |
 | Prod | | | |
+
+## Workstation Re-Adoption
+
+Use this SOP when a session resumes on a different workstation, user profile, shell, or local path.
+
+1. Confirm the current repo root path and stop trusting old absolute paths until rechecked.
+2. Reconfirm the canonical local run commands from `README.md` and `ops/RUNBOOK.md`.
+3. Validate the local runtime context needed for the task:
+   - Python work: verify `.venv_run` health and recreate it if stale.
+   - Other stacks: validate the equivalent repo-local toolchain before continuing.
+4. Check `git config --get core.hooksPath` and re-enable repo-managed hooks if the project expects them.
+5. Review any local overlays, machine-specific launch settings, or path-sensitive file mappings before feature work.
+6. Resume only after the local environment is credible enough for `AI-runnable verification`.
 
 ## Monitoring Baseline
 

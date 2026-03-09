@@ -1,7 +1,7 @@
 # AI Workflow (Canonical Policy)
 
-Version: 2.4
-Last Updated: 2026-03-07
+Version: 2.6
+Last Updated: 2026-03-09
 Owner: Project Lead
 
 ---
@@ -10,7 +10,7 @@ Owner: Project Lead
 
 This file is the single source of truth for how AI agents and IDE assistants operate in this scaffold.
 
-Applies to Claude Code, VS Code Copilot/Codex, and similar tools.
+Applies to Claude Code, Cursor, VS Code Copilot, Windsurf, Cline, and similar tools.
 
 This workflow is security-first, privacy-first, production-minded, and not legal advice.
 
@@ -25,11 +25,17 @@ Version/date headers in governance files are informational. Do not treat them as
 - During active editing sessions, use the current working-tree versions of governance files; do not defer to older committed or remote copies.
 - If any loader conflicts with this file, this file wins and the agent must stop and ask.
 
+### Governance Header Maintenance
+
+- Update `Last Updated` whenever a governance file materially changes.
+- Bump `Version` only for material policy or contract changes in canonical governance docs.
+- Thin loaders and native rule files usually mirror canonical policy; for wording sync or formatting cleanup, update the date only when needed and avoid routine version bumps.
+
 ## 1) Scaffold Direction
 
 - This scaffold is meant to help a user start a fresh AI-assisted project.
 - Keep it generic, current, and free of creator-specific residue or carry-over history.
-- Native loader support should reduce drift where supported, but markdown guidance remains the fallback.
+- Native IDE integrations should reduce drift where supported, but markdown guidance remains the fallback.
 - Optional tiering overlays under `guides/` may refine paid/free or entitlement boundary decisions when present.
 - Optimize for token efficiency: centralize repeated instructions and keep tool-specific loaders lightweight.
 
@@ -43,6 +49,29 @@ Before first code changes in a new feature or session:
 4. Read only the docs and source files required by the task.
 5. If the session did not start with a governance-loading prompt, use `ops/prompts/SESSION_RESUME.md` Section 1 before feature work.
 6. If governance files are missing, ask to create only missing files; do not overwrite existing governance files without approval.
+
+### Workstation Context Check
+
+Before implementation and before treating a session as a safe resume, inspect the current local context for workstation drift.
+
+Check these items:
+
+- current repo root path,
+- OS, shell, and runtime context needed for the task,
+- repo-local `.venv_run` health when Python is in scope,
+- `git config --get core.hooksPath`,
+- any absolute-path assumptions recorded in recent notes or prompts,
+- any local overlay or machine-specific setup the task depends on.
+
+If any of the above changed or cannot be confirmed, treat the session as a `workstation change`.
+
+When a workstation change is detected:
+
+- re-adopt the canonical local run commands from `README.md` and `ops/RUNBOOK.md`,
+- validate or recreate `.venv_run` when applicable,
+- confirm git hook setup and other local enforcement surfaces,
+- prefer repo-relative paths and refresh any path-sensitive file mapping before feature work,
+- do not trust previously recorded absolute paths without re-checking them.
 
 ### Context Discipline
 
@@ -87,6 +116,14 @@ Every task follows this loop:
 5. Summarize verification evidence and residual risks.
 6. Log the outcome in `CHANGELOG_AI.md`.
 
+### Changelog Convention
+
+- Use one `## YYYY-MM-DD` block per day, newest date first.
+- Within the current day block, add newest `### HH:MM - [task]` subentries at the top.
+- Default fields are `Files`, `Verification`, and `Notes/Risks`.
+- Add `Commands` only when they are materially useful for reproduction, environment recovery, or incident handling.
+- Do not rewrite older dates during routine daily logging unless a dedicated cleanup task calls for it.
+
 ### Broad QA Rule
 
 When running broad QA or pre-release checks, use two modes:
@@ -95,6 +132,15 @@ When running broad QA or pre-release checks, use two modes:
 - `Fix After Approval`: fix only after the user approves the issue list.
 
 Keep QA reports compact and actionable.
+
+### Practical Testing Responsibility Rule *(Scaffold-Generic)*
+
+- `AI-runnable verification` is the default: AI should complete all credible automated, deterministic, local, static-analysis, CLI, app, and CI-equivalent checks it can run itself.
+- `Developer POV practical testing` is required only when automation cannot credibly validate the behavior and hands-on local execution or judgment is still needed.
+- `Consumer POV practical testing` is required only when real user experience, subjective UX behavior, or consumer-path proof cannot be credibly self-certified by AI.
+- AI may prepare test steps, expected outcomes, pass/fail capture format, and fallback checks, but must not mark required human practical testing complete on its own.
+- If a required human practical test remains after `AI-runnable verification` is complete, the agent must label the work `Awaiting human validation`, pause at that gate, and ask for the user's result.
+- The agent must not claim the affected feature, stage, vertical slice, or release step is complete until the user reports the result of that required human practical test.
 
 ### Release And Journey Gates
 

@@ -36,13 +36,13 @@
 
 | File | Purpose |
 |------|---------|
-| `AI_WORKFLOW.md` | **Canonical policy** - the single source of truth for AI agent behavior |
+| `AI_WORKFLOW.md` | **Canonical policy** - the single source of truth for AI agent behavior, including workstation context checks and human practical testing gates |
 | `SECURITY_POLICY.md` | Rules for secrets, data handling, and terminal safety |
 | `DATA_CLASSIFICATION.md` | What data can be shared, what must be redacted, what is prohibited |
 | `DEPENDENCY_POLICY.md` | Rules for adding, pinning, and auditing dependencies |
-| `QUALITY_GATES.md` | Shipping gate + feature acceptance gate + stack-specific command placeholders |
+| `QUALITY_GATES.md` | Shipping gate + feature acceptance gate + stack-specific command placeholders, including workstation re-adoption and human validation completion checks |
 | `DEFINITION_OF_DONE.md` | Pointer file that directs users to the authoritative checklists in `ops/QUALITY_GATES.md` |
-| `RUNBOOK.md` | Operations guide, monitoring, and incident basics |
+| `RUNBOOK.md` | Operations guide, monitoring, incident basics, and workstation re-adoption SOP for local resume on a changed device |
 | `STANDARDS_BASELINE.md` | Current standards and official-source references to consult |
 | `RELEASE_CHECKLIST.md` | Pre-release and post-release verification steps |
 | `LESSONS_LEARNED.md` | Recurring mistakes and their fixes - grows over time |
@@ -51,7 +51,7 @@
 
 | File | Purpose |
 |------|---------|
-| `SESSION_RESUME.md` | GOVERNANCE BOOT + context-resume template for session start and low-token handoff |
+| `SESSION_RESUME.md` | GOVERNANCE BOOT + low-token resume template that requires a workstation context check before trusting prior local state |
 | `feature_request.md` | Structured template for requesting new features |
 | `bug_report.md` | Structured template for reporting and fixing bugs |
 | `refactor_request.md` | Structured template for refactoring tasks |

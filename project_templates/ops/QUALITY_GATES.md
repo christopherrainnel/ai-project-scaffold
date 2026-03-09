@@ -1,7 +1,7 @@
 # Quality Gates
 
-Version: 2.2
-Last Updated: 2026-03-07
+Version: 2.3
+Last Updated: 2026-03-09
 
 ## Shipping Gate (Required)
 
@@ -15,10 +15,13 @@ Code is not shippable unless all applicable checks pass locally and in CI:
 - [ ] Secret scan
 - [ ] Basic SAST scan
 - [ ] Build (if applicable)
+- [ ] If a workstation change was detected, `Workstation Re-Adoption` checks completed before claiming the task is done
 - [ ] `CHANGELOG_AI.md` updated
 - [ ] Relevant governance docs updated (`docs/DECISIONS.md`, `docs/PRIVACY.md`, `docs/TERMS.md`, `docs/THREAT_MODEL.md`, `ops/RUNBOOK.md`, `docs/USER_CONSUMER_JOURNEY_CHECKLIST.md`)
 
 Note: a feature, fix, or doc change is not "done" until `CHANGELOG_AI.md` has a matching entry describing what changed and how it was verified.
+
+If a workstation change is detected but local re-adoption is incomplete, or if required human practical testing is still pending, the affected feature or stage is not complete.
 
 ## Feature Acceptance Gate (Required Before Merge)
 
@@ -30,6 +33,9 @@ Use this checklist before merging feature work:
 - [ ] One vertical slice complete end-to-end.
 - [ ] Non-goals not accidentally included.
 - [ ] Technical Builder POV evidence recorded (implementation boundaries + quality/security verification).
+- [ ] `AI-runnable verification` completed for the implemented scope.
+- [ ] Required `Developer POV practical testing` completed, or the affected stage is explicitly marked `Awaiting human validation`.
+- [ ] Required `Consumer POV practical testing` completed with owner confirmation, or the affected stage is explicitly marked `Awaiting human validation`.
 - [ ] User/Consumer Journey stages reviewed (`Discover`, `Acquire Access`, `Verify`, `Deliver`, `Study + Use`, `Support + Recovery`); in-scope stages marked `Complete`.
 - [ ] Any non-complete stage has owner-approved defer note in `CHANGELOG_AI.md`.
 

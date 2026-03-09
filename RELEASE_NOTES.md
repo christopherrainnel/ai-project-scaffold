@@ -1,3 +1,71 @@
+# Release Notes: v2.17
+
+**Release Date**: March 9, 2026
+**Status**: Ready for Production
+
+## Overview
+
+v2.17 backports shared-safe improvements from Tier1 v2.15 to the free template while preserving all free-tier boundaries. No Tier1-exclusive features were added.
+
+## What's New
+
+### 1. Workstation Context Check (Shared-Safe)
+
+- Added formal Workstation Context Check SOP in `project_templates/ops/AI_WORKFLOW.md` (Section 2 subsection): verifies repo root path, OS/shell/runtime context, `.venv_run` health, git hooksPath, and absolute-path assumptions before treating a session as a safe resume.
+- Added matching **Workstation Re-Adoption** SOP in `project_templates/ops/RUNBOOK.md` (v0.2): 6-step procedure for resuming on a different workstation.
+- Added Workstation Context Check reference to `project_templates/CLAUDE.md` (step 5) and `project_templates/AGENTS.md` (step 4).
+- Updated `project_templates/ops/QUALITY_GATES.md` (v2.3): added Workstation Re-Adoption completion checkbox in the Shipping Gate.
+
+### 2. Practical Testing Responsibility Framework (Shared-Safe)
+
+- Added **Practical Testing Responsibility Rule** to `project_templates/ops/AI_WORKFLOW.md` (Section 3): defines `AI-runnable verification`, `Developer POV practical testing`, and `Consumer POV practical testing` markers with clear ownership rules.
+- Added three practical testing checkboxes to `project_templates/ops/QUALITY_GATES.md` Feature Acceptance Gate.
+- Added `Awaiting human validation` pause rule to `project_templates/CLAUDE.md` and `project_templates/ops/prompts/SESSION_RESUME.md`.
+
+### 3. SESSION_RESUME.md v2.1
+
+- Replaced `project_templates/ops/prompts/SESSION_RESUME.md` with v2.1 format:
+  - Section 1 prompt now includes full Workstation Context Check instructions.
+  - Section 2 minimum resume rules include `Awaiting human validation` pause rule.
+  - Added Section 3 compact resume handoff format.
+
+### 4. Changelog Convention
+
+- Added **Changelog Convention** subsection to `project_templates/ops/AI_WORKFLOW.md` (Section 3): defines `## YYYY-MM-DD` date blocks with `### HH:MM - [task]` sub-entries, newest-first ordering, and optional `Commands` field policy.
+- Updated `project_templates/CHANGELOG_AI.md` to match the date-block + time format; `Commands` is now optional.
+
+### 5. Governance Header Maintenance
+
+- Added **Governance Header Maintenance** section to `project_templates/ops/AI_WORKFLOW.md` (after Policy Map): clarifies when to bump `Version` vs. update `Last Updated` only.
+
+### 6. DECISIONS.md Extended Fields
+
+- Updated `project_templates/docs/DECISIONS.md` entry format to include: `Status`, `Current assumption`, `Trigger to revisit`, `Risk if wrong` fields (matching Tier1 format).
+
+### 7. CLAUDE.md and AGENTS.md Streamlining
+
+- Slimmed `project_templates/CLAUDE.md` to a thin loader: removed redundant Non-Negotiables and Local Python Pattern sections (covered by `ops/AI_WORKFLOW.md`); added Workstation Context Check step and `Awaiting human validation` rule.
+- Updated `project_templates/AGENTS.md`: added Workstation Context Check step, added practical-testing scaffold rule, removed redundant tiering fallback note.
+
+### 8. FILE_MAP.md Description Improvements
+
+- Updated four file descriptions in `project_templates/docs/FILE_MAP.md`:
+  - `AI_WORKFLOW.md`: mentions workstation context checks and human practical testing gates.
+  - `QUALITY_GATES.md`: mentions workstation re-adoption and human validation completion checks.
+  - `RUNBOOK.md`: mentions workstation re-adoption SOP.
+  - `SESSION_RESUME.md`: updated to reflect v2.1 workstation check requirement.
+
+### 9. Tier Boundary Confirmation
+
+- No Tier1-exclusive features were introduced. Confirmed absent from free:
+  - `project_templates/docs/USER_CONSUMER_JOURNEY_CHECKLIST.md` (frozen at v1.0 baseline, CI guard active)
+  - `project_templates/docs/[redacted-tiering-item].md`, `[redacted-tiering-item].md`, `[redacted-tiering-item]`
+  - `project_templates/ops/prompts/[redacted-tiering-item].md`
+  - `.cursor/`, `.windsurf/`, `.clinerules/`, `docs/IDE_ENFORCEMENT.md`
+  - Section 2a (First-Session Plan Gate) not present in free `AI_WORKFLOW.md`
+
+---
+
 # Release Notes: v2.16
 
 **Release Date**: March 7, 2026

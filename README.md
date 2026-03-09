@@ -16,6 +16,8 @@ Every new project starts with:
 
 - **Agent rules** (`CLAUDE.md`, `AGENTS.md`, `.github/copilot-instructions.md`) — so AI tools follow your project's policies automatically
 - **Free enforcement baseline** (`.claude/settings.json` + loader docs) — focused governance loading for Claude and VS Code Copilot/Codex workflows
+- **Workstation Context Check** — inspect repo root, shell, runtime, and git hooks before trusting prior local state as a safe resume
+- **Practical testing responsibility markers** — `AI-runnable verification`, `Developer POV practical testing`, `Consumer POV practical testing` with human validation pause gates
 - **Single-agent default + optional Build -> Review flow** — fast path for simple tasks, with planning used only when complexity/risk requires it
 - **Context-efficient agent startup** — read `docs/FILE_MAP.md` first, fetch only task-relevant files, and avoid full-codebase preload
 - **Canonical workflow** (`ops/AI_WORKFLOW.md`) — the single source of truth for how AI operates in your repo
@@ -38,6 +40,10 @@ Every new project starts with:
 Free policy note: `project_templates/docs/USER_CONSUMER_JOURNEY_CHECKLIST.md` is intentionally kept as a stable baseline in free. Future checklist-component expansions are Tier1+ only.
 
 This split is intentional: both repos stay aligned on governance quality, while Tier1 remains the guided-entry upgrade path.
+
+## Template Alignment Note (v2.17)
+
+Free template now includes the shared-safe Workstation Context Check SOP, Practical Testing Responsibility framework (`AI-runnable verification`, `Developer POV practical testing`, `Consumer POV practical testing`), human validation pause gates (`Awaiting human validation`), Changelog Convention (date+time block format), SESSION_RESUME v2.1, and workstation re-adoption SOP in `ops/RUNBOOK.md`. Tier1 differentiators remain unchanged ([redacted-tiering-item], `docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item]`, `ops/prompts/[redacted-tiering-item].md`, IDE-native rule packs, First-Session Plan Gate). `docs/USER_CONSUMER_JOURNEY_CHECKLIST.md` remains frozen at the free baseline.
 
 ## Template Alignment Note (v2.15)
 
