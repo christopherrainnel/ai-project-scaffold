@@ -175,6 +175,7 @@ Multi-agent mode is optional. Recommend it only for multi-domain work, 4 or more
 9. Never handle raw card data; use hosted checkout or tokenization only.
 10. For legal, security, or policy guidance, use current official sources and concrete dates when relevant.
 11. Never claim certification or compliance without proof; use wording such as "aligned with" or "informed by".
+12. Never run `git commit`, `git push`, or any destructive git operation without explicit user instruction. Completing a file-edit task does NOT imply commit or push authorization.
 
 ## 5) Supporting Docs And Control Surfaces
 
@@ -200,5 +201,7 @@ Required coverage (verify these exist; do not recreate without checking first):
 - Entry points: `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, `CHANGELOG_AI.md`, `.env.example`.
 - Core docs under `docs/`: `FILE_MAP`, `ARCHITECTURE`, `DECISIONS`, `PRIVACY`, `TERMS`, `THREAT_MODEL`, `USER_CONSUMER_JOURNEY_CHECKLIST`.
 - Ops docs under `ops/`: `AI_WORKFLOW`, `SECURITY_POLICY`, `DATA_CLASSIFICATION`, `DEPENDENCY_POLICY`, `QUALITY_GATES`, `DEFINITION_OF_DONE`, `RUNBOOK`, `STANDARDS_BASELINE`, `RELEASE_CHECKLIST`, `LESSONS_LEARNED`, and prompt files under `ops/prompts/`.
-- Native enforcement in free tier: `.claude/settings.json`.
+- Native enforcement: `.claude/settings.json`, `.cursor/rules/`, `.windsurf/rules/`, `.clinerules/` (rules + hooks), `docs/IDE_ENFORCEMENT.md`.
+- VS Code baseline: `.vscode/extensions.json`, `.vscode/settings.json`.
+- Advisory preflight: `.githooks/pre-commit.advisory`, `scripts/local_preflight_advisory.py`.
 - CI and contribution: `.github/workflows/ci.yml`, issue templates, PR template, `CODEOWNERS`, branch-protection guidance.

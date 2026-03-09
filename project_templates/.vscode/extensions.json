@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "GitHub.vscode-pull-request-github",
+    "GitHub.vscode-github-actions",
+    "ms-vscode.powershell",
+    "redhat.vscode-yaml",
+    "charliermarsh.ruff",
+    "SonarSource.sonarlint-vscode",
+    "GitHub.copilot",
+    "GitHub.copilot-chat"
+  ]
+}

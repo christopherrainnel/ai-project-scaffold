@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+set -eu
+
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+cd "$REPO_ROOT"
+
+if [ -x "./.venv_run/Scripts/python.exe" ]; then
+  ./.venv_run/Scripts/python.exe ./scripts/local_preflight_advisory.py
+  exit $?
+fi
+
+if [ -x "./.venv_run/bin/python" ]; then
+  ./.venv_run/bin/python ./scripts/local_preflight_advisory.py
+  exit $?
+fi
+
+if command -v py >/dev/null 2>&1; then
+  py -3 ./scripts/local_preflight_advisory.py
+  exit $?
+fi
+
+python ./scripts/local_preflight_advisory.py

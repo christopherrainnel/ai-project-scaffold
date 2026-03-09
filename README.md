@@ -15,7 +15,9 @@ A project template and Python tool for Vibe Coders who build products with AI ag
 Every new project starts with:
 
 - **Agent rules** (`CLAUDE.md`, `AGENTS.md`, `.github/copilot-instructions.md`) — so AI tools follow your project's policies automatically
-- **Free enforcement baseline** (`.claude/settings.json` + loader docs) — focused governance loading for Claude and VS Code Copilot/Codex workflows
+- **Full IDE-native enforcement layer** (`.claude/`, `.cursor/`, `.windsurf/`, `.clinerules/`) — repo-native governance loading across Claude, Cursor, Windsurf, and Cline
+- **VS Code baseline** (`.vscode/extensions.json`, `.vscode/settings.json`) — advisory extension recommendations and low-noise workspace defaults
+- **Advisory preflight** (`.githooks/pre-commit.advisory`, `scripts/local_preflight_advisory.py`) — warning-first local drift and tooling checks; strict mode opt-in via `SCF_STRICT_LOCAL_CHECKS=1`
 - **Workstation Context Check** — inspect repo root, shell, runtime, and git hooks before trusting prior local state as a safe resume
 - **Practical testing responsibility markers** — `AI-runnable verification`, `Developer POV practical testing`, `Consumer POV practical testing` with human validation pause gates
 - **Single-agent default + optional Build -> Review flow** — fast path for simple tasks, with planning used only when complexity/risk requires it
@@ -33,13 +35,17 @@ Every new project starts with:
 
 ## Tier Boundary (Free vs Tier1)
 
-- `both`: Governance baseline (agent rules, AI workflow, quality/security gates, decision logs, privacy/threat modeling, changelog discipline)
+- `both`: Governance baseline (agent rules, AI workflow, quality/security gates, decision logs, privacy/threat modeling, changelog discipline) + full IDE enforcement layer (`.cursor/`, `.windsurf/`, `.clinerules/`, `docs/IDE_ENFORCEMENT.md`) + VS Code baseline + advisory preflight
 - `free` (this repo): Bootstrap-less scaffold with single-agent default and optional Build -> Review flow
-- `tier1`: [redacted-tiering-item] plus tier1-only files (`docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item]`, `ops/prompts/[redacted-tiering-item].md`)
+- `tier1`: [redacted-tiering-item], guided project intake, and tier1-only files (`docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item]`, `ops/prompts/[redacted-tiering-item].md`, `docs/SETTINGS_TOGGLES.md`)
 
 Free policy note: `project_templates/docs/USER_CONSUMER_JOURNEY_CHECKLIST.md` is intentionally kept as a stable baseline in free. Future checklist-component expansions are Tier1+ only.
 
-This split is intentional: both repos stay aligned on governance quality, while Tier1 remains the guided-entry upgrade path.
+This split is intentional: the IDE enforcement layer and advisory tooling are free for everyone; Tier1 provides guided project intake and escalation controls that are genuinely worth paying for.
+
+## Template Alignment Note (v2.18)
+
+Free template now includes the full IDE-native enforcement layer (`.cursor/rules/`, `.windsurf/rules/`, `.clinerules/` rules + hooks, `docs/IDE_ENFORCEMENT.md`), VS Code baseline (`.vscode/extensions.json`, `.vscode/settings.json`), advisory preflight (`.githooks/pre-commit.advisory`, `scripts/local_preflight_advisory.py`), and non-commit safety rule in `CLAUDE.md` and `ops/AI_WORKFLOW.md`. Tier1 differentiators remain unchanged ([redacted-tiering-item], `docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item]`, `ops/prompts/[redacted-tiering-item].md`, `docs/SETTINGS_TOGGLES.md`, First-Session Plan Gate).
 
 ## Template Alignment Note (v2.17)
 

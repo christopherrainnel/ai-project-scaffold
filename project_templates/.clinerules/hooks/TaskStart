@@ -1,0 +1,11 @@
+#!/usr/bin/env python3
+import json
+
+message = (
+    "WORKSPACE_RULES: Read docs/FILE_MAP.md, AGENTS.md, and ops/AI_WORKFLOW.md. "
+    "Run the Workstation Context Check before safe resume. If needed, read only the "
+    "newest relevant CHANGELOG_AI.md entry. If required human practical testing remains "
+    "after AI-runnable verification, mark the work Awaiting human validation and pause."
+)
+
+print(json.dumps({"cancel": False, "contextModification": message, "errorMessage": ""}))

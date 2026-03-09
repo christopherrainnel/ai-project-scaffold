@@ -20,6 +20,39 @@
 |------|---------|
 | `.claude/settings.json` | Repo-local Claude Code permission policy that protects `.env` files and asks before risky shell operations |
 
+## `.vscode/` - Optional VS Code Baseline
+
+| File | Purpose |
+|------|---------|
+| `.vscode/extensions.json` | Recommended extension baseline (advisory-only, non-blocking) |
+| `.vscode/settings.json` | Low-noise default editor settings with Python behavior scoped under `[python]` |
+
+## `.cursor/` - Cursor Native Rules
+
+| File | Purpose |
+|------|---------|
+| `.cursor/rules/00-governance.mdc` | Cursor native rule that loads governance context automatically on every task |
+
+## `.windsurf/` - Windsurf Native Rules
+
+| File | Purpose |
+|------|---------|
+| `.windsurf/rules/00-governance.md` | Windsurf workspace rule that enforces governance loading and canonical workflow reference |
+
+## `.clinerules/` - Cline Native Rules and Hooks
+
+| File | Purpose |
+|------|---------|
+| `.clinerules/01-governance.md` | Cline workspace rules file that enforces governance loading on every task |
+| `.clinerules/hooks/TaskStart` | Example Cline hook that injects governance context when a task starts |
+| `.clinerules/hooks/PreToolUse` | Example Cline hook that blocks `.env` access and obvious destructive commands |
+
+## `.githooks/` - Optional Local Advisory Hook
+
+| File | Purpose |
+|------|---------|
+| `.githooks/pre-commit.advisory` | Optional warning-first pre-commit wrapper for local advisory checks |
+
 ## `docs/` - Project Knowledge
 
 | File | Purpose |
@@ -27,6 +60,7 @@
 | `ARCHITECTURE.md` | High-level system design, components, data flow |
 | `DECISIONS.md` | Decision log - what was chosen, why, and what was rejected |
 | `FILE_MAP.md` | This file - plain-English index of the entire project |
+| `IDE_ENFORCEMENT.md` | Exact layout and positioning for repo-native IDE enforcement assets |
 | `PRIVACY.md` | Data inventory, subprocessors, retention, and deletion process |
 | `TERMS.md` | Plain-language terms stub for access, delivery, or membership projects |
 | `THREAT_MODEL.md` | Lightweight threat model (assets, threats, mitigations) |
@@ -73,4 +107,6 @@
 
 ## `scripts/` - Automation
 
-Utility scripts for setup, builds, or deployment. Add scripts here as the project grows.
+| File | Purpose |
+|------|---------|
+| `scripts/local_preflight_advisory.py` | Optional local drift/tooling advisory check; strict mode only when `SCF_STRICT_LOCAL_CHECKS=1` |

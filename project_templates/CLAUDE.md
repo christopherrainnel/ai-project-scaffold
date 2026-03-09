@@ -20,3 +20,7 @@ If the session did not begin with a governance-loading prompt, use `ops/prompts/
 - `ops/AI_WORKFLOW.md` remains canonical.
 - If required human practical testing remains after `AI-runnable verification`, mark the work `Awaiting human validation` and pause.
 - Keep this loader thin; do not restate the full policy here.
+
+## Non-Negotiables
+
+- Never run `git commit`, `git push`, or any destructive git operation without explicit user instruction. Completing a file-edit task does NOT imply commit or push authorization.

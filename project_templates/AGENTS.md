@@ -29,6 +29,7 @@ Use `ops/prompts/SESSION_RESUME.md` Section 1 when a session did not start with 
 - Never read or modify `.env`; only update `.env.example`.
 - Never add dependencies without justification, version pinning, and lockfile update.
 - Never run destructive commands or overwrite governance files without user approval.
+- Never run `git commit`, `git push`, or any destructive git operation without explicit user instruction. Completing a file-edit task does NOT imply commit or push authorization.
 - For legal, security, or policy guidance, use current official sources with concrete dates.
 - Never claim certification or compliance without proof; use "aligned with" or "informed by".
 
