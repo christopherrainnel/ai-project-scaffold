@@ -58,3 +58,7 @@ ALIGNMENT_AGENT_HANDOFF.md
 # Local-only agent policy notes
 guides/TIERING_POLICY.md
 guides/TIERING_POLICY.local.md
+
+# Local-only tiering policy
+/TIERING_POLICY.md
+/TIERING_POLICY.local.md

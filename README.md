@@ -95,6 +95,7 @@ To build the `.exe` yourself: `python build_exe.py` (requires `pip install pyins
 my-project/
 ├── CLAUDE.md                       # Claude Code auto-read rules
 ├── AGENTS.md                       # Universal AI agent entry point
+├── GEMINI.md                       # Gemini CLI auto-read rules
 ├── CHANGELOG_AI.md                 # AI change log
 ├── README.md                       # Project README
 ├── .env.example                    # Environment variable template
