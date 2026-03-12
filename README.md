@@ -27,6 +27,7 @@ Every new project starts with:
 - **Product readiness polish gate** — pre-release UI/legal/professionalism checks with mandatory human approval for AI-assisted legal drafting
 - **Security, dependency, and data policies** — sensible defaults you can customize
 - **Architecture and decision docs** — anti-drift anchors that prevent AI from going off-track
+- **Upgrade trigger table** (`docs/[redacted-tiering-item]`) — when to add auth, rate limits, GDPR compliance, age-gating, payment security, and other architecture escalations
 - **Operational policy docs** (`docs/TERMS.md`, `docs/USER_CONSUMER_JOURNEY_CHECKLIST.md`) — plain-language terms and journey-stage release evidence tracking
 - **Prompt templates** — structured templates for session resume, feature requests, bug reports, refactors, and code reviews
 - **GOVERNANCE BOOT session-start prompt** — a required copy/paste prompt that forces policy loading before implementation
@@ -35,17 +36,21 @@ Every new project starts with:
 
 ## Tier Boundary (Free vs Tier1)
 
-- `both`: Governance baseline (agent rules, AI workflow, quality/security gates, decision logs, privacy/threat modeling, changelog discipline) + full IDE enforcement layer (`.cursor/`, `.windsurf/`, `.clinerules/`, `docs/IDE_ENFORCEMENT.md`) + VS Code baseline + advisory preflight
+- `both`: Governance baseline (agent rules, AI workflow, quality/security gates, decision logs, privacy/threat modeling, changelog discipline, upgrade triggers `docs/[redacted-tiering-item]`) + full IDE enforcement layer (`.cursor/`, `.windsurf/`, `.clinerules/`, `docs/IDE_ENFORCEMENT.md`) + VS Code baseline + advisory preflight
 - `free` (this repo): Bootstrap-less scaffold with single-agent default and optional Build -> Review flow
-- `tier1`: [redacted-tiering-item], guided project intake, and tier1-only files (`docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item]`, `ops/prompts/[redacted-tiering-item].md`, `docs/SETTINGS_TOGGLES.md`)
+- `tier1`: [redacted-tiering-item], guided project intake, and tier1-only files (`docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item].md`, `ops/prompts/[redacted-tiering-item].md`, `docs/SETTINGS_TOGGLES.md`)
 
 Free policy note: `project_templates/docs/USER_CONSUMER_JOURNEY_CHECKLIST.md` is intentionally kept as a stable baseline in free. Future checklist-component expansions are Tier1+ only.
 
 This split is intentional: the IDE enforcement layer and advisory tooling are free for everyone; Tier1 provides guided project intake and escalation controls that are genuinely worth paying for.
 
+## Template Alignment Note (v2.19)
+
+`docs/[redacted-tiering-item]` (upgrade conditions table) reclassified from tier1-only to `both` (free + tier1). Upgrade trigger thresholds are professional safety baseline: telling developers "add auth before exposing to external users" or "add age-gating if minors may use the product" is not a premium feature. Tier1 differentiators unchanged: [redacted-tiering-item], `docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item].md`, `ops/prompts/[redacted-tiering-item].md`, `docs/SETTINGS_TOGGLES.md`, First-Session Plan Gate.
+
 ## Template Alignment Note (v2.18)
 
-Free template now includes the full IDE-native enforcement layer (`.cursor/rules/`, `.windsurf/rules/`, `.clinerules/` rules + hooks, `docs/IDE_ENFORCEMENT.md`), VS Code baseline (`.vscode/extensions.json`, `.vscode/settings.json`), advisory preflight (`.githooks/pre-commit.advisory`, `scripts/local_preflight_advisory.py`), and non-commit safety rule in `CLAUDE.md` and `ops/AI_WORKFLOW.md`. Tier1 differentiators remain unchanged ([redacted-tiering-item], `docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item]`, `ops/prompts/[redacted-tiering-item].md`, `docs/SETTINGS_TOGGLES.md`, First-Session Plan Gate).
+Free template now includes the full IDE-native enforcement layer (`.cursor/rules/`, `.windsurf/rules/`, `.clinerules/` rules + hooks, `docs/IDE_ENFORCEMENT.md`), VS Code baseline (`.vscode/extensions.json`, `.vscode/settings.json`), advisory preflight (`.githooks/pre-commit.advisory`, `scripts/local_preflight_advisory.py`), and non-commit safety rule in `CLAUDE.md` and `ops/AI_WORKFLOW.md`. Tier1 differentiators: [redacted-tiering-item], `docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item].md`, `ops/prompts/[redacted-tiering-item].md`, `docs/SETTINGS_TOGGLES.md`, First-Session Plan Gate. `docs/[redacted-tiering-item]` reclassified to both in v2.19.
 
 ## Template Alignment Note (v2.17)
 

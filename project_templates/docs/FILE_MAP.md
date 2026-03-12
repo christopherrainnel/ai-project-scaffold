@@ -64,6 +64,7 @@
 | `PRIVACY.md` | Data inventory, subprocessors, retention, and deletion process |
 | `TERMS.md` | Plain-language terms stub for access, delivery, or membership projects |
 | `THREAT_MODEL.md` | Lightweight threat model (assets, threats, mitigations) |
+| `[redacted-tiering-item]` | When to escalate architecture — upgrade conditions (auth, rate limits, GDPR, payments, age-gating) |
 | `USER_CONSUMER_JOURNEY_CHECKLIST.md` | Project-specific checklist for validating the real user journey before release |
 
 ## `ops/` - Governance and Workflow

@@ -1,3 +1,23 @@
+# Release Notes: v2.19
+
+**Release Date**: March 12, 2026
+**Status**: Ready for Production
+
+## Overview
+
+v2.19 reclassifies `docs/[redacted-tiering-item]` from tier1-only to `both` (free + tier1). Upgrade trigger conditions are professional safety baseline knowledge, not premium planning features.
+
+## What's New
+
+### 1. [redacted-tiering-item] Now Included in Free Tier
+
+- `docs/[redacted-tiering-item]` added to `project_templates/docs/` in the free scaffold.
+- Upgrade trigger table covers: auth thresholds, rate limits, PII handling, GDPR/CCPA/age-gating, payment security hardening, multi-agent mode thresholds, journey completion gates.
+- `docs/FILE_MAP.md` updated to include the new file.
+- `TIERING_POLICY.md` updated to v2.1.
+
+---
+
 # Release Notes: v2.17
 
 **Release Date**: March 9, 2026
