@@ -1,82 +1,38 @@
 # {{PROJECT_NAME}}
 
-> Built with AI-assisted development using a governed scaffold.
-> Fill this README with your project-specific overview, setup steps, and access model.
+> Built with AI-assisted development using a governed starter scaffold.
 
 ## Tier Scope
 
-- `both`: governance baseline and quality/security expectations
-- `free`: single-agent-first workflow without Bootstrap Interview prerequisites
-- `tier1`: guided Bootstrap Interview flow and trigger-based escalation artifacts
+This starter is the `free` template.
+It includes the safety, maintenance, and governance baseline needed for a professional project start.
+It does not include tier1 bootstrap-planning artifacts.
 
 ## Quick Start
 
-1. Clone this repo and open it in your IDE (Cursor, VS Code, or any AI-enabled editor).
-2. Copy `.env.example` to `.env` and fill in your values.
-3. Read `ops/AI_WORKFLOW.md` - this is the source of truth for how AI agents work in this project.
-4. Fill in `docs/ARCHITECTURE.md` and `docs/DECISIONS.md` with your project specifics.
+1. Open the repo in your IDE.
+2. If the project needs local environment values, copy `.env.example` to `.env` and fill them in.
+3. Read `AGENTS.md`.
+4. Read `docs/FILE_MAP.md`.
+5. Read `ops/AI_WORKFLOW.md`.
+6. Start building with small, reviewable tasks.
 
-## Recommended: Start Every AI Session With A Governance Prompt
+## IDE-Native Enforcement
 
-Start each new AI session with a governance-loading first message.
-Keep the full recommended prompt in `ops/prompts/SESSION_RESUME.md` Section 1 and point users there instead of duplicating it here.
-
-## Free-Tier Enforcement Baseline
-
-This free scaffold keeps a focused enforcement baseline:
-
-- Native layer: `.claude/settings.json`.
-- Loader layer: `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, and `ops/prompts/SESSION_RESUME.md`.
-- Canonical policy: `ops/AI_WORKFLOW.md` remains the source of truth.
-
-Tool-specific native rule packs for Cursor, Windsurf, and Cline are intentionally Tier1-only.
+This starter includes repo-native governance loaders for Claude, Cursor, Windsurf, Cline, and Copilot.
+`ops/AI_WORKFLOW.md` remains canonical.
 
 ## Project Structure
 
-```text
-docs/           Architecture, decisions, and file map
-ops/            Governance policies, workflow rules, prompt templates
-ops/prompts/    Reusable prompt templates for common tasks
-scripts/        Utility and automation scripts
-```
-
-See `docs/FILE_MAP.md` for a plain-English guide to every file.
-
-You can add product folders as needed (`apps/`, `services/`, `packages/`, `infra/`, `tests/`, etc.).
-
-## For AI Agents
-
-Start with `AGENTS.md` (or `CLAUDE.md` for Claude Code). These files point to the canonical policy in `ops/AI_WORKFLOW.md`.
-Use `docs/FILE_MAP.md` first for orientation, then fetch only task-relevant files.
-
-Free tier defaults to single-agent operation. Optional Build -> Review flow is supported, with no mandatory planner for simple tasks.
-Code review defaults to two modes: Discovery first (no edits), then Fix after explicit approval.
+- `docs/` - architecture, decisions, file map, privacy, terms, threat model
+- `ops/` - workflow, quality gates, security/data/dependency policy, prompts
+- `scripts/` - local advisory helpers
+- `.github/` - CI and contribution templates
 
 ## Key Rules
 
-- Never commit `.env` — only `.env.example` is tracked.
-- All AI changes are logged in `CHANGELOG_AI.md`.
-- Decisions and their rationale go in `docs/DECISIONS.md`.
-- Use `ops/QUALITY_GATES.md` + `.github/workflows/ci.yml` as merge-blocking quality/security gates for all configured and applicable checks.
-- Keep `docs/PRIVACY.md`, `docs/TERMS.md`, and `docs/THREAT_MODEL.md` updated as features evolve.
-- Treat governance files (`ops/`, `.github/`, and core governance docs) as protected; only edit them when necessary and log why in `CHANGELOG_AI.md`.
-- Use `ops/prompts/SESSION_RESUME.md` when resuming context or switching AI agents.
-- `ops/prompts/SESSION_RESUME.md` uses a strict low-token resume sequence (latest changelog note -> next action -> minimal file reads).
-
-## Maturity and Improvement
-
-This scaffold provides strong governance defaults, but it may not yet match the ecosystem maturity of older, large frameworks or tooling ecosystems.
-
-Improvement is continuous and is led by maintainers together with approved contributors through reviewed pull requests.
-
-## Feedback and Community
-
-If this template helps your project, please use it and share constructive feedback.
-
-- Use issues for bugs and feature requests.
-- Use pull requests for improvements.
-- Keep feedback specific, respectful, and actionable so the author and community can improve quickly.
-
-## Contribution Terms
-
-By submitting contributions, contributors agree the work is provided under the repository `LICENSE`, with no expectation of payment unless separately agreed in writing by maintainers.
+- Never commit `.env`.
+- Log AI-delivered work in `CHANGELOG_AI.md`.
+- Put durable choices in `docs/DECISIONS.md`.
+- Use `ops/QUALITY_GATES.md` before treating work as done.
+- Treat governance files as protected.

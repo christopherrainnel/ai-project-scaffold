@@ -6,8 +6,8 @@ This scaffold includes repo-native enforcement files to reduce workflow drift wh
 
 - Primary where supported: `.claude/settings.json`, `.cursor/rules/`, `.windsurf/rules/`, and `.clinerules/`.
 - Canonical policy: `ops/AI_WORKFLOW.md` stays the source of truth.
-- Fallback/shared onboarding: `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, and `ops/prompts/SESSION_RESUME.md`.
-- Tool-specific loaders should stay tool-specific and easy for their host app to prioritize, but they should remain thin and point back to the canonical workflow instead of copying it.
+- Fallback/shared onboarding: `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, and `ops/SESSION_RESUME.md`.
+- Tool-specific loaders should stay tool-specific and easy for their host app to prioritize. Default to thin routing, but allow always-on native rule surfaces to inline a compact core summary when that materially improves model adherence. The full workflow still lives in `ops/AI_WORKFLOW.md`.
 - During active editing sessions, the current working-tree governance files are authoritative; agents should not defer to older committed or remote copies.
 - Copilot coverage is helpful but weaker than native rule and hook systems.
 
@@ -16,8 +16,8 @@ This scaffold includes repo-native enforcement files to reduce workflow drift wh
 | Path | Purpose |
 |------|---------|
 | `.claude/settings.json` | Shared Claude Code permission policy to hide `.env` files and ask before risky shell operations |
-| `.cursor/rules/00-governance.mdc` | Always-on Cursor rule that reinforces scaffold workflow expectations |
-| `.windsurf/rules/00-governance.md` | Lightweight workspace rule for Windsurf |
+| `.cursor/rules/00-governance.mdc` | Always-on Cursor rule with compact core governance plus canonical-workflow fallback |
+| `.windsurf/rules/00-governance.md` | Lightweight Windsurf rule with the same compact core governance summary |
 | `.clinerules/01-governance.md` | Base Cline workspace rule |
 | `.clinerules/hooks/TaskStart` | Example project hook that injects governance context at task start |
 | `.clinerules/hooks/PreToolUse` | Example project hook that blocks `.env` access and obvious destructive commands |
@@ -58,6 +58,11 @@ Compatibility if/else profile:
 
 - Keep the scaffold fresh, generic, and ready for a user's new AI-assisted project.
 - Use accurate language: these files auto-load where supported and reduce workflow drift; they do not guarantee perfect enforcement in every tool.
+- Generic AI chats that do not auto-load repo files should use the short governance-boot fallback from `ops/SESSION_RESUME.md`.
 - Optional installer support and wrapper/runtime enforcement belong to later product phases, not the baseline template.
+
+
+
+
 
 

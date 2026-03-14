@@ -1,0 +1,58 @@
+{
+  "profiles": [
+    {
+      "id": "read-only-exploration",
+      "title": "Read-Only Exploration",
+      "description": "Default read-only exploration profile for generated projects.",
+      "enabled": true,
+      "priority": 100,
+      "match_tags": ["all"],
+      "allowed_roles": ["read"],
+      "allowed_path_prefixes": [
+        "docs/",
+        "ops/",
+        "scripts/",
+        "src/",
+        "app/",
+        "vba/",
+        ".github/",
+        ".cursor/",
+        ".windsurf/",
+        ".clinerules/",
+        ".vscode/"
+      ],
+      "allowed_exact_paths": ["AGENTS.md", "CHANGELOG_AI.md", "README.md"],
+      "allowed_command_prefixes": []
+    },
+    {
+      "id": "project-implementation",
+      "title": "Project Implementation",
+      "description": "Default implementation profile for governed project work.",
+      "enabled": true,
+      "priority": 20,
+      "match_tags": ["feature", "bugfix", "refactor", "testing", "docs"],
+      "allowed_roles": ["read", "write", "command"],
+      "allowed_path_prefixes": [
+        "docs/",
+        "ops/",
+        "scripts/",
+        "src/",
+        "app/",
+        "vba/",
+        ".github/",
+        ".cursor/",
+        ".windsurf/",
+        ".clinerules/",
+        ".vscode/",
+        "tests/"
+      ],
+      "allowed_exact_paths": ["AGENTS.md", "CHANGELOG_AI.md", "README.md"],
+      "allowed_command_prefixes": [
+        "python -m gov",
+        ".\\.venv_run\\Scripts\\python.exe -m gov",
+        "git status",
+        "git diff"
+      ]
+    }
+  ]
+}

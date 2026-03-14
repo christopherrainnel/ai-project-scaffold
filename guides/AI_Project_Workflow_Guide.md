@@ -147,6 +147,16 @@ docs/
   ARCHITECTURE.md                   # System design (fill in per project)
   DECISIONS.md                      # Decision log (fill in as you go)
   FILE_MAP.md                       # Plain-English file index
+  GOVERNANCE_RUNTIME_SPEC.md        # AI governance behavior models
+  MIGRATION_PLAN.md                 # Project migration instructions
+  POLICY_PACKS.json                 # Pre-configured policy rules
+  PRIVACY.md                        # Data inventory, retention, deletion, subprocessors
+  PRODUCT_STRATEGY_ROADMAP.md       # Long term product vision and road map
+  PROJECT_RULES.json                # Custom overriding project behavior rules
+  RULE_MODEL.md                     # Agent runtime behavior descriptions
+  TEMPLATE_TIERING_POLICY.md        # Alignment logic across scaffold tiers
+  THREAT_MODEL.md                   # Assets, threats, mitigations
+  TOOL_ALLOWLIST_PROFILES.json      # Allowlist profile constraints
   PRIVACY.md                        # Data inventory, retention, deletion, subprocessors
   THREAT_MODEL.md                   # Assets, threats, mitigations
 ops/

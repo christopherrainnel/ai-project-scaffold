@@ -1,60 +1,32 @@
 # Upgrade Triggers
 
-Version: 0.1
+Version: 0.2
 Last Updated: {{DATE}}
 
-> Defines when to escalate architecture. Do not add complexity until a trigger is met.
+> Keep this file generic and project-filled.
+> Add complexity only when the real project conditions justify it.
 
----
+## Core Trigger Areas
 
-## Trigger Rules
+Use this file to record the actual thresholds that should cause the project to revisit architecture, security, privacy, delivery, or workflow choices.
 
-| Condition | Action |
-| --------- | ------ |
-| >1 external user | Add authentication |
-| Shared multi-device usage | Move from SQLite to Postgres |
-| Public traffic | Add rate limiting + monitoring |
-| Storing PII | Add data retention policy + audit logging |
-| Payments added | Add security hardening |
-| AI feature with external actions | Add tool allowlist + explicit user confirmation |
-| Users in EU/UK/CA | Complete jurisdiction-specific privacy checks |
-| Minors may use product | Add age-gating or block collection |
-| Regulated/sensitive data added | Trigger legal/compliance review + DPIA/PIA-style assessment |
-| Cross-domain high-risk change (feature + security + architecture) | Recommend temporary multi-agent mode |
-| Planned change touches >=4 files | Recommend temporary multi-agent mode |
-| Two consecutive tasks touch <=3 files each and no material review findings | Recommend return to single-agent mode |
-| Multi-agent overhead delays delivery without added quality findings | Recommend return to single-agent mode |
-| Closing a major phase or stage | Run User/Consumer Journey Completion Gate (`Discover -> Acquire Access -> Verify -> Deliver -> Study/Use -> Support/Recovery`) and log gaps before closure |
-| Preparing production release candidate | Run Product Readiness Polish Gate (UI + legal + professionalism) |
-| Release-critical path depends on model behavior | Document and review model-selection strategy before release |
-| (Add project-specific triggers below) | |
+## Trigger Table
 
----
+| Condition observed in this project | What to revisit | Notes |
+|------------------------------------|-----------------|-------|
+| Increased user count or workload | Architecture, storage, performance, monitoring | |
+| Sensitive or regulated data enters scope | Privacy, security, retention, legal review | |
+| Public exposure grows | Auth, abuse protection, logging, monitoring | |
+| Payments or entitlements are introduced | Terms, privacy, security boundaries, support flow | |
+| AI actions gain real side effects | Tool permissions, confirmation gates, audit trail | |
+| Release scope expands materially | Readiness checks, UX polish, support and recovery | |
+| Multi-surface or cross-domain change | Architecture review and execution plan | |
+| Project-specific trigger | | |
 
-## Project-Specific Triggers
+## Project-Specific Notes
 
-<!-- Add triggers for this project based on the Bootstrap Interview. -->
+<!-- Add the real trigger thresholds, examples, or escalation rules for this project here. -->
 
----
+## Guardrail
 
-## Multi-Agent Safety Thresholds
-
-Use these thresholds to reduce avoidable overhead and drift.
-
-- Prefer single-agent mode by default.
-- Enable multi-agent only for complex or high-risk tasks.
-- Re-check benefit after each major task.
-- Inform the user when switching modes and why.
-
-## Tier2 Roadmap (Coming Soon)
-
-Tier2 is planned as a future, higher-assurance workflow focused on reducing setup friction and increasing first-pass correctness.
-
-Planned intent (subject to validation):
-
-- Guaranteed structure and run-order checks executed.
-- Guided checkpoints with explicit human approvals.
-- Stronger session continuity and auditability.
-- Clear boundaries for what is automated vs human judgment.
-
-This section is a roadmap note only and does not represent a released feature.
+Do not treat examples from other projects, future tiers, or roadmap ideas as active triggers unless the operator explicitly adopts them here.

@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "python scripts/vscode_hook_dispatch.py --entry-surface .github/copilot-instructions.md",
+        "timeout": 15
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "type": "command",
+        "command": "python scripts/vscode_hook_dispatch.py --entry-surface .github/copilot-instructions.md",
+        "timeout": 15
+      }
+    ],
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "python scripts/vscode_hook_dispatch.py --entry-surface .github/copilot-instructions.md",
+        "timeout": 20
+      }
+    ]
+  }
+}

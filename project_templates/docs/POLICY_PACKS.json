@@ -1,0 +1,44 @@
+{
+  "packs": [
+    {
+      "id": "privacy-redlines",
+      "title": "Privacy Redlines",
+      "description": "Require safe handling notes when private or sensitive project data is in scope.",
+      "enabled": true,
+      "rules": [
+        {
+          "id": "privacy-redlines-require-safe-handling-note",
+          "source": "project",
+          "rule_type": "security",
+          "trigger_tags": ["privacy", "data", "security"],
+          "priority": 2,
+          "stage": "pre-plan",
+          "enforcement_mode": "review-required",
+          "message_template": "Call out safe handling, minimization, and redaction expectations when sensitive data is involved.",
+          "description": "Sensitive-data work must describe safe handling expectations.",
+          "verification_profile": "execution-safety"
+        }
+      ]
+    },
+    {
+      "id": "operator-redlines",
+      "title": "Operator Redlines",
+      "description": "Require explicit review signals for high-blast-radius work.",
+      "enabled": true,
+      "rules": [
+        {
+          "id": "operator-redlines-require-review-callout",
+          "source": "project",
+          "rule_type": "governance",
+          "trigger_tags": ["high-risk", "destructive", "release", "operator"],
+          "priority": 2,
+          "stage": "pre-plan",
+          "enforcement_mode": "review-required",
+          "message_template": "Call out approval and review checkpoints before high-blast-radius execution.",
+          "description": "High-blast-radius tasks should note required review checkpoints.",
+          "verification_profile": "governance-coherence"
+        }
+      ]
+    }
+  ]
+}

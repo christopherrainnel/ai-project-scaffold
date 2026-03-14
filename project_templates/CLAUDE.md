@@ -1,26 +1,20 @@
 # Project Rules (Claude Code)
 
 > Claude Code reads this file automatically.
-> Use it together with `.claude/settings.json`. For full policy, see `ops/AI_WORKFLOW.md`.
+> Use it together with `.claude/settings.json`.
 > During active editing sessions, use the current working-tree versions of governance files.
 
 ## Claude Startup
 
 1. Read this file.
-2. Read `docs/FILE_MAP.md`.
-3. Read `ops/AI_WORKFLOW.md`.
-4. If the task touches paid/free or entitlement boundaries and a local overlay exists, read `guides/TIERING_POLICY.local.md` or `guides/TIERING_POLICY.md`.
-5. Run the `Workstation Context Check` from `ops/AI_WORKFLOW.md` before safe resume.
+2. Read `AGENTS.md`.
+3. Read `docs/FILE_MAP.md`.
+4. Read `ops/AI_WORKFLOW.md`.
+5. Follow the startup and resume checks defined there.
 6. If needed, read the newest relevant `CHANGELOG_AI.md` entry only.
 
-If the session did not begin with a governance-loading prompt, use `ops/prompts/SESSION_RESUME.md` Section 1.
+If the session did not begin with a governance-loading prompt, use `ops/SESSION_RESUME.md` Section 1.
 
-## Claude-Specific Enforcement
+## Claude Loader Rule
 
-- `ops/AI_WORKFLOW.md` remains canonical.
-- If required human practical testing remains after `AI-runnable verification`, mark the work `Awaiting human validation` and pause.
-- Keep this loader thin; do not restate the full policy here.
-
-## Non-Negotiables
-
-- Never run `git commit`, `git push`, or any destructive git operation without explicit user instruction. Completing a file-edit task does NOT imply commit or push authorization.
+- `ops/AI_WORKFLOW.md` remains canonical; keep this loader thin and route there instead of duplicating scaffold policy.

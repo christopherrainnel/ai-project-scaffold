@@ -1,3 +1,29 @@
+# Release Notes: v2.20
+
+**Release Date**: March 14, 2026
+**Status**: Ready for Production
+
+## Overview
+
+v2.20 completely syncs `project_templates/` from the canonical `VibeCoder_Pack` source, expanding the structural framework to support new governance runtimes.
+
+## What's New
+
+### 1. Template Synchronization from VibeCoder_Pack
+- Replaced `project_templates/` with the current snapshot from `VibeCoder_Pack/project_templates/free/`.
+- Introduced new structural policy, agent rules, and runtime configuration files into the free baseline:
+  - `docs/GOVERNANCE_RUNTIME_SPEC.md`
+  - `docs/MIGRATION_PLAN.md`
+  - `docs/POLICY_PACKS.json`
+  - `docs/PRODUCT_STRATEGY_ROADMAP.md`
+  - `docs/PROJECT_RULES.json`
+  - `docs/RULE_MODEL.md`
+  - `docs/TEMPLATE_TIERING_POLICY.md`
+  - `docs/TOOL_ALLOWLIST_PROFILES.json`
+- Ensures the scaffolding incorporates the latest structural primitives to support agent policies and tool availability profiles seamlessly out-of-the-box.
+
+---
+
 # Release Notes: v2.19
 
 **Release Date**: March 12, 2026

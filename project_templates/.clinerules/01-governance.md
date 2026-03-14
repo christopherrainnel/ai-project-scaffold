@@ -1,7 +1,6 @@
 # Cline Workspace Rules
 
-- Read `docs/FILE_MAP.md`, then `AGENTS.md`, then `ops/AI_WORKFLOW.md`.
-- Run the `Workstation Context Check` from `ops/AI_WORKFLOW.md` before safe resume.
+- Read this rule file, then `AGENTS.md`, then `docs/FILE_MAP.md`, then `ops/AI_WORKFLOW.md`.
+- Follow the startup and resume checks defined in `ops/AI_WORKFLOW.md`.
 - If needed, read the newest relevant `CHANGELOG_AI.md` entry only.
-- If required human practical testing remains after `AI-runnable verification`, mark the work `Awaiting human validation` and pause.
 - `ops/AI_WORKFLOW.md` remains canonical.

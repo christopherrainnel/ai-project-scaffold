@@ -121,9 +121,19 @@ my-project/
 │   ├── ARCHITECTURE.md             # System design (fill in per project)
 │   ├── DECISIONS.md                # Decision log (fill in as you go)
 │   ├── FILE_MAP.md                 # Plain-English file index
+│   ├── GOVERNANCE_RUNTIME_SPEC.md  # Runtime agent interactions spec
+│   ├── IDE_ENFORCEMENT.md          # Native IDE enforcement layout and boundaries
+│   ├── MIGRATION_PLAN.md           # Migration state docs
+│   ├── POLICY_PACKS.json           # Pack config
 │   ├── PRIVACY.md                  # Data inventory, retention, deletion, subprocessors
+│   ├── PRODUCT_STRATEGY_ROADMAP.md # Product goals
+│   ├── PROJECT_RULES.json          # Agent rules binding
+│   ├── RULE_MODEL.md               # Rule evaluation structures
+│   ├── TEMPLATE_TIERING_POLICY.md  # Local scaffold-tier template policy
 │   ├── TERMS.md                    # Plain-language operating terms stub
 │   ├── THREAT_MODEL.md             # Assets, threats, mitigations
+│   ├── TOOL_ALLOWLIST_PROFILES.json# Tool access rules
+│   ├── [redacted-tiering-item]                 # When to escalate architecture
 │   └── USER_CONSUMER_JOURNEY_CHECKLIST.md  # Journey-stage release evidence checklist
 ├── ops/
 │   ├── AI_WORKFLOW.md              # Canonical AI policy (source of truth)
@@ -133,11 +143,11 @@ my-project/
 │   ├── QUALITY_GATES.md            # Shipping gate + feature acceptance gate + commands
 │   ├── DEFINITION_OF_DONE.md       # Pointer to authoritative checklists in QUALITY_GATES
 │   ├── RUNBOOK.md                  # Ops, logging, and incident basics
+│   ├── SESSION_RESUME.md           # Resume-context prompt (governance + FILE_MAP + current task)
 │   ├── STANDARDS_BASELINE.md       # Official-source standards cross-check baseline
 │   ├── RELEASE_CHECKLIST.md        # Release verification steps
 │   ├── LESSONS_LEARNED.md          # Recurring issues and fixes
 │   └── prompts/
-│       ├── SESSION_RESUME.md      # Resume-context prompt (governance + FILE_MAP + current task)
 │       ├── feature_request.md      # Feature request template
 │       ├── bug_report.md           # Bug report template
 │       ├── refactor_request.md     # Refactor request template

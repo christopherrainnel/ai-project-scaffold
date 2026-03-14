@@ -12,21 +12,12 @@ ROOT_DOC_FILES: Set[str] = {
 }
 
 FREE_FORBIDDEN_TEMPLATE_PATHS: Set[str] = {
-    "project_templates/.cursor",
-    "project_templates/.windsurf",
-    "project_templates/.clinerules",
-    "project_templates/docs/IDE_ENFORCEMENT.md",
     "project_templates/docs/[redacted-tiering-item].md",
     "project_templates/docs/[redacted-tiering-item].md",
-    "project_templates/docs/[redacted-tiering-item]",
     "project_templates/ops/prompts/[redacted-tiering-item].md",
 }
 
-FREE_FORBIDDEN_TERMS: Dict[str, Set[str]] = {
-    "project_templates/ops/AI_WORKFLOW.md": {
-        "Run Bootstrap gate",
-    }
-}
+FREE_FORBIDDEN_TERMS: Dict[str, Set[str]] = {}
 
 # Free-tier docs that are intentionally baseline-frozen.
 FREE_LOCKED_TEMPLATE_PATHS: Set[str] = {

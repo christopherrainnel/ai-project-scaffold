@@ -1,44 +1,44 @@
-# Threat Model (Lightweight)
+# Threat Model
 
-Version: 0.1
+Version: 0.2
 Last Updated: {{DATE}}
+
+> Keep this file in fresh placeholder state until the operator defines the project's real assets, trust boundaries, and top risks.
 
 ## Scope
 
-- Product area: <!-- API / Web app / worker -->
-- In-scope environments: <!-- local/stage/prod -->
+- Product area: <!-- e.g. web app / API / worker / desktop tool / internal script -->
+- In-scope environments: <!-- e.g. local / staging / production / not applicable -->
 
-## Critical Assets
+## Important Assets
 
-- User identity/session
-- Application data
-- Secrets and credentials
-- Payment/session metadata
+List only the assets this project actually needs to protect.
+
+- <!-- e.g. user accounts -->
+- <!-- e.g. project data -->
+- <!-- e.g. credentials or API keys -->
 
 ## Trust Boundaries
 
-- Client ↔ API
-- API ↔ Database
-- API ↔ Third-party services
-- CI/CD ↔ Repository/Secrets
+List only the boundaries this project actually crosses.
 
-## Top Threats and Mitigations
+- <!-- e.g. client <-> API -->
+- <!-- e.g. API <-> database -->
+- <!-- e.g. app <-> third-party service -->
 
-| Threat | Example | Mitigation | Status |
-|--------|---------|------------|--------|
-| Injection | SQL/command/template injection | Input validation, parameterized queries, escaping | |
-| Auth bypass | Broken auth/authorization | Managed auth, RBAC, deny-by-default checks | |
-| Secrets exposure | Key in repo/logs | Secret scanning, `.env.example` only, redaction | |
-| Data leakage | PII in logs or responses | Data minimization, no-PII logging, response filtering | |
-| Abuse/DoS | Endpoint flood | Rate limits, abuse monitoring | |
-| Prompt injection (AI) | User text manipulates tools | Tool allowlist, confirmation gates, context isolation | |
+## Threats And Mitigations
+
+| Threat | How it could happen here | Mitigation | Status |
+|--------|---------------------------|------------|--------|
+| | | | |
+| | | | |
+| | | | |
 
 ## Security Tests
 
-- Unit tests for auth and permission checks
-- Input validation tests at every external boundary
-- CI SAST + dependency + secret scanning
+- <!-- Add project-specific auth, validation, abuse, or deployment checks here. -->
+- <!-- Keep this list aligned with the real project surface. -->
 
 ## Residual Risks
 
-- <!-- List known risks accepted for MVP and planned next step -->
+- <!-- List known accepted risks and the next mitigation step. -->

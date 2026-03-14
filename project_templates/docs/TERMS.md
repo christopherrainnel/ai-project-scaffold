@@ -1,32 +1,31 @@
-# Terms (MVP)
+# Terms
 
 Version: 0.1
 Last Updated: {{DATE}}
 
-> Plain-language operating terms for this project's paid access, delivery, or membership service. This is not legal advice.
+> Keep this file in fresh placeholder state until the operator defines the project's real access, delivery, or entitlement model.
+> This document is a practical placeholder, not legal advice.
 
 ## Service Purpose
 
-Replace this section with a one-paragraph description of what the project provides and how a customer receives access or delivery.
+<!-- Describe what the project provides and how a user or customer receives value. -->
 
 ## Eligibility and Accuracy
 
-- Users must provide accurate information required for verification, access, or support.
-- Claims or access requests may be denied if submitted information is invalid, unverifiable, or inconsistent with the project rules.
+<!-- Record any eligibility, age, verification, or user-information requirements only if they apply. -->
 
-## Access Model
+## Access or Delivery Model
 
-- A qualifying purchase, subscription, approval, or equivalent entitlement event may grant Tier1 or equivalent access under the current product policy.
-- Access remains subject to platform availability, account integrity checks, and documented product rules.
+<!-- Describe whether the project is free, tiered, approved manually, subscription-based, one-time purchase, internal-only, or not applicable. -->
 
 ## Abuse and Misuse
 
-The service may deny, suspend, or remove access for fraud, impersonation, abuse, or attempts to bypass entitlement controls.
+<!-- Record project-specific abuse, suspension, or misuse rules if needed. -->
 
 ## Availability and Changes
 
-The service is provided as-is and may be improved, changed, paused, or retired over time.
+<!-- Record project-specific availability, maintenance, or change-notice language if needed. -->
 
 ## Privacy
 
-See `docs/PRIVACY.md` for data handling, retention, and rights process.
+See `docs/PRIVACY.md` for project-specific data handling, retention, and rights process.

@@ -59,10 +59,6 @@ jobs:
 
       - name: Python install deps
         if: hashFiles('**/requirements*.txt') != ''
-        run: pip install -r requirements.txt
-
-      - name: Python lint (ruff)
-        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
         run: |
           req_file=$(ls requirements*.txt | head -n 1)
           pip install -r "$req_file"
@@ -70,26 +66,26 @@ jobs:
       - name: Python install quality tools
         if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
         run: pip install ruff mypy pytest pip-audit bandit
-        continue-on-error: true
+
+      - name: Python lint (ruff)
+        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
+        run: python -m ruff check .
 
       - name: Python format check (ruff)
-        run: python -m ruff check .
-        continue-on-error: true
-
-      - name: Python tests
+        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
         run: python -m ruff format --check .
 
       - name: Python type check (mypy)
         if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
         run: mypy --ignore-missing-imports --no-strict-optional .
-        continue-on-error: true
 
+      - name: Python tests
         if: hashFiles('tests/**/*.py') != ''
-        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
-          pip install pip-audit
-          pip-audit
-        continue-on-error: true
+        run: pytest
 
+      - name: Python dependency audit
+        if: hashFiles('**/requirements*.txt', '**/pyproject.toml') != ''
+        run: |
           req_file=$(ls requirements*.txt 2>/dev/null | head -n 1)
           if [ -n "$req_file" ]; then
             python -m pip_audit -r "$req_file"

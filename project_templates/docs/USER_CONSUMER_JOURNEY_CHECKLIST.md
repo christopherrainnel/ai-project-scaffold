@@ -1,60 +1,67 @@
 # User/Consumer Journey Checklist (Project-Specific)
 
-Version: 1.0
+Version: 1.1
 Last Updated: {{DATE}}
 Owner: Product owner
 
-Purpose: single execution checklist for this project so all agents can track real user progress from discovery to successful access, delivery, and recovery.
+> Keep this file in fresh placeholder state until the operator defines the actual journey variant for the project.
 
 Status key:
 - Complete: implemented and validated in the current environment
 - Conditional: implemented but requires additional validation before sign-off
 - Gap: missing or not reliably usable for non-technical users
+- Awaiting human validation: implementation exists, but required practical testing or owner confirmation is still pending
 
 ## Active Journey Variant
 
-- Variant: paid consumer (Tier1 or equivalent paid entitlement path)
-- Entry host currently used: {{PUBLIC_BASE_URL}}
+- Variant: <!-- e.g. paid consumer / internal operator / B2B workspace / not applicable yet -->
+- Entry host currently used: <!-- e.g. staging URL / public base URL / N/A -->
 
-If this project is not using a paid-consumer path, replace the variant above with the actual journey type before release work begins.
+## Validation Ownership Rule
+
+- Complete all credible `AI-runnable verification` before requesting human practical testing.
+- `Developer POV practical testing` is used only when automation cannot credibly validate the behavior.
+- `Consumer POV practical testing` requires human owner confirmation when the stage depends on real user experience rather than technical evidence alone.
+- AI may prepare test steps, expected outcomes, pass/fail capture format, and fallback checks, but must not self-certify consumer proof.
+- If required human practical testing is still pending, mark the affected stage `Awaiting human validation` and do not treat it as complete.
 
 ## Stage Checklist
 
 ### 1) Discover
 
 - [ ] Landing page or product entry point is reachable.
-- [ ] Trust baseline exists (branding, support contact, privacy/terms links where applicable).
-- [ ] A non-technical visitor can understand the flow from purchase or qualification to access.
+- [ ] Trust baseline exists for the actual journey.
+- [ ] A non-technical user can understand the path from entry to success.
 
-Current status: Gap
-Evidence: Add release-cycle evidence here.
+Current status: <!-- Gap / Conditional / Complete / Awaiting human validation -->
+Evidence: <!-- Add project-specific release evidence here. -->
 
 ### 2) Acquire Access
 
-- [ ] User can initiate payment or qualification from the intended product flow.
-- [ ] The purchase, signup, or qualification path is explicit and not hidden behind manual instructions.
-- [ ] The user understands what happens before, during, and after access verification.
+- [ ] User can start the intended signup, purchase, qualification, or entry flow.
+- [ ] The access path is explicit for this project.
+- [ ] The user understands what happens before, during, and after access or setup.
 
-Current status: Gap
-Evidence: Add release-cycle evidence here.
+Current status: <!-- Gap / Conditional / Complete / Awaiting human validation -->
+Evidence: <!-- Add project-specific release evidence here. -->
 
 ### 3) Verify
 
-- [ ] Verification or entitlement eligibility path exists when required.
-- [ ] Unverified or unpaid users do not receive protected access.
+- [ ] Verification or eligibility path exists when required.
+- [ ] Unauthorized users do not receive protected access when protection is in scope.
 - [ ] Failure states show an actionable next step.
 
-Current status: Gap
-Evidence: Add release-cycle evidence here.
+Current status: <!-- Gap / Conditional / Complete / Awaiting human validation -->
+Evidence: <!-- Add project-specific release evidence here. -->
 
 ### 4) Deliver
 
 - [ ] User can successfully reach the promised asset, account, page, or workflow.
-- [ ] Status transitions are recorded or auditable.
+- [ ] Status transitions are recorded or auditable when needed.
 - [ ] At least one realistic end-to-end proof run has been completed.
 
-Current status: Gap
-Evidence: Add release-cycle evidence here.
+Current status: <!-- Gap / Conditional / Complete / Awaiting human validation -->
+Evidence: <!-- Add project-specific release evidence here. -->
 
 ### 5) Study + Use
 
@@ -62,28 +69,14 @@ Evidence: Add release-cycle evidence here.
 - [ ] The user can take the first meaningful action without extra hand-holding.
 - [ ] Post-access guidance is understandable for the intended audience.
 
-Current status: Gap
-Evidence: Add release-cycle evidence here.
+Current status: <!-- Gap / Conditional / Complete / Awaiting human validation -->
+Evidence: <!-- Add project-specific release evidence here. -->
 
 ### 6) Support + Recovery
 
-- [ ] Recovery path exists for expired links, mismatched accounts, or other common failures.
-- [ ] Support actions are documented and auditable.
+- [ ] Recovery path exists for common failures relevant to this project.
+- [ ] Support actions are documented and auditable when needed.
 - [ ] Recovery does not require unsafe manual shortcuts.
 
-Current status: Gap
-Evidence: Add release-cycle evidence here.
-
-## Immediate Gaps To Close (Priority Order)
-
-1. Replace placeholders in this checklist with project-specific evidence before release.
-2. Run at least one realistic end-to-end proof for the active journey variant.
-
-## Agent Execution Rule (Project-Specific)
-
-For any task that affects public pages, payment/verification, access handling, onboarding, delivery, support, or release readiness:
-
-1. Read this file before editing.
-2. Update impacted stage checkboxes and status labels.
-3. Add a matching evidence note in `CHANGELOG_AI.md`.
-4. Do not mark release complete if any in-scope stage remains `Gap` unless the owner explicitly accepts the defer.
+Current status: <!-- Gap / Conditional / Complete / Awaiting human validation -->
+Evidence: <!-- Add project-specific release evidence here. -->

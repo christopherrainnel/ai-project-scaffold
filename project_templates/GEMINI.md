@@ -13,7 +13,7 @@
 5. Follow the startup and resume checks defined there.
 6. If resuming, read only the newest relevant `CHANGELOG_AI.md` entry.
 
-If the session did not begin with a governance-loading prompt, use `ops/prompts/SESSION_RESUME.md` Section 1.
+If the session did not begin with a governance-loading prompt, use `ops/SESSION_RESUME.md` Section 1.
 
 ## Gemini Loader Rule
 

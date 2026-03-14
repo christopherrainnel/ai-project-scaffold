@@ -71,6 +71,10 @@ Use this checklist before merging feature work:
 
 Prefer the repo-local `.venv_run` environment and `python -m ...` command forms described in `ops/AI_WORKFLOW.md` and `ops/RUNBOOK.md`.
 
+Starter governed-runtime markers:
+- `python -m gov check --repo-root . --format json`
+- `python -m pytest`
+
 | Action | Command |
 |--------|---------|
 | Install | |

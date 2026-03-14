@@ -36,7 +36,6 @@ node_modules/
 coverage/
 
 # Python (common data)
-.pytest_cache/
 __pycache__/
 *.py[cod]
 .venv/

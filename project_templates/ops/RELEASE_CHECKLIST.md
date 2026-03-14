@@ -29,6 +29,12 @@ Last Updated: {{DATE}}
 - [ ] Journey variant is explicitly mapped for release scope (`paid consumer`, `self-use`, or `team/internal`) and assumptions are documented when evidence is partial
 - [ ] Any incomplete journey stage has a documented owner, mitigation plan, and target date
 
+## Tier1 Model-Orchestration Readiness
+
+- [ ] Model-selection strategy is documented for release-critical tasks (quality/cost/latency rationale)
+- [ ] Chosen model strategy is validated on representative release scenarios
+- [ ] Human approval checkpoints are preserved for legal wording and final release decisions
+
 ## Release
 
 - [ ] Tag the release in git (`git tag vX.Y.Z`)

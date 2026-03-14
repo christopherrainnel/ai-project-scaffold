@@ -18,12 +18,11 @@ List the commands or checks you ran.
 
 ## Governance Checks
 
-- [ ] I updated `CHANGELOG_AI.md` (if AI-assisted changes were made).
+- [ ] I updated `CHANGELOG_AI.md` if AI-assisted changes were part of this work.
 - [ ] I updated `docs/DECISIONS.md` if an architectural decision changed.
 - [ ] I did not include secrets or sensitive data.
 - [ ] I kept the diff focused and avoided unrelated formatting changes.
-- [ ] I agree this contribution is submitted under the repository license in `LICENSE`.
-- [ ] I understand contributions are voluntary and unpaid unless separately agreed in writing.
+- [ ] I reviewed any project-specific contribution, license, or policy requirements that apply here.
 
 ## Related Issues
 

@@ -1,50 +1,34 @@
 # Copilot Instructions (VS Code Policy Loader)
 
-**Version:** 2.4
-**Last Updated:** 2026-03-07
+**Version:** 2.5
+**Last Updated:** 2026-03-10
 **Owner:** Project Lead
 
 ---
 
 > Canonical policy: `ops/AI_WORKFLOW.md`.
-> If this file conflicts with the workflow, the workflow wins and the agent should stop and ask.
->
-> Copilot instructions are supplemental. Native rule and hook systems remain stronger where supported.
+> If this file conflicts with the workflow, the workflow wins.
+> This file includes a compact inline core-governance summary so lower-adherence models still receive the critical rules.
 
-## Activation
+## Core Rules
 
-On session start or first task:
-1. Check that the `ops/` folder exists.
-2. Read `docs/FILE_MAP.md`.
-3. Read `ops/AI_WORKFLOW.md`.
-4. If the task touches paid/free or entitlement boundaries and a local overlay exists, read `guides/TIERING_POLICY.local.md` or `guides/TIERING_POLICY.md`.
-5. Load only task-relevant files. If resuming, read only the newest relevant `CHANGELOG_AI.md` entry.
-6. If governance files are missing, ask to create only the missing ones.
-
-If no local tiering file exists, continue normally without failing.
-
-Use `ops/prompts/SESSION_RESUME.md` Section 1 when a governance-loading first prompt is needed.
-
-## Copilot Loader Rules
-
-- During active editing sessions, treat the current working-tree governance files as authoritative.
-- Keep initial context small; start with at most 3 source files unless the task clearly needs more.
-- For feature or phase work, follow the dual-lens plan plus risk-register requirement from `ops/AI_WORKFLOW.md`.
-- For architecture-impacting work, read `docs/ARCHITECTURE.md`, `docs/DECISIONS.md`, and `docs/USER_CONSUMER_JOURNEY_CHECKLIST.md` before implementing.
-- For paid access, legal, privacy, or policy wording work, read `docs/PRIVACY.md` and `docs/TERMS.md` before implementing.
-- Keep the scaffold fresh, generic, and free of creator-specific residue.
-
-## Safety
-
-- Never request, paste, or expose secrets.
-- Never read or modify `.env`; only update `.env.example`.
-- Never run destructive commands without explicit user approval.
+- Use the current working-tree governance files in this repo, not older committed or remote copies.
+- Plan before code. State what you will change, why, and one concrete risk with mitigation before editing.
+- Start with only the files needed for the task, usually 3 or fewer first. Expand only when needed.
+- Never read or modify `.env`; update `.env.example` only.
+- Never expose secrets, private URLs, keys, or tokens.
+- Never run destructive commands or destructive git operations without explicit user approval.
+- Never run `git commit` or `git push` without explicit user instruction.
 - Never add dependencies without justification, version pinning, and lockfile updates.
-- Never claim certification or compliance without proof.
+- Treat governance files as protected; do not overwrite them without approval.
+- Verify after changes with the relevant checks.
+- If required human practical testing remains, mark the work `Awaiting human validation` and pause.
+- Close completed tasks with a `CHANGELOG_AI.md` entry in real projects created from this scaffold.
 
-## Closeout
+## Read Next
 
-- Run the applicable checks from `ops/QUALITY_GATES.md`.
-- Update `CHANGELOG_AI.md` after every task in a real project that uses this scaffold.
-- Log recurring failures in `ops/LESSONS_LEARNED.md`.
-- Treat governance files as protected and edit them only when necessary.
+- Use `AGENTS.md`, `docs/FILE_MAP.md`, and `ops/AI_WORKFLOW.md` for the full workflow and trigger-based reads.
+- For feature, architecture, UX, or release work, also read `docs/ARCHITECTURE.md`, `docs/DECISIONS.md`, and `docs/USER_CONSUMER_JOURNEY_CHECKLIST.md`.
+- For legal or privacy work, also read `docs/PRIVACY.md` and `docs/TERMS.md`.
+- Use `ops/SESSION_RESUME.md` Section 1 when a governance-loading first prompt is needed, or its short generic-chat fallback when your tool does not auto-load repo files.
+- `ops/AI_WORKFLOW.md` remains canonical if anything here is abbreviated or conflicts.
