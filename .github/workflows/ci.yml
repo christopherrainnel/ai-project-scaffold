@@ -18,6 +18,9 @@ jobs:
       - name: Enforce template-root alignment
         run: |
           BASE_SHA="${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}"
+          if ! git cat-file -e "$BASE_SHA"^{commit} 2>/dev/null; then
+            BASE_SHA="$(git rev-parse HEAD^ 2>/dev/null || git rev-parse HEAD)"
+          fi
           python tools/check_alignment_guard.py --base "$BASE_SHA" --head "${{ github.sha }}"
 
   test:
@@ -31,6 +34,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -80,7 +85,7 @@ jobs:
       - name: Secret scan (gitleaks)
         uses: gitleaks/gitleaks-action@v2
         with:
-          args: "--config=.gitleaks.toml"
+          args: "--config=.gitleaks.toml --log-opts=--all"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
