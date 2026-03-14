@@ -34,32 +34,6 @@ Every new project starts with:
 - **Strict resume sequence** — `SESSION_RESUME` enforces low-token restart order with next-action recovery
 - **Change log** — automatic tracking of every AI-made change
 
-## Tier Boundary (Free vs Tier1)
-
-- `both`: Governance baseline (agent rules, AI workflow, quality/security gates, decision logs, privacy/threat modeling, changelog discipline, upgrade triggers `docs/[redacted-tiering-item]`) + full IDE enforcement layer (`.cursor/`, `.windsurf/`, `.clinerules/`, `docs/IDE_ENFORCEMENT.md`) + VS Code baseline + advisory preflight
-- `free` (this repo): Bootstrap-less scaffold with single-agent default and optional Build -> Review flow
-- `tier1`: [redacted-tiering-item], guided project intake, and tier1-only files (`docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item].md`, `ops/prompts/[redacted-tiering-item].md`, `docs/SETTINGS_TOGGLES.md`)
-
-Free policy note: `project_templates/docs/USER_CONSUMER_JOURNEY_CHECKLIST.md` is intentionally kept as a stable baseline in free. Future checklist-component expansions are Tier1+ only.
-
-This split is intentional: the IDE enforcement layer and advisory tooling are free for everyone; Tier1 provides guided project intake and escalation controls that are genuinely worth paying for.
-
-## Template Alignment Note (v2.19)
-
-`docs/[redacted-tiering-item]` (upgrade conditions table) reclassified from tier1-only to `both` (free + tier1). Upgrade trigger thresholds are professional safety baseline: telling developers "add auth before exposing to external users" or "add age-gating if minors may use the product" is not a premium feature. Tier1 differentiators unchanged: [redacted-tiering-item], `docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item].md`, `ops/prompts/[redacted-tiering-item].md`, `docs/SETTINGS_TOGGLES.md`, First-Session Plan Gate.
-
-## Template Alignment Note (v2.18)
-
-Free template now includes the full IDE-native enforcement layer (`.cursor/rules/`, `.windsurf/rules/`, `.clinerules/` rules + hooks, `docs/IDE_ENFORCEMENT.md`), VS Code baseline (`.vscode/extensions.json`, `.vscode/settings.json`), advisory preflight (`.githooks/pre-commit.advisory`, `scripts/local_preflight_advisory.py`), and non-commit safety rule in `CLAUDE.md` and `ops/AI_WORKFLOW.md`. Tier1 differentiators: [redacted-tiering-item], `docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item].md`, `ops/prompts/[redacted-tiering-item].md`, `docs/SETTINGS_TOGGLES.md`, First-Session Plan Gate. `docs/[redacted-tiering-item]` reclassified to both in v2.19.
-
-## Template Alignment Note (v2.17)
-
-Free template now includes the shared-safe Workstation Context Check SOP, Practical Testing Responsibility framework (`AI-runnable verification`, `Developer POV practical testing`, `Consumer POV practical testing`), human validation pause gates (`Awaiting human validation`), Changelog Convention (date+time block format), SESSION_RESUME v2.1, and workstation re-adoption SOP in `ops/RUNBOOK.md`. Tier1 differentiators remain unchanged ([redacted-tiering-item], `docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item].md`, `docs/[redacted-tiering-item]`, `ops/prompts/[redacted-tiering-item].md`, IDE-native rule packs, First-Session Plan Gate). `docs/USER_CONSUMER_JOURNEY_CHECKLIST.md` remains frozen at the free baseline.
-
-## Template Alignment Note (v2.15)
-
-Free template policy now keeps a focused baseline: `.claude/settings.json` plus loader docs (`AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`). Cursor/Windsurf/Cline native rule packs and `IDE_ENFORCEMENT.md` are Tier1-only. `docs/TERMS.md` remains in free.
-
 ## Quick Start
 
 ```bash
@@ -129,7 +103,6 @@ my-project/
 │   ├── PRODUCT_STRATEGY_ROADMAP.md # Product goals
 │   ├── PROJECT_RULES.json          # Agent rules binding
 │   ├── RULE_MODEL.md               # Rule evaluation structures
-│   ├── TEMPLATE_TIERING_POLICY.md  # Local scaffold-tier template policy
 │   ├── TERMS.md                    # Plain-language operating terms stub
 │   ├── THREAT_MODEL.md             # Assets, threats, mitigations
 │   ├── TOOL_ALLOWLIST_PROFILES.json# Tool access rules

@@ -55,7 +55,7 @@ This is the complete reference for the AI Project Scaffold system — how it wor
 
 ## What Changed in v2.11
 
-- Aligned free-tier journey terminology to current lifecycle naming:
+- Aligned baseline journey terminology to current lifecycle naming:
   - `Acquire Access` (instead of `Buy (if applicable)`)
   - `Study + Use` naming consistency in gate language
 - Updated phase/release closure guidance so journey evidence is mapped to the active journey variant (`paid consumer`, `self-use`, `team/internal`).
@@ -76,19 +76,12 @@ This is the complete reference for the AI Project Scaffold system — how it wor
 
 ## What Changed in v2.14
 
-- Added `docs/TERMS.md` and `docs/USER_CONSUMER_JOURNEY_CHECKLIST.md` to free template governance surfaces.
+- Added `docs/TERMS.md` and `docs/USER_CONSUMER_JOURNEY_CHECKLIST.md` to baseline template governance surfaces.
 - Updated template `ops/QUALITY_GATES.md` as the authoritative acceptance-checklist source and converted `ops/DEFINITION_OF_DONE.md` to a pointer file.
-- Preserved free-tier boundaries: no bootstrap artifacts (`[redacted-tiering-item]`, `[redacted-tiering-item]`, `TRIGGERS`, `[redacted-tiering-item]`) were introduced.
-
-## What Changed in v2.15
-
-- Refined free-tier loader boundary to a focused baseline:
+- Refined loader boundary to a focused baseline:
   - keep `.claude/settings.json`
   - keep `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`
-- Removed free template tool-native rule packs for `.cursor`, `.windsurf`, and `.clinerules`.
-- Removed `docs/IDE_ENFORCEMENT.md` from free templates.
-- Kept `docs/TERMS.md` in free tier because it remains broadly useful for project/legal hygiene.
-- Added guardrails in `tools/check_alignment_guard.py` so removed free-tier files cannot be reintroduced unintentionally.
+- Added guardrails in `tools/check_alignment_guard.py` so removed files cannot be reintroduced unintentionally.
 
 ## What Changed in v2.2
 
@@ -154,7 +147,6 @@ docs/
   PRODUCT_STRATEGY_ROADMAP.md       # Long term product vision and road map
   PROJECT_RULES.json                # Custom overriding project behavior rules
   RULE_MODEL.md                     # Agent runtime behavior descriptions
-  TEMPLATE_TIERING_POLICY.md        # Alignment logic across scaffold tiers
   THREAT_MODEL.md                   # Assets, threats, mitigations
   TOOL_ALLOWLIST_PROFILES.json      # Allowlist profile constraints
   PRIVACY.md                        # Data inventory, retention, deletion, subprocessors
@@ -225,29 +217,11 @@ For every task:
 
 ---
 
-## Multi-Agent Support (Free Tier)
+## Multi-Agent Support
 
-The free tier defaults to **single-agent operation**. This is the fastest path for most tasks.
+The default is **single-agent operation**. This is the fastest path for most tasks.
 
 **Optional Build -> Review flow**: For tasks where a second-pass review adds value (refactors, security-sensitive changes, multi-file edits), you can ask the agent to add a Review step after building. No mandatory planner is required — use a short plan only when complexity or risk justifies it.
-
-Multi-agent orchestration (Plan -> Build -> Review with automatic activation/deactivation) is available in the [AI-guided tier (Tier1)](https://github.com/christopherrainnel/ai-project-scaffold-tier1).
-
----
-
-## When to Escalate to Tier1
-
-The free scaffold covers single-developer, single-agent projects well. Consider upgrading to Tier1 when:
-
-| Signal | Why Tier1 helps |
-| ------ | --------------- |
-| You regularly need multi-agent workflows (Plan -> Build -> Review) | Tier1 auto-recommends and auto-deactivates multi-agent mode based on task complexity |
-| New projects stall at the "blank page" phase | [redacted-tiering-item] asks the right questions and derives scope + stack before coding |
-| You want deterministic incomplete-detection for project scope | `[redacted-tiering-item].md` + `[redacted-tiering-item].md` gate prevents building without defined outcomes |
-| Architecture decisions keep getting revisited | `[redacted-tiering-item]` defines explicit escalation thresholds |
-| You work across multiple stacks and need consistent Run Order conventions | `[redacted-tiering-item].md` records canonical run commands per project |
-
-Tier1 is additive — everything in the free tier still works. The upgrade adds guided intake, structured scope, and multi-agent orchestration.
 
 ---
 

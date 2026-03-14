@@ -18,7 +18,6 @@ v2.20 completely syncs `project_templates/` from the canonical `VibeCoder_Pack` 
   - `docs/PRODUCT_STRATEGY_ROADMAP.md`
   - `docs/PROJECT_RULES.json`
   - `docs/RULE_MODEL.md`
-  - `docs/TEMPLATE_TIERING_POLICY.md`
   - `docs/TOOL_ALLOWLIST_PROFILES.json`
 - Ensures the scaffolding incorporates the latest structural primitives to support agent policies and tool availability profiles seamlessly out-of-the-box.
 
@@ -31,16 +30,13 @@ v2.20 completely syncs `project_templates/` from the canonical `VibeCoder_Pack` 
 
 ## Overview
 
-v2.19 reclassifies `docs/[redacted-tiering-item]` from tier1-only to `both` (free + tier1). Upgrade trigger conditions are professional safety baseline knowledge, not premium planning features.
-
 ## What's New
 
-### 1. [redacted-tiering-item] Now Included in Free Tier
+### 1. [redacted-tiering-item] Now Included in baseline
 
-- `docs/[redacted-tiering-item]` added to `project_templates/docs/` in the free scaffold.
+- `docs/[redacted-tiering-item]` added to `project_templates/docs/` in the baseline scaffold.
 - Upgrade trigger table covers: auth thresholds, rate limits, PII handling, GDPR/CCPA/age-gating, payment security hardening, multi-agent mode thresholds, journey completion gates.
 - `docs/FILE_MAP.md` updated to include the new file.
-- `TIERING_POLICY.md` updated to v2.1.
 
 ---
 
@@ -50,8 +46,6 @@ v2.19 reclassifies `docs/[redacted-tiering-item]` from tier1-only to `both` (fre
 **Status**: Ready for Production
 
 ## Overview
-
-v2.17 backports shared-safe improvements from Tier1 v2.15 to the free template while preserving all free-tier boundaries. No Tier1-exclusive features were added.
 
 ## What's New
 
@@ -86,12 +80,12 @@ v2.17 backports shared-safe improvements from Tier1 v2.15 to the free template w
 
 ### 6. DECISIONS.md Extended Fields
 
-- Updated `project_templates/docs/DECISIONS.md` entry format to include: `Status`, `Current assumption`, `Trigger to revisit`, `Risk if wrong` fields (matching Tier1 format).
+- Updated `project_templates/docs/DECISIONS.md` entry format to include: `Status`, `Current assumption`, `Trigger to revisit`, `Risk if wrong` fields (matching the AI-guided scaffold format).
 
 ### 7. CLAUDE.md and AGENTS.md Streamlining
 
 - Slimmed `project_templates/CLAUDE.md` to a thin loader: removed redundant Non-Negotiables and Local Python Pattern sections (covered by `ops/AI_WORKFLOW.md`); added Workstation Context Check step and `Awaiting human validation` rule.
-- Updated `project_templates/AGENTS.md`: added Workstation Context Check step, added practical-testing scaffold rule, removed redundant tiering fallback note.
+- Updated `project_templates/AGENTS.md`: added Workstation Context Check step, added practical-testing scaffold rule, removed redundant template fallback note.
 
 ### 8. FILE_MAP.md Description Improvements
 
@@ -100,15 +94,6 @@ v2.17 backports shared-safe improvements from Tier1 v2.15 to the free template w
   - `QUALITY_GATES.md`: mentions workstation re-adoption and human validation completion checks.
   - `RUNBOOK.md`: mentions workstation re-adoption SOP.
   - `SESSION_RESUME.md`: updated to reflect v2.1 workstation check requirement.
-
-### 9. Tier Boundary Confirmation
-
-- No Tier1-exclusive features were introduced. Confirmed absent from free:
-  - `project_templates/docs/USER_CONSUMER_JOURNEY_CHECKLIST.md` (frozen at v1.0 baseline, CI guard active)
-  - `project_templates/docs/[redacted-tiering-item].md`, `[redacted-tiering-item].md`, `[redacted-tiering-item]`
-  - `project_templates/ops/prompts/[redacted-tiering-item].md`
-  - `.cursor/`, `.windsurf/`, `.clinerules/`, `docs/IDE_ENFORCEMENT.md`
-  - Section 2a (First-Session Plan Gate) not present in free `AI_WORKFLOW.md`
 
 ---
 
@@ -119,19 +104,9 @@ v2.17 backports shared-safe improvements from Tier1 v2.15 to the free template w
 
 ## Overview
 
-v2.16 locks the free-tier user journey checklist at its current baseline and routes future checklist-component enhancements to Tier1+.
+v2.16 locks the baseline user journey checklist at its current baseline and routes future checklist-component enhancements to the AI-guided scaffold+.
 
 ## What's New
-
-### 1. Free Checklist Baseline Freeze
-
-- Added CI guardrail in `tools/check_alignment_guard.py` to fail when this path changes in free:
-  - `project_templates/docs/USER_CONSUMER_JOURNEY_CHECKLIST.md`
-- Rationale: keep free usable with a stable checklist baseline while preserving premium differentiation for future checklist expansions.
-
-### 2. Documentation Clarification
-
-- Updated root `README.md` tier-boundary section to state that future checklist-component expansions are Tier1+ only.
 
 ---
 
@@ -142,36 +117,9 @@ v2.16 locks the free-tier user journey checklist at its current baseline and rou
 
 ## Overview
 
-v2.15 tightens free-tier boundaries by keeping a focused loader baseline (Claude + VS Code Copilot/Codex) and moving additional tool-native rule packs back to Tier1.
+v2.15 tightens baseline boundaries by keeping a focused loader baseline (Claude + VS Code Copilot/Codex) and moving additional tool-native rule packs back to the AI-guided scaffold.
 
 ## What's New
-
-### 1. Free-Tier Boundary Rollback (Tool-Native Rules)
-
-- Removed from free `project_templates/`:
-  - `.cursor/`
-  - `.windsurf/`
-  - `.clinerules/`
-  - `docs/IDE_ENFORCEMENT.md`
-- Kept in free:
-  - `.claude/settings.json`
-  - `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`
-  - `docs/TERMS.md`
-
-### 2. Policy And Enforcement Guardrail Updates
-
-- Updated free `guides/TIERING_POLICY.md` with explicit loader boundary:
-  - free baseline = Claude + VS Code Copilot/Codex loader set
-  - Cursor/Windsurf/Cline native rule packs = Tier1-only
-- Updated `tools/check_alignment_guard.py` to fail if free template reintroduces:
-  - `.cursor/`
-  - `.windsurf/`
-  - `.clinerules/`
-  - `docs/IDE_ENFORCEMENT.md`
-
-### 3. Documentation Realignment
-
-- Aligned free root/template docs to the narrowed free boundary while retaining `TERMS.md` and journey-gate docs.
 
 ---
 
@@ -181,8 +129,6 @@ v2.15 tightens free-tier boundaries by keeping a focused loader baseline (Claude
 **Status**: Ready for Production
 
 ## Overview
-
-v2.14 applies shared-safe governance upgrades from the Tier1 snapshot to the free template while preserving all free-tier friction boundaries.
 
 ## What's New
 
@@ -200,7 +146,7 @@ v2.14 applies shared-safe governance upgrades from the Tier1 snapshot to the fre
   - `project_templates/docs/TERMS.md`
   - `project_templates/docs/USER_CONSUMER_JOURNEY_CHECKLIST.md`
 
-### 2. Free Template Governance Refactor (Shared-Safe)
+### 2. baseline template Governance Refactor (Shared-Safe)
 
 - Refreshed shared policy loaders and canonical docs:
   - `project_templates/AGENTS.md`
@@ -214,15 +160,6 @@ v2.14 applies shared-safe governance upgrades from the Tier1 snapshot to the fre
 - `ops/QUALITY_GATES.md` now carries the authoritative shipping and feature-acceptance checklists.
 - `ops/DEFINITION_OF_DONE.md` is now a pointer file to avoid checklist duplication drift.
 
-### 3. Tier Boundary Validation (Free vs Tier1)
-
-- Confirmed these remain Tier1-only and were not added to free:
-  - `project_templates/docs/[redacted-tiering-item].md`
-  - `project_templates/docs/[redacted-tiering-item].md`
-  - `project_templates/docs/[redacted-tiering-item]`
-  - `project_templates/ops/prompts/[redacted-tiering-item].md`
-- Confirmed free canonical workflow does not include the tier1-only bootstrap hard-gate marker.
-
 ---
 
 # Release Notes: v2.13
@@ -232,11 +169,9 @@ v2.14 applies shared-safe governance upgrades from the Tier1 snapshot to the fre
 
 ## Overview
 
-v2.13 backports shared-safe governance/template updates from the latest Tier1 template snapshot while preserving free-tier friction boundaries.
-
 ## What's New
 
-### 1. Cross-Tier Shared Governance Wording Alignment
+### 1. cross-template Shared Governance Wording Alignment
 
 - Updated free `project_templates/` governance loaders and docs to use flexible governance-first wording and point to `ops/prompts/SESSION_RESUME.md` as the canonical prompt location.
 - Applied to:
@@ -250,7 +185,6 @@ v2.13 backports shared-safe governance/template updates from the latest Tier1 te
 ### 2. Template Hygiene Reset (Free)
 
 - Reset `project_templates/CHANGELOG_AI.md` and `project_templates/ops/LESSONS_LEARNED.md` to starter-template form.
-- Confirmed free-tier boundaries remain intact: no `[redacted-tiering-item].md`, no `[redacted-tiering-item].md`, no `[redacted-tiering-item].md`, no `[redacted-tiering-item]`, and no bootstrap hard gates were introduced.
 
 ---
 
@@ -279,7 +213,6 @@ v2.12 adds a required GOVERNANCE BOOT session-start prompt so agents load policy
 
 - Updated `project_templates/docs/FILE_MAP.md` so `SESSION_RESUME.md` is explicitly described as governance boot + handoff template.
 - Added a recurring-issue entry in `project_templates/ops/LESSONS_LEARNED.md` for governance-boot skipping.
-- Confirmed free-tier boundary remains unchanged (no Tier1 bootstrap artifacts added).
 
 ---
 
@@ -290,11 +223,11 @@ v2.12 adds a required GOVERNANCE BOOT session-start prompt so agents load policy
 
 ## Overview
 
-v2.11 aligns free template journey terminology and phase-close evaluation language with the latest VibeCoder_Pack governance model while preserving free-tier boundaries.
+v2.11 aligns baseline template journey terminology and phase-close evaluation language with the latest VibeCoder_Pack governance model while preserving baseline boundaries.
 
 ## What's New
 
-### 1. Journey Language Alignment (Free Templates)
+### 1. Journey Language Alignment (baseline templates)
 
 - Updated `project_templates/ops/AI_WORKFLOW.md` to use the current lifecycle naming:
   - `Acquire Access` (replacing `Buy (if applicable)`)
@@ -342,7 +275,7 @@ v2.9 adds a Product Readiness Polish Gate to reduce stale UI/legal drift before 
 ### 1. Product Readiness Polish Gate
 
 - Added a required pre-release polish gate in `ops/AI_WORKFLOW.md` and `ops/RELEASE_CHECKLIST.md`.
-- Free-tier baseline now requires:
+- baseline baseline now requires:
   - UI quality pass,
   - legal-page alignment review,
   - explicit human approval for AI-assisted legal drafting,
@@ -362,7 +295,7 @@ v2.8 aligns current template behavior with clearer review and session-resume con
 
 ## What's New
 
-### 1. Two-Mode QA Boundary (Free + Tier1)
+### 1. Two-Mode QA Boundary (Free + the AI-guided scaffold)
 
 - Added explicit review modes in templates:
   - `Mode A: Discovery` (findings only, no edits)
@@ -386,19 +319,9 @@ v2.8 aligns current template behavior with clearer review and session-resume con
 
 ## Overview
 
-v2.7 clarifies repo boundary rules between free and Tier1 so cross-repo sync can remain deterministic.
+v2.7 clarifies repo boundary rules between free and the AI-guided scaffold so cross-repo sync can remain deterministic.
 
 ## What's New
-
-### 1. Tier Scope Clarification
-
-- Added explicit `both` vs `free` vs `tier1` wording in documentation.
-- Confirmed shared governance baseline remains aligned across both repos.
-
-### 2. Alignment Handoff Classification
-
-- Updated `REPO_ALIGNMENT_AGENT_HANDOFF.md` with scope (`free`, `tier1`, `both`) and applied/deferred status.
-- Marked entitlement-runtime candidates as `tier1` future work until runtime modules exist.
 
 ---
 
@@ -409,11 +332,11 @@ v2.7 clarifies repo boundary rules between free and Tier1 so cross-repo sync can
 
 ## Overview
 
-v2.6 adds **multi-agent policy alignment** across all governance files. Free tier now explicitly documents single-agent default with optional Build -> Review flow. Limitation-awareness prompts ensure agents briefly note trade-offs when switching execution modes.
+v2.6 adds **multi-agent policy alignment** across all governance files. baseline now explicitly documents single-agent default with optional Build -> Review flow. Limitation-awareness prompts ensure agents briefly note trade-offs when switching execution modes.
 
 ## What's New
 
-### 1. Multi-Agent Policy (Free Tier)
+### 1. Multi-Agent Policy (baseline)
 
 - Single-agent mode is now the documented default across all policy loaders.
 - Optional Build -> Review flow supported for complex/high-risk tasks.
@@ -433,8 +356,8 @@ When switching from default to complex mode (Plan -> Build -> Review), the agent
 
 ### 3. Workflow Guide: Multi-Agent + Escalation
 
-- Added "Multi-Agent Support (Free Tier)" section to `guides/AI_Project_Workflow_Guide.md`.
-- Added "When to Escalate to Tier1" subsection with signal/benefit table.
+- Added "Multi-Agent Support (baseline)" section to `guides/AI_Project_Workflow_Guide.md`.
+- Added "When to Escalate to the AI-guided scaffold" subsection with signal/benefit table.
 
 ### 4. Cross-File Alignment
 
@@ -552,7 +475,7 @@ Agent will:
 
 **Version Consistency**:
 
-- ✅ Both repos (free + tier1) aligned on v2.5
+- ✅ Both repos (free + the AI-guided scaffold) aligned on v2.5
 - ✅ All policy files cross-referenced and synchronized
 
 ## 📋 Migration Guide (For Existing Projects)
@@ -588,8 +511,8 @@ Both variants updated and ready:
   - ✅ .exe build hardened
   - ✅ v2.5 templates included
   
-- **ai-project-scaffold-tier1** (AI-guided, [redacted-tiering-item])
-  - ✅ Generator updated (with tier1-specific features preserved)
+- **ai-project-scaffold-the AI-guided scaffold** (AI-guided, [redacted-tiering-item])
+  - ✅ Generator updated (with the AI-guided scaffold-specific features preserved)
   - ✅ .exe build hardened
   - ✅ v2.5 templates included ([redacted-tiering-item].md unaffected)
 
@@ -597,7 +520,7 @@ Both variants updated and ready:
 
 - TOKEN_BUDGET rule is advisory (not enforced by generator) — requires agent discipline
 - SESSION_RESUME.md requires manual invocation (no auto-trigger mechanism)
-- Tier1 [redacted-tiering-item] unaffected by v2.5 (maintains backward compat)
+- the AI-guided scaffold [redacted-tiering-item] unaffected by v2.5 (maintains backward compat)
 
 ## 📞 Support & Feedback
 
